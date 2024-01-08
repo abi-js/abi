@@ -1,0 +1,45 @@
+# Binaries for programs and plugins
+main
+velox
+*.exe
+*.exe~
+*.so
+*.dylib
+*.dll
+
+# Ignore binary output folders
+bin/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Development
+node_modules
+dist
+dist-ssr
+*.local
+
+# ENV
+.env
+
+# vweb and database
+*.db
+*.js
+
+# Editor directories and files
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.iml
