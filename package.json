@@ -1,0 +1,35 @@
+{
+  "name": "abi.js",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "engines": {
+    "bun": ">=1.0.30"
+  },
+  "packageManager": "bun@1.0.30",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://sikessem.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sikessem/sikessem.com",
+    "directory": "lib/abi"
+  },
+  "bugs": "https://github.com/sikessem/sikessem.com/issues",
+  "author": {
+    "name": "Sigui Kessé Emmanuel",
+    "email": "dev@sikessem.com",
+    "url": "https://sigui.deno.dev"
+  },
+  "files": ["base", "bun", "deno"],
+  "keywords": ["router", "server", "handler", "resolver", "middleware"],
+  "scripts": {
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.8",
+    "@types/node": "^20.11.25",
+    "typescript": "^5.4.2"
+  }
+}
