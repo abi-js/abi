@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - trunk
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    environment: 
+      name: production
+      url: https://velox-sh.github.io
+
+    strategy:
+      fail-fast: true
+      matrix:
+        operating-system: [ubuntu-latest]
+        bun-version: [1.0]
+
+    name: 🚀 Deploy velox-sh.github.io with bun@${{ matrix.bun-version }} on ${{ matrix.operating-system }}
+
+    steps:
+      - name: 🚚 Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: ⚡️ Install, build, and upload
+        uses: withastro/action@v1
+        with:
+          package-manager: bun@${{ matrix.bun-version }}
+
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 📂 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1

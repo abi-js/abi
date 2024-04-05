@@ -1,0 +1,34 @@
+name: Tests
+
+on: ['push']
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+        bun: [1.0]
+        experimental: [false]
+    name: 🧪 Test velox's docs using Bun-${{ matrix.bun }} under ${{ matrix.os }}
+
+    steps:
+      - name: 🚚 Fetch code
+        uses: actions/checkout@v4
+
+      - name: ⚡️ Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ matrix.bun }}
+
+      - name: ⚗️ Install dependencies
+        run: |
+          bun install
+
+      - name: 🍱 Compile assets
+        run: bun run build
+
+      - name: ✅ Check types
+        run: bun check
