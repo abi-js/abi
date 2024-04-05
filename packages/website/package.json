@@ -1,8 +1,8 @@
 {
-  "name": "velox.sh",
+  "name": "@abi-js/website",
   "type": "module",
   "version": "0.0.1",
-  "description": "Velox documentation (GitHub pages).",
+  "description": "Abi.js documentation.",
   "private": true,
   "engines": {
     "bun": ">=1.0.0",
@@ -15,10 +15,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://velox-sh.github.io",
+  "homepage": "https://abi.deno.dev",
   "author": {
     "name": "Sigui Kessé Emmanuel",
-    "email": "siguidotci@gmail.com",
+    "email": "siguici@proton.me",
     "url": "https://siguici.deno.dev"
   },
   "scripts": {

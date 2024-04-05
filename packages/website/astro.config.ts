@@ -7,16 +7,17 @@ export default defineConfig({
     starlight({
       favicon: "/favicon.svg",
       logo: {
-        src: "./src/assets/velox.svg",
-        alt: "Velox",
+        src: "./src/assets/abi.svg",
+        alt: "Abi.js",
       },
-      title: "Velox",
+      title: "Abi.js",
       social: {
-        github: "https://github.com/velox-sh",
+        github: "https://github.com/abi-js",
+        twitter: "https://twitter.com/abidotjs",
       },
       editLink: {
         baseUrl:
-          "https://github.com/velox-sh/velox-sh.github.io/edit/trunk/src/content/docs/",
+          "https://github.com/abi-js/abi.js/edit/trunk/src/content/docs/",
       },
       sidebar: [
         {
