@@ -1,5 +1,5 @@
 {
-  "name": "abi.js",
+  "name": "@abi.js/core",
   "version": "0.0.0",
   "private": false,
   "type": "module",
@@ -10,13 +10,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://sikessem.com",
+  "homepage": "https://abi.deno.dev",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sikessem/sikessem.com",
-    "directory": "lib/abi"
+    "url": "https://github.com/abi-js/abi.js",
+    "directory": "packages/core"
   },
-  "bugs": "https://github.com/sikessem/sikessem.com/issues",
+  "bugs": "https://github.com/abi-js/abi.js/issues",
   "author": {
     "name": "Sigui Kessé Emmanuel",
     "email": "dev@sikessem.com",
