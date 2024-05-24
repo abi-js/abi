@@ -1,6 +1,5 @@
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
-import deno from '@astrojs/deno';
 
 // https://astro.build/config
 export default defineConfig({
