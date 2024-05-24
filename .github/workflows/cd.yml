@@ -2,9 +2,9 @@ name: CD
 
 on:
   push:
-    # Trigger the workflow every time you push to the `docs` branch
+    # Trigger the workflow every time you push to the `trunk` branch
     branches:
-      - docs
+      - trunk
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
