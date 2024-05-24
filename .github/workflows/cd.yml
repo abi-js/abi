@@ -37,6 +37,7 @@ jobs:
       - name: ⚡️ Install, build, and upload your site
         uses: withastro/action@v2
         with:
+          path: ./website
           node-version: ${{ matrix.node-version }}
           package-manager: pnpm@${{ matrix.pnpm-version }}
 

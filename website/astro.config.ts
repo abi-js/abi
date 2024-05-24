@@ -17,7 +17,7 @@ export default defineConfig({
         github: "https://github.com/abi-js",
       },
       editLink: {
-        baseUrl: "https://github.com/abi-js/abi.js.org/edit/main/",
+        baseUrl: "https://github.com/abi-js/abi/edit/trunk/website/",
       },
       sidebar: [
         {
