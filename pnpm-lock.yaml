@@ -41,10 +41,6 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
-    devDependencies:
-      '@biomejs/biome':
-        specifier: ^1.7.3
-        version: 1.7.3
 
 packages:
 
