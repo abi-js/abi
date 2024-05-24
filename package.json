@@ -36,16 +36,16 @@
     "sync": "astro sync"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.7",
-    "@astrojs/deno": "^5.0.1",
-    "@astrojs/starlight": "^0.21.1",
-    "astro": "^4.5.0",
-    "sharp": "^0.33.2",
-    "typescript": "^5.4.2"
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/starlight": "^0.23.1",
+    "astro": "^4.9.1",
+    "sharp": "^0.33.4",
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.6.0",
-    "@types/bun": "^1.0.8"
+    "@biomejs/biome": "^1.7.3"
   },
-  "trustedDependencies": ["sharp"]
+  "trustedDependencies": [
+    "sharp"
+  ]
 }
