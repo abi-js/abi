@@ -11,7 +11,7 @@ export function reflect<T extends Function | object>(
 
 export class ReflectionError extends Error {}
 
-export abstract class Reflection<T extends unknown> {
+export abstract class Reflection<T> {
   constructor(readonly value: T) {}
 
   toString(): string {
@@ -81,9 +81,7 @@ export class ReflectionFunction extends Reflection<Function> {
     }
   }
 
-  getParameter<T extends unknown>(
-    name: string,
-  ): ReflectionParameter<T> | undefined {
+  getParameter<T>(name: string): ReflectionParameter<T> | undefined {
     for (const param of this.parameters) {
       if (param.name === name) {
         return param;
@@ -129,15 +127,13 @@ export class ReflectionParameter<T> extends Reflection<T> {
   }
 }
 
-export class ReflectionValue<T extends unknown> extends Reflection<T> {
+export class ReflectionValue<T> extends Reflection<T> {
   get type(): string {
     return typeof this.value;
   }
 }
 
-export class ReflectionParameterValue<
-  T extends unknown,
-> extends ReflectionValue<T> {
+export class ReflectionParameterValue<T> extends ReflectionValue<T> {
   constructor(
     protected param: ReflectionParameter<T>,
     value: T,

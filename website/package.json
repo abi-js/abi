@@ -19,6 +19,7 @@
     "url": "https://github.com/abi-js/abi",
     "directory": "website"
   },
+  "bugs": "https://github.com/abi-js/abi/issues",
   "author": {
     "name": "Sigui Kessé Emmanuel",
     "email": "dev@sikessem.com",

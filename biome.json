@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["./website/biome.json"],
+  "organizeImports": {
+    "enabled": true,
+    "ignore": ["dist", "node_modules"]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "useBlockStatements": "error",
+        "useShorthandArrayType": "error",
+        "noParameterAssign": "off",
+        "noShoutyConstants": "warn"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
+      }
+    },
+    "ignore": ["dist", "node_modules"]
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "lineWidth": 80,
+    "ignore": ["dist", "node_modules"]
+  }
+}
