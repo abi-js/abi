@@ -6,74 +6,37 @@ permissions:
   contents: read
 
 jobs:
-  site:
+  ci:
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        bun-version: [1.1]
+        node-version: [20.13]
+        pnpm-version: [9.1]
 
-    name: 🧪 CI Abi's website on ${{ matrix.operating-system }} using Bun@${{ matrix.bun-version }}
+    name: 🧪 CI Abi's website on Node@${{ matrix.node-version }}-${{ matrix.operating-system }}
 
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 🔧 Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: 🎉 Setup Node.js
+        uses: actions/setup-node@v3.5
         with:
-          bun-version: ${{ matrix.bun-version }}
+          node-version: ${{ matrix.node-version }}
+
+      - name: ✨ Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: ${{ matrix.pnpm-version }}
 
       - name: ⚡️ Install dependencies
-        run: bun install
+        run: pnpm install
 
       - name: ✅ Check types
-        run: bun run check
+        run: pnpm check
 
       - name: 🍱 Build assets
-        run: bun run build
+        run: pnpm build
 
-      - name: 🚚 Upload distribution files
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist-files
-          path: dist/build
-
-  app:
-    needs: site
-    runs-on: ${{ matrix.operating-system }}
-    defaults:
-      run:
-        working-directory: ./dist
-
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-        deno-version: [1.43]
-
-    name: 🧪 CI Abi's docs on ${{ matrix.operating-system }} using Deno@${{ matrix.deno-version }}
-
-    steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v4
-
-      - name: 🔨 Configure Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: ${{ matrix.deno-version }}
-
-      - name: 🚚 Download distribution files
-        uses: actions/download-artifact@v4
-        with:
-          name: dist-files
-          path: dist/build
-
-      - name: 📂 List distribution files
-        run: ls -R dist
-
-      - name: ⚗️ Check files
-        run: deno task check
-
-      - name: 📦️ Build app
-        run: deno task build

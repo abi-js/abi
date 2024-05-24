@@ -1,39 +1,31 @@
 import starlight from "@astrojs/starlight";
-import { defineConfig, passthroughImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 import deno from '@astrojs/deno';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://abi.deno.dev",
+  site: "https://abi.js.org",
   srcDir: "./src",
-  outDir: "./dist/build",
+  outDir: "./out",
   publicDir: "./public",
   build: {
-    client: "./dist/build/client",
-    server: "./dist/build/server",
+    client: "./out/client",
+    server: "./out/server",
   },
   compressHTML: true,
-  output: "server",
-  image: {
-    service: passthroughImageService(),
-  },
-  adapter: deno({
-    port: 8000,
-    start: false,
-  }),
   integrations: [
     starlight({
       favicon: "/favicon.svg",
       logo: {
         src: "./src/assets/abi.svg",
-        alt: "Abi",
+        alt: "Abi.js",
       },
-      title: "Abi",
+      title: "Abi.js",
       social: {
-        github: "https://github.com/abi-sh",
+        github: "https://github.com/abi-js",
       },
       editLink: {
-        baseUrl: "https://github.com/abi-sh/abi.deno.dev/edit/main/",
+        baseUrl: "https://github.com/abi-js/abi.js.org/edit/main/",
       },
       sidebar: [
         {

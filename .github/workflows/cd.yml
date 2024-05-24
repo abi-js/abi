@@ -12,102 +12,35 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        bun-version: [1.1]
+        node-version: [20.13]
+        pnpm-version: [9.1]
 
-    name: 📦️ Build abi.deno.dev website on ${{ matrix.operating-system }} using Bun@${{ matrix.bun-version }}
+    name: 📦️ Build abi.js.org on ${{ matrix.node-version }}-${{ matrix.operating-system }}
 
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 🔧 Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: ⚡️ Install, build, and upload your site
+        uses: withastro/action@v2
         with:
-          bun-version: ${{ matrix.bun-version }}
+          node-version: ${{ matrix.node-version }}
+          package-manager: pnpm@${{ matrix.pnpm-version }}
 
-      - name: ⚡️ Install dependencies
-        run: bun install
-
-      - name: ✅ Check types
-        run: bun run check
-
-      - name: 🍱 Build assets
-        run: bun run build
-
-      - name: 🚚 Upload distribution files
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist-files
-          path: dist/build
-
-  deno-deploy:
+  deploy:
     needs: build
-    runs-on: ${{ matrix.operating-system }}
 
-    environment: 
-      name: production
-      url: https://abi.deno.dev
+    runs-on: ${{ matrix.operating-system }}
 
     permissions:
       id-token: write
       contents: read
-
-    defaults:
-      run:
-        working-directory: ./build
 
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        deno-version: [1.43]
 
-    name: 🚀 Deploy abi.deno.dev to ${{ matrix.operating-system }} on Deno-${{ matrix.deno-version }}
-
-    steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v4
-
-      - name: 🔨 Configure Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: ${{ matrix.deno-version }}
-
-      - name: 🚚 Download distribution files
-        uses: actions/download-artifact@v4
-        with:
-          name: dist-files
-          path: dist/build
-
-      - name: 📂 List distribution files
-        run: ls -R dist
-
-      - name: ⚗️ Check files
-        run: deno task check
-
-      - name: 📦️ Build app
-        run: deno task build
-
-      - name: 📂 Upload to Deno Deploy
-        uses: denoland/deployctl@v1
-        with:
-          project: abi
-          entrypoint: start.ts
-          root: dist
-
-  deploy-pages:
-    needs: build
-
-    permissions:
-      id-token: write
-      contents: read
-
-    defaults:
-      run:
-        working-directory: ./build
-
-    name: 🚀 Deploy abi-js.github.io to ${{ matrix.operating-system }} on Deno-${{ matrix.deno-version }}
-
-    runs-on: ubuntu-latest
+    name: 🚀 Deploy abi.js.org on ${{ matrix.node-version }}-${{ matrix.operating-system }}
 
     environment:
       name: github-pages
@@ -116,4 +49,4 @@ jobs:
     steps:
       - name: 📂 Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4

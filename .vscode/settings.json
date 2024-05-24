@@ -1,6 +1,0 @@
-{
-    "deno.unstable": true,
-    "deno.enablePaths": [
-        "dist"
-    ],
-}
