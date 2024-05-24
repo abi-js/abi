@@ -28,14 +28,9 @@
   "scripts": {
     "astro": "astro",
     "build": "astro build",
-    "check": "biome ci . && astro check",
-    "check.format": "biome format .",
-    "check.lint": "biome check .",
+    "check": "astro check",
     "dev": "astro dev",
-    "fix": "pnpm lint && pnpm format",
-    "format": "biome format --write .",
     "inspect": "node --inspect-brk ./node_modules/vite/bin/vite.js --force",
-    "lint": "biome check --apply-unsafe .",
     "preview": "astro preview",
     "prod": "pnpm check && astro build",
     "start": "astro dev --open",
@@ -47,9 +42,6 @@
     "astro": "^4.9.1",
     "sharp": "^0.33.4",
     "typescript": "^5.4.5"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.7.3"
   },
   "trustedDependencies": ["sharp"]
 }

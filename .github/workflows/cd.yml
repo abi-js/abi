@@ -34,7 +34,7 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: ⚡️ Install, build, and upload your site
+      - name: 🍱 Install, build, and upload your site
         uses: withastro/action@v2
         with:
           path: ./website

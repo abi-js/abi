@@ -9,10 +9,6 @@ jobs:
   ci:
     runs-on: ${{ matrix.operating-system }}
 
-    defaults:
-      run:
-        working-directory: ./website
-
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
@@ -38,9 +34,5 @@ jobs:
       - name: ⚡️ Install dependencies
         run: pnpm install
 
-      - name: ✅ Check types
+      - name: ✅ Check code style
         run: pnpm check
-
-      - name: 🍱 Build assets
-        run: pnpm build
-
