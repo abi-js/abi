@@ -20,7 +20,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./packages/website
+        working-directory: ./website
 
     strategy:
       matrix:
@@ -47,7 +47,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./packages/website
+        working-directory: ./website
 
     permissions:
       id-token: write
