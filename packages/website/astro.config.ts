@@ -3,6 +3,8 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://abi.js.org",
+  compressHTML: true,
   integrations: [
     starlight({
       favicon: "/favicon.svg",
@@ -13,11 +15,9 @@ export default defineConfig({
       title: "Abi.js",
       social: {
         github: "https://github.com/abi-js",
-        twitter: "https://twitter.com/abidotjs",
       },
       editLink: {
-        baseUrl:
-          "https://github.com/abi-js/abi.js/edit/trunk/src/content/docs/",
+        baseUrl: "https://github.com/abi-js/abi.js.org/edit/main/",
       },
       sidebar: [
         {

@@ -1,25 +1,23 @@
 {
-  "name": "@abi-js/website",
+  "name": "abi.js.org",
   "type": "module",
   "version": "0.0.1",
-  "description": "Abi.js documentation.",
+  "description": "Abi Docs.",
   "private": true,
   "engines": {
-    "bun": ">=1.0.0",
-    "npm": "prefer using bun",
-    "pnpm": "prefer using bun",
-    "yarn": "prefer using bun",
-    "node": "prefer using bun"
+    "node": ">=20.13",
+    "npm": "prefer using pnpm",
+    "pnpm": ">=9.1"
   },
-  "packageManager": "bun@1.0.21",
+  "packageManager": "pnpm@9.1.2",
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://abi.deno.dev",
+  "homepage": "https://abi.js.org",
   "author": {
     "name": "Sigui Kessé Emmanuel",
-    "email": "siguici@proton.me",
-    "url": "https://siguici.deno.dev"
+    "email": "dev@sikessem.com",
+    "url": "https://sikessem.com"
   },
   "scripts": {
     "astro": "astro",
@@ -28,26 +26,24 @@
     "check.format": "biome format .",
     "check.lint": "biome check .",
     "dev": "astro dev",
-    "fix": "bun lint && bun format",
+    "fix": "pnpm lint && pnpm format",
     "format": "biome format --write .",
+    "inspect": "node --inspect-brk ./node_modules/vite/bin/vite.js --force",
     "lint": "biome check --apply-unsafe .",
     "preview": "astro preview",
-    "prod": "bun check && astro build",
+    "prod": "pnpm check && astro build",
     "start": "astro dev --open",
     "sync": "astro sync"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.4",
-    "@astrojs/starlight": "^0.15.2",
-    "astro": "^4.1.1",
-    "sharp": "^0.33.1",
-    "typescript": "^5.3.3"
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/starlight": "^0.23.1",
+    "astro": "^4.9.1",
+    "sharp": "^0.33.4",
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.4.1",
-    "bun-types": "^1.0.21"
+    "@biomejs/biome": "^1.7.3"
   },
-  "trustedDependencies": [
-    "sharp"
-  ]
+  "trustedDependencies": ["sharp"]
 }
