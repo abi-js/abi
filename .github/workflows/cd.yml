@@ -45,13 +45,10 @@ jobs:
 
     runs-on: ${{ matrix.operating-system }}
 
-<<<<<<< HEAD
     defaults:
       run:
         working-directory: ./website
 
-=======
->>>>>>> docs
     permissions:
       id-token: write
       contents: read
