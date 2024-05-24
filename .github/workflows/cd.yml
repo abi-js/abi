@@ -14,13 +14,13 @@ permissions:
   pages: write
   id-token: write
 
+defaults:
+  run:
+    working-directory: ./website
+
 jobs:
   build:
     runs-on: ${{ matrix.operating-system }}
-
-    defaults:
-      run:
-        working-directory: ./website
 
     strategy:
       matrix:
@@ -45,14 +45,6 @@ jobs:
     needs: build
 
     runs-on: ${{ matrix.operating-system }}
-
-    defaults:
-      run:
-        working-directory: ./website
-
-    permissions:
-      id-token: write
-      contents: read
 
     strategy:
       matrix:
