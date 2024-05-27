@@ -16,7 +16,7 @@ permissions:
 
 defaults:
   run:
-    working-directory: ./website
+    working-directory: ./apps/website
 
 jobs:
   build:
@@ -37,7 +37,7 @@ jobs:
       - name: 🍱 Install, build, and upload your site
         uses: withastro/action@v2
         with:
-          path: ./website
+          path: ./apps/website
           node-version: ${{ matrix.node-version }}
           package-manager: pnpm@${{ matrix.pnpm-version }}
 
