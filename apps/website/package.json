@@ -43,7 +43,5 @@
     "sharp": "^0.33.4",
     "typescript": "^5.4.5"
   },
-  "trustedDependencies": [
-    "sharp"
-  ]
+  "trustedDependencies": ["sharp"]
 }
