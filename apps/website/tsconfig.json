@@ -1,4 +1,38 @@
 {
   "extends": "astro/tsconfigs/strictest",
-  "exclude": ["node_modules", "dist/**/*"]
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["ESNext", "DOM", "webworker", "DOM.Iterable"],
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "moduleDetection": "force",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "pretty": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "importHelpers": true,
+    "tsBuildInfoFile": null,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "allowArbitraryExtensions": true,
+    "verbatimModuleSyntax": true,
+    "assumeChangesOnlyAffectDirectDependencies": true,
+    "esModuleInterop": true,
+    "sourceRoot": ".",
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "types": ["node"],
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  }
 }
