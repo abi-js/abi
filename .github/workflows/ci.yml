@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        node-version: [20.13]
-        pnpm-version: [9.1]
+        node-version: [20.15]
+        pnpm-version: [9.5]
 
     name: 🧪 CI Abi's website on Node@${{ matrix.node-version }}-${{ matrix.operating-system }}
 
