@@ -1,36 +1,35 @@
 ---
-title: The next generation developer toolchain
-description: Seamlessly Simple and Secure, Uniting Powerful Development Tools.
+title: Next-gen framework for modern web apps
+description: Abi is a free and open-source developer-friendly typescript-based framework for modern web applications focused on reliability and efficiency. Powered by Bun, Deno, and Cloudflare Workers.
 template: splash
+editUrl: false
+lastUpdated: false
 hero:
-  tagline: A Framework That Blends Simplicity and Security, Harnessing the Power of Vlang, TypeScript, Bun, Vite, Qwik, and TailwindCSS for Effortless Full-Stack Development.
+  tagline: Build fast and type-safe web applications in no time with a free, open-source, and easy-to-use framework.
   image:
     file: ../../assets/abi.svg
   actions:
-    - text: Get started
-      link: /start/
+    - text: Get Started
+      link: /abi/start/
       icon: right-arrow
       variant: primary
-    - text: Follow us on GitHub
-      link: https://github.com/abi-sh
+    - text: View on GitHub
+      link: https://github.com/abi-js/abi
       icon: external
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import Installation from "~/components/installation.mdx";
+import Usage from "~/components/usage.mdx";
 
-## Next steps
-
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
-</CardGrid>
+<section class="flex flex-col items-center">
+  <div class="grid gap-12 lg:gap-8 space-y-0 grid-rows-2 grid-cols-1 lg:grid-rows-1 lg:grid-cols-2">
+    <div class="flex flex-col items-center">
+      <h3>Install</h3>
+      <Installation />
+    </div>
+    <div class="flex flex-col items-center">
+      <h3>Usage</h3>
+      <Usage />
+    </div>
+  </div>
+</section>

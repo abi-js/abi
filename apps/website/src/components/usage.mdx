@@ -1,0 +1,32 @@
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="NPM">
+
+  ```typescript
+  import { Abi } from "abi.js";
+
+  const abi = new Abi();
+
+  abi.get('', 'Welcome to Abi.js!');
+  abi.get(':name', (name: string) => `Hello ${name}!`);
+
+  export default abi;
+  ```
+
+  </TabItem>
+  <TabItem label="JSR">
+
+  ```typescript
+  import { Abi } from "@abi-js/abi";
+
+  const abi = new Abi();
+
+  abi.get('', 'Welcome to Abi.js!');
+  abi.get(':name', (name: string) => `Hello ${name}!`);
+
+  export default abi;
+  ```
+
+  </TabItem>
+</Tabs>
