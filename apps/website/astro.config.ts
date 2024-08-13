@@ -16,22 +16,30 @@ export default defineConfig({
       title: "Abi.js",
       social: {
         github: "https://github.com/abi-js",
+        twitter: "https://x.com/abidotjs",
       },
       editLink: {
-        baseUrl: "https://github.com/abi-js/abi/edit/trunk/website/",
+        baseUrl: "https://github.com/abi-js/abi/edit/trunk/apps/website/",
       },
       sidebar: [
         {
-          label: "Home",
+          label: "🏠 Home",
           link: "/",
         },
         {
-          label: "Getting started",
-          items: [{ label: "Quickstart", link: "/start/" }],
+          label: "📖 Guides",
+          items: [
+            {
+              label: "Getting Started 🎉",
+              link: "/guides/",
+            },
+          ],
         },
         {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
+          label: "📚 Reference",
+          autogenerate: {
+            directory: "reference",
+          },
         },
       ],
     }),
