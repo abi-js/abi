@@ -4,11 +4,11 @@
   "private": false,
   "type": "module",
   "engines": {
-    "node": ">=20.15",
+    "node": ">=20.16",
     "npm": "prefer using pnpm",
-    "pnpm": ">=9.5"
+    "pnpm": ">=9.7"
   },
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.7.0",
   "publishConfig": {
     "access": "public"
   },
@@ -24,18 +24,8 @@
     "email": "dev@sikessem.com",
     "url": "https://sigui.deno.dev"
   },
-  "files": [
-    "base",
-    "bun",
-    "deno"
-  ],
-  "keywords": [
-    "router",
-    "server",
-    "handler",
-    "resolver",
-    "middleware"
-  ],
+  "files": ["base", "bun", "deno"],
+  "keywords": ["router", "server", "handler", "resolver", "middleware"],
   "scripts": {
     "test": "bun test"
   },

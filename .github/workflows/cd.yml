@@ -25,8 +25,8 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        node-version: [20.15]
-        pnpm-version: [9.5]
+        node-version: [20.16]
+        pnpm-version: [9.7]
 
     name: 📦️ Build abi.js.org on ${{ matrix.node-version }}-${{ matrix.operating-system }}
 

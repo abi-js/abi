@@ -5,11 +5,11 @@
   "type": "module",
   "private": true,
   "engines": {
-    "node": ">=20.15",
+    "node": ">=20.16",
     "npm": "prefer using pnpm",
-    "pnpm": ">=9.5"
+    "pnpm": ">=9.7"
   },
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.7.0",
   "publishConfig": {
     "access": "public"
   },
@@ -31,7 +31,7 @@
     "check.lint": "biome check .",
     "fix": "pnpm lint && pnpm format",
     "format": "biome format --write .",
-    "lint": "biome check --apply-unsafe .",
+    "lint": "biome check --write .",
     "prod": "cd website && pnpm prod"
   },
   "devDependencies": {
