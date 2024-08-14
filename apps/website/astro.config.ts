@@ -1,4 +1,5 @@
 import starlight from "@astrojs/starlight";
+import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 
 // https://astro.build/config
@@ -7,6 +8,9 @@ export default defineConfig({
   base: "abi",
   compressHTML: true,
   integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
     starlight({
       favicon: "/favicon.svg",
       logo: {
@@ -21,6 +25,7 @@ export default defineConfig({
       editLink: {
         baseUrl: "https://github.com/abi-js/abi/edit/trunk/apps/website/",
       },
+      customCss: ["./src/design/global.css"],
       sidebar: [
         {
           label: "🏠 Home",
