@@ -1,5 +1,5 @@
-import { get_extension_type } from "./base/mime.ts";
-import { BaseActionRouter, BaseFileRouter } from "./base/routing.ts";
+import { get_extension_type } from './base/mime.ts';
+import { BaseActionRouter, BaseFileRouter } from './base/routing.ts';
 
 export class FileRouter extends BaseFileRouter {
   handle(request: Request): Response {
@@ -12,7 +12,7 @@ export class FileRouter extends BaseFileRouter {
         console.log(`Serve static file ${path.realname}`);
         return new Response(Deno.readFileSync(path.realname), {
           headers: {
-            "Content-Type": get_extension_type(path.extension),
+            'Content-Type': get_extension_type(path.extension),
           },
         });
       }

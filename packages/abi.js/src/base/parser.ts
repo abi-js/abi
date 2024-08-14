@@ -1,20 +1,20 @@
 export function parse_val(val: string): any {
-  if (typeof val !== "string") {
+  if (typeof val !== 'string') {
     return val;
   }
 
   val = val.trim();
   const lc_val = val.toLowerCase();
-  if (lc_val === "null") {
+  if (lc_val === 'null') {
     return null;
   }
-  if (lc_val === "undefined") {
+  if (lc_val === 'undefined') {
     return undefined;
   }
-  if (lc_val === "true") {
+  if (lc_val === 'true') {
     return true;
   }
-  if (lc_val === "false") {
+  if (lc_val === 'false') {
     return false;
   }
   if (!Number.isNaN(Number(val))) {
@@ -47,7 +47,7 @@ export function parse_arr(val: string): any[] {
     val = res[1];
   }
   const arr: any[] = [];
-  const items = val.split(",");
+  const items = val.split(',');
   for (const i in items) {
     arr[i] = parse_val(items[i]);
   }
@@ -60,7 +60,7 @@ export function parse_obj(val: string): Record<any, any> {
     val = res[1];
   }
   const obj: Record<any, any> = {};
-  const items = val.split(",");
+  const items = val.split(',');
   for (const item of items) {
     const [key, val] = parse_prop(item);
     obj[key] = val;
@@ -74,7 +74,7 @@ export function parse_params(val: string): Record<string, any> {
     val = res[1];
   }
   const params: Record<string, any> = {};
-  const items = val.split(",");
+  const items = val.split(',');
   for (const item of items) {
     let [name, val] = parse_param(item);
     if (val !== undefined) {
@@ -91,7 +91,7 @@ export function parse_args(val: string): Record<string, any> {
     val = res[1];
   }
   const args: Record<any, any> = {};
-  const items = val.split(",");
+  const items = val.split(',');
   for (const item of items) {
     const [key, val] = parse_prop(item);
     args[key] = val;
@@ -123,7 +123,7 @@ export function parse_arg(val: string): any {
     if (value !== undefined) {
       value = parse_val(value);
     }
-    if (typeof value === "string") {
+    if (typeof value === 'string') {
       const [_, param] = parse_param(value);
       return [key, param ?? value];
     }

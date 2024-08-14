@@ -1,10 +1,10 @@
-import { parse_params } from "./parser";
+import { parse_params } from './parser';
 
 export function reflect<T extends Function | object>(
   value: T,
   objectThis?: object,
 ): ReflectionObject | ReflectionFunction {
-  return typeof value === "object"
+  return typeof value === 'object'
     ? new ReflectionObject(value, objectThis)
     : new ReflectionFunction(value, objectThis);
 }
@@ -49,12 +49,12 @@ export class ReflectionFunction extends Reflection<Function> {
     const named_res = named_re.exec(str_val);
     if (arrow_res) {
       this.is_arrow = true;
-      this.name = "";
+      this.name = '';
       this.#parseParameters(arrow_res[1]);
       this.#parseReturn(arrow_res[2]);
     } else if (named_res) {
       this.is_arrow = false;
-      this.name = named_res[1] || "anonymous";
+      this.name = named_res[1] || 'anonymous';
       this.#parseParameters(named_res[2]);
       this.#parseReturn(named_res[3]);
     } else {
@@ -67,7 +67,7 @@ export class ReflectionFunction extends Reflection<Function> {
     const entries = Object.entries(default_params);
     if (
       entries.length === 1 &&
-      entries[0][0] === "0" &&
+      entries[0][0] === '0' &&
       entries[0][1] === undefined
     ) {
       return;
@@ -189,7 +189,7 @@ export class Container {
   }
 
   make<T>(value: T, context: Context = {}): T {
-    return typeof value === "function" ? this.call(value, context) : value;
+    return typeof value === 'function' ? this.call(value, context) : value;
   }
 
   mergeContext(context: Context): Context {

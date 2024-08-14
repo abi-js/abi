@@ -16,6 +16,7 @@
         "noShoutyConstants": "warn"
       },
       "suspicious": {
+        "noImplicitAnyLet": "off",
         "noExplicitAny": "off"
       }
     },
@@ -27,5 +28,17 @@
     "indentStyle": "space",
     "lineWidth": 80,
     "ignore": ["dist", "node_modules"]
+  },
+  "javascript": {
+    "formatter": {
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "bracketSameLine": false,
+      "quoteStyle": "single",
+      "attributePosition": "auto"
+    }
   }
 }

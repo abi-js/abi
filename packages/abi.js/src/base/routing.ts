@@ -1,7 +1,7 @@
-import type { FileSystemContract } from "./fs";
-import { Method } from "./method";
-import { get_extension_type } from "./mime";
-import reflex from "./reflex";
+import type { FileSystemContract } from './fs';
+import { Method } from './method';
+import { get_extension_type } from './mime';
+import reflex from './reflex';
 
 export type Handler = (request: Request) => Response | Promise<Response>;
 
@@ -23,7 +23,7 @@ export abstract class BaseFileRouter implements FileRouterContract {
   abstract handle(request: Request): Response;
 }
 
-export type QueryType = "string" | "number";
+export type QueryType = 'string' | 'number';
 export type QueryValue = string | number;
 export type Index = number;
 export type Name = string;
@@ -58,12 +58,12 @@ export class Action {
     const params: Parameter[] = [];
 
     const re = /\[([a-z]+)(?:\s*:\s*(number|string))?(?:\s*\=\s*(\w+))?\]/;
-    pattern = pattern.replace("(", "(?:");
+    pattern = pattern.replace('(', '(?:');
     while (re.test(pattern)) {
       const m = re.exec(pattern)!;
       const search = m[0];
-      const type = m[2] === "number" ? "number" : "string";
-      const value = type === "number" ? Number(m[3]) : m[3];
+      const type = m[2] === 'number' ? 'number' : 'string';
+      const value = type === 'number' ? Number(m[3]) : m[3];
       const param: Parameter = {
         name: m[1],
         type,
@@ -71,12 +71,12 @@ export class Action {
       };
       params.push(param);
       const replace = `(${
-        param.type === "number" ? "[0-9]+" : "[^\\/\\[\\]]+"
-      })${value === undefined ? "" : "?"}`;
+        param.type === 'number' ? '[0-9]+' : '[^\\/\\[\\]]+'
+      })${value === undefined ? '' : '?'}`;
       pattern = pattern.replace(search, replace);
     }
 
-    pattern = pattern.replace("/", "\\/");
+    pattern = pattern.replace('/', '\\/');
     pattern = `^${pattern}$`;
 
     const matches = subject.match(pattern);
@@ -84,7 +84,7 @@ export class Action {
       let i = 0;
       for (const param of params) {
         let value = matches[i + 1] || param.value;
-        if (param.type === "number") {
+        if (param.type === 'number') {
           value = Number(value);
         }
         this.options[i++] = value;
@@ -98,10 +98,10 @@ export class Action {
 
   protected normalize(subject: string): string {
     subject = subject.trim();
-    if (subject.startsWith("/")) {
+    if (subject.startsWith('/')) {
       subject = subject.substring(1);
     }
-    if (subject.endsWith("/")) {
+    if (subject.endsWith('/')) {
       subject = subject.substring(0, subject.length - 1);
     }
     return subject;
@@ -125,19 +125,19 @@ export class Action {
       return result;
     }
 
-    if (typeof result === "string") {
+    if (typeof result === 'string') {
       return new Response(result);
     }
 
-    if (typeof result === "number") {
-      return new Response("", {
+    if (typeof result === 'number') {
+      return new Response('', {
         status: result,
       });
     }
 
     return new Response(JSON.stringify(result), {
       headers: {
-        "Content-Type": get_extension_type("json"),
+        'Content-Type': get_extension_type('json'),
       },
     });
   }

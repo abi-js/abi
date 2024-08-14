@@ -1,4 +1,4 @@
-import { BaseActionRouter, BaseFileRouter } from "../base/routing";
+import { BaseActionRouter, BaseFileRouter } from '../base/routing';
 
 export class FileRouter extends BaseFileRouter {
   handle(request: Request): Response {
@@ -12,7 +12,7 @@ export class FileRouter extends BaseFileRouter {
         console.log(`Serve static file ${path.realname}`);
         return new Response(file.readable, {
           headers: {
-            "Content-Type": file.type,
+            'Content-Type': file.type,
           },
         });
       }

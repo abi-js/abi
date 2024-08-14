@@ -1,4 +1,4 @@
-import { parse_str } from "./parser";
+import { parse_str } from './parser';
 
 export type Locale = string;
 export type Attrs = Record<string, string>;
@@ -88,15 +88,15 @@ export class Component extends Tag {
   }
 
   open(): string {
-    return `<${this.name}${this.renderProps()}${this.slot.is_empty ? "" : ">"}`;
+    return `<${this.name}${this.renderProps()}${this.slot.is_empty ? '' : '>'}`;
   }
 
   close(): string {
-    return this.slot.is_empty ? "/>" : `</${this.name}>`;
+    return this.slot.is_empty ? '/>' : `</${this.name}>`;
   }
 
   renderProps(): string {
-    let props = "";
+    let props = '';
 
     for (const prop of Object.entries(this.props)) {
       props += ` ${prop[0]}="${prop[1].toString()}"`;
@@ -108,67 +108,67 @@ export class Component extends Tag {
 
 export class Element extends Tag {
   static readonly ORPHAN = [
-    "area",
-    "base",
-    "basefont",
-    "br",
-    "col",
-    "command",
-    "embed",
-    "frame",
-    "hr",
-    "img",
-    "input",
-    "isindex",
-    "keygen",
-    "link",
-    "meta",
-    "param",
-    "source",
-    "track",
-    "wbr",
+    'area',
+    'base',
+    'basefont',
+    'br',
+    'col',
+    'command',
+    'embed',
+    'frame',
+    'hr',
+    'img',
+    'input',
+    'isindex',
+    'keygen',
+    'link',
+    'meta',
+    'param',
+    'source',
+    'track',
+    'wbr',
   ];
 
   static readonly INLINE = [
-    "a",
-    "abbr",
-    "acronym",
-    "b",
-    "bdi",
-    "bdo",
-    "big",
-    "br",
-    "cite",
-    "code",
-    "data",
-    "del",
-    "dfn",
-    "em",
-    "font",
-    "i",
-    "img",
-    "ins",
-    "kbd",
-    "map",
-    "mark",
-    "object",
-    "q",
-    "rp",
-    "rt",
-    "rtc",
-    "ruby",
-    "s",
-    "samp",
-    "small",
-    "span",
-    "strike",
-    "strong",
-    "sub",
-    "sup",
-    "time",
-    "tt",
-    "u",
-    "var",
+    'a',
+    'abbr',
+    'acronym',
+    'b',
+    'bdi',
+    'bdo',
+    'big',
+    'br',
+    'cite',
+    'code',
+    'data',
+    'del',
+    'dfn',
+    'em',
+    'font',
+    'i',
+    'img',
+    'ins',
+    'kbd',
+    'map',
+    'mark',
+    'object',
+    'q',
+    'rp',
+    'rt',
+    'rtc',
+    'ruby',
+    's',
+    'samp',
+    'small',
+    'span',
+    'strike',
+    'strong',
+    'sub',
+    'sup',
+    'time',
+    'tt',
+    'u',
+    'var',
   ];
 
   constructor(
@@ -180,7 +180,7 @@ export class Element extends Tag {
   }
 
   renderAttrs(): string {
-    let attrs = "";
+    let attrs = '';
 
     for (const attr of Object.entries(this.attrs)) {
       attrs += ` ${attr[0]}="${attr[1]}"`;
@@ -194,7 +194,7 @@ export class Element extends Tag {
   }
 
   close(): string {
-    return this.is_orphan ? "" : `</${this.name}>`;
+    return this.is_orphan ? '' : `</${this.name}>`;
   }
 
   get is_orphan(): boolean {
@@ -214,7 +214,7 @@ export class Element extends Tag {
   }
 
   get is_custom(): boolean {
-    return this.name.includes("-");
+    return this.name.includes('-');
   }
 }
 
@@ -228,7 +228,7 @@ export class Slot extends Node {
   }
 
   render(locale?: string | undefined): string {
-    let str = "";
+    let str = '';
 
     for (const node of this.nodes) {
       str += node.render(locale);
@@ -239,7 +239,7 @@ export class Slot extends Node {
 }
 
 export class Text extends Node {
-  static locale: Locale = "en_US";
+  static locale: Locale = 'en_US';
   static dictionnary: Record<string, Translations> = {};
 
   constructor(
@@ -317,7 +317,7 @@ export class Template {
 
   render(locale?: Locale): string {
     const content = this.content.toString();
-    const ID = "[a-zA-Z]+[a-zA-Z0-9-_]*";
+    const ID = '[a-zA-Z]+[a-zA-Z0-9-_]*';
     const SINGLE_QUOTE_STR = "'(?:\\'|[^'])*'";
     const DOUBLE_QUOTE_STR = '"(?:\\"|[^"])*"';
     const STR = `${SINGLE_QUOTE_STR}|${DOUBLE_QUOTE_STR}`;
@@ -330,12 +330,12 @@ export class Template {
 
     if (elt_m) {
       const attrs: Attrs = {};
-      let attrs_str = elt_m[2] || "";
-      let attrs_m = RegExp(ATTR, "gm").exec(attrs_str);
+      let attrs_str = elt_m[2] || '';
+      let attrs_m = RegExp(ATTR, 'gm').exec(attrs_str);
       while (attrs_m) {
         attrs[attrs_m[1]] = parse_str(attrs_m[2]);
-        attrs_str = attrs_str.replace(attrs_m[0], "");
-        attrs_m = RegExp(ATTR, "gm").exec(attrs_str);
+        attrs_str = attrs_str.replace(attrs_m[0], '');
+        attrs_m = RegExp(ATTR, 'gm').exec(attrs_str);
       }
       const elt = element(elt_m[1] as EltName, attrs, text(elt_m[7]));
       return elt.render(locale);

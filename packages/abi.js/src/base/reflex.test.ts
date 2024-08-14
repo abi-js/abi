@@ -1,22 +1,22 @@
-import { expect, test } from "bun:test";
+import { expect, test } from 'bun:test';
 import reflex, {
   Reflection,
   ReflectionFunction,
   ReflectionObject,
   ReflectionParameter,
   reflect,
-} from "./reflex";
+} from './reflex';
 
 class Foo {
   public bar() {
-    return "baz";
+    return 'baz';
   }
 }
 
-test("Reflex container", () => {
+test('Reflex container', () => {
   const container = reflex({
-    name: "Sigui",
-    username: "siguici",
+    name: 'Sigui',
+    username: 'siguici',
   });
 
   expect(
@@ -27,8 +27,8 @@ test("Reflex container", () => {
   ).toEqual("I'm Sigui and my username is siguici");
 });
 
-test("Reflection function", () => {
-  const arrow = (name = "Sigui") => `Hello ${name}`;
+test('Reflection function', () => {
+  const arrow = (name = 'Sigui') => `Hello ${name}`;
   const named = function funct(name: string) {
     return `Hello ${name}`;
   };
@@ -37,8 +37,8 @@ test("Reflection function", () => {
   const arrow_reflection = reflect(arrow);
   const named_reflection = reflect(named);
   const object_method_reflection = reflect(object_method);
-  const arrow_param = arrow_reflection.getParameter("name");
-  const named_param = named_reflection.getParameter("name");
+  const arrow_param = arrow_reflection.getParameter('name');
+  const named_param = named_reflection.getParameter('name');
   const arrow_param_value = arrow_param.getDefaultValue();
   const named_param_value = named_param.getDefaultValue();
   expect(arrow_reflection).toBeInstanceOf(Reflection);
@@ -48,13 +48,13 @@ test("Reflection function", () => {
   expect(named_reflection).toBeInstanceOf(ReflectionFunction);
   expect(arrow_param).toBeInstanceOf(ReflectionParameter);
   expect(named_param).toBeInstanceOf(ReflectionParameter);
-  expect(arrow_param.value).toEqual("Sigui");
+  expect(arrow_param.value).toEqual('Sigui');
   expect(named_param.value).toEqual(undefined);
-  expect(arrow_param_value.type).toEqual("string");
-  expect(named_param_value.type).toEqual("undefined");
+  expect(arrow_param_value.type).toEqual('string');
+  expect(named_param_value.type).toEqual('undefined');
 });
 
-test("Reflection object", () => {
+test('Reflection object', () => {
   const obj_reflection = reflect({});
   const cls_reflection = reflect(new (class {})());
   expect(obj_reflection).toBeInstanceOf(Reflection);

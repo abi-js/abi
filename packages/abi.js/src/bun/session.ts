@@ -1,16 +1,16 @@
-import { deserialize, serialize } from "bun:jsc";
+import { deserialize, serialize } from 'bun:jsc';
 
 export type SessionData = Record<string, any>;
 
 export class SessionHandler {
   constructor(
     readonly path = `${import.meta.dir}/.sessions`,
-    readonly prefix = "session_",
+    readonly prefix = 'session_',
   ) {}
 
   async read(id: string): Promise<SessionData> {
     const file = Bun.file(this.getPath(id));
-    const raw = (await file.exists()) ? await file.text() : "";
+    const raw = (await file.exists()) ? await file.text() : '';
     console.log(raw);
     const data = Bun.deflateSync(raw);
     console.log(data);
@@ -23,9 +23,9 @@ export class SessionHandler {
 
   write(id: string, data: SessionData) {
     const raw = Bun.inflateSync(
-      serialize(data, { binaryType: "nodebuffer" }),
+      serialize(data, { binaryType: 'nodebuffer' }),
     ).toString();
-    console.log("Data", raw.toString());
+    console.log('Data', raw.toString());
     Bun.write(this.getPath(id), raw);
   }
 }
