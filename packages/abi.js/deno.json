@@ -1,0 +1,40 @@
+{
+  "name": "@abi-js/abi",
+  "version": "0.0.0",
+  "exports": {
+    ".": "./jsr/index.ts"
+  },
+  "include": ["deno.json", "jsr/*.ts", "README.md", "LICENSE.md"],
+  "exclude": [
+    ".*",
+    "jsr/*.test.ts",
+    "js/*",
+    "ts/*",
+    "src/*",
+    "tests/*",
+    "biome.json",
+    "tsconfig.json",
+    "deno.lock"
+  ],
+  "publish": {
+    "include": ["jsr/**", "deno.json", "README.md", "LICENSE.md"],
+    "exclude": ["!jsr/*.ts"]
+  },
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "webworker", "DOM.Iterable"]
+  },
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": true,
+    "proseWrap": "preserve"
+  },
+  "tasks": {
+    "check": "deno task check:fmt && deno task check:lint",
+    "check:fmt": "deno fmt --check",
+    "check:lint": "deno check jsr/*.ts",
+    "fix": "deno lint && deno fmt"
+  }
+}

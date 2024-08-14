@@ -2,6 +2,7 @@
   "name": "abi.js",
   "version": "0.0.0",
   "private": false,
+  "sideEffects": false,
   "type": "module",
   "engines": {
     "node": ">=20.16",
@@ -16,22 +17,31 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/abi-js/abi",
-    "directory": "packages/core"
+    "directory": "packages/abi.js"
   },
   "bugs": "https://github.com/abi-js/abi/issues",
   "author": {
     "name": "Sigui Kessé Emmanuel",
-    "email": "dev@sikessem.com",
-    "url": "https://sigui.deno.dev"
+    "email": "siguici@proton.me",
+    "url": "https://github.com/siguici"
   },
-  "files": ["base", "bun", "deno"],
+  "files": ["src"],
   "keywords": ["router", "server", "handler", "resolver", "middleware"],
   "scripts": {
-    "test": "bun test"
+    "test": "bun test",
+    "build": "pnpm build.node && pnpm build.deno",
+    "build.node": "pnpm clear.node && tsc --build",
+    "build.deno": "pnpm clear.deno && pnpm denoify",
+    "clear": "pnpm clear.node && pnpm clear.deno",
+    "clear.node": "rimraf js && rimraf ts",
+    "clear.deno": "rimraf jsr/*",
+    "denoify": "denoify --out jsr"
   },
   "devDependencies": {
     "@types/bun": "^1.1.6",
     "@types/node": "^22.2.0",
+    "denoify": "^1.6.13",
+    "rimraf": "^6.0.1",
     "typescript": "^5.5.4"
   }
 }

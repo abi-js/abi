@@ -1,0 +1,10 @@
+src/
+jsr/
+tests/
+biome.json
+deno.json
+deno.lock
+tsconfig.json
+*.config.ts
+*.config.?ts
+*.tsbuildinfo

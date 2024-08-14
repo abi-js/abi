@@ -1,5 +1,9 @@
 {
+  "organizeImports": {
+    "ignore": ["node_modules", "jsr", "js", "ts"]
+  },
   "linter": {
+    "ignore": ["node_modules", "jsr", "js", "ts"],
     "rules": {
       "style": {
         "noNonNullAssertion": "off"
@@ -9,5 +13,7 @@
       }
     }
   },
-  "formatter": {}
+  "formatter": {
+    "ignore": ["node_modules", "jsr", "js", "ts"]
+  }
 }
