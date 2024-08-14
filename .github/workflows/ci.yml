@@ -13,7 +13,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         node-version: [20.16]
-        pnpm-version: [9.7]
+        pnpm-version: [9.7.0]
 
     name: 🧪 CI Abi's website on Node@${{ matrix.node-version }}-${{ matrix.operating-system }}
 
@@ -27,7 +27,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: ✨ Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: ${{ matrix.pnpm-version }}
 
