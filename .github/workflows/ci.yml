@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        bun-version: [1.1.25]
+        bun-version: [1.1.24]
 
     name: 🧪 CI Abi.js on Bun@${{ matrix.bun-version }} under ${{ matrix.operating-system }}
 

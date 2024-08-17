@@ -5,10 +5,10 @@
   "sideEffects": false,
   "type": "module",
   "engines": {
-    "bun": ">=1.1.25",
+    "bun": ">=1.1.24",
     "npm": "prefer using bun"
   },
-  "packageManager": "bun@1.1.25",
+  "packageManager": "bun@1.1.24",
   "publishConfig": {
     "access": "public"
   },

@@ -26,7 +26,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         node-version: [20.16]
-        bun-version: [1.1.25]
+        bun-version: [1.1.24]
 
     name: 📦️ Build abi.js.org on ${{ matrix.node-version }} with Bun@${{ matrix.bun-version }} under ${{ matrix.operating-system }}
 
