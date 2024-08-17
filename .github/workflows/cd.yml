@@ -39,7 +39,7 @@ jobs:
         with:
           path: ./website
           node-version: ${{ matrix.node-version }}
-          package-manager: pnpm@${{ matrix.bun-version }}
+          package-manager: bun@${{ matrix.bun-version }}
 
   deploy:
     needs: build
