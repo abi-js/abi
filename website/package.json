@@ -5,11 +5,10 @@
   "description": "Abi Docs.",
   "private": true,
   "engines": {
-    "node": ">=20.16",
-    "npm": "prefer using pnpm",
-    "pnpm": ">=9.7"
+    "bun": ">=1.1.25",
+    "npm": "prefer using bun"
   },
-  "packageManager": "pnpm@9.7.0",
+  "packageManager": "bun@1.1.25",
   "publishConfig": {
     "access": "public"
   },
@@ -30,9 +29,9 @@
     "build": "astro build",
     "check": "astro check",
     "dev": "astro dev",
-    "inspect": "node --inspect-brk ./node_modules/vite/bin/vite.js --force",
+    "inspect": "bun --inspect-brk ./node_modules/vite/bin/vite.js --force",
     "preview": "astro preview",
-    "prod": "pnpm check && astro build",
+    "prod": "bun check && astro build",
     "start": "astro dev --open",
     "sync": "astro sync"
   },

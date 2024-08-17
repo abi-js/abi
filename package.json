@@ -5,11 +5,10 @@
   "type": "module",
   "private": true,
   "engines": {
-    "node": ">=20.16",
-    "npm": "prefer using pnpm",
-    "pnpm": ">=9.7"
+    "bun": ">=1.1.25",
+    "npm": "prefer using bun"
   },
-  "packageManager": "pnpm@9.7.0",
+  "packageManager": "bun@1.1.25",
   "publishConfig": {
     "access": "public"
   },
@@ -29,10 +28,10 @@
     "check": "biome ci .",
     "check.format": "biome format .",
     "check.lint": "biome check .",
-    "fix": "pnpm lint && pnpm format",
+    "fix": "bun lint && bun format",
     "format": "biome format --write .",
     "lint": "biome check --write .",
-    "prod": "cd website && pnpm prod"
+    "prod": "cd website && bun prod"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3"

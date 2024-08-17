@@ -26,9 +26,9 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         node-version: [20.16]
-        pnpm-version: [9.7]
+        bun-version: [1.1.25]
 
-    name: 📦️ Build abi.js.org on ${{ matrix.node-version }}-${{ matrix.operating-system }}
+    name: 📦️ Build abi.js.org on ${{ matrix.node-version }} with Bun@${{ matrix.bun-version }} under ${{ matrix.operating-system }}
 
     steps:
       - name: 🚚 Get latest code
@@ -39,7 +39,7 @@ jobs:
         with:
           path: ./website
           node-version: ${{ matrix.node-version }}
-          package-manager: pnpm@${{ matrix.pnpm-version }}
+          package-manager: pnpm@${{ matrix.bun-version }}
 
   deploy:
     needs: build
@@ -50,7 +50,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
 
-    name: 🚀 Deploy abi.js.org on ${{ matrix.node-version }}-${{ matrix.operating-system }}
+    name: Deploy abi.js.org 🚀
 
     environment:
       name: github-pages
