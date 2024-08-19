@@ -5,7 +5,6 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://abi-js.github.io',
-  base: 'abi',
   compressHTML: true,
   integrations: [
     tailwind({
