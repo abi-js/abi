@@ -30,4 +30,4 @@ for building robust web applications in no time without any hassle.
 [license-icon]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-link]: https://github.com/abi-js/abi/blob/HEAD/LICENSE "Abi.js License"
 
-[abi-docs]: https://abi-js.github.io/abi "Abi.js Docs"
+[abi-docs]: https://abi-js.github.io/ "Abi.js Docs"
