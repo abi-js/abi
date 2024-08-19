@@ -33,6 +33,7 @@
     "lint": "biome check --write .",
     "prod": "cd website && bun prod"
   },
+  "workspaces": ["packages/*", "www/**"],
   "devDependencies": {
     "@biomejs/biome": "^1.8.3"
   }
