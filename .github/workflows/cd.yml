@@ -23,44 +23,30 @@ defaults:
     working-directory: ./website
 
 jobs:
-  build:
+  deploy:
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        node-version: [20.16]
         bun-version: [1.1.24]
 
-    name: 📦️ Build abi.js.org on ${{ matrix.node-version }} with Bun@${{ matrix.bun-version }} under ${{ matrix.operating-system }}
+    environment:
+      name: github-pages
+      url: https://abi-js.github.io
+
+    name: 🚀 Deploy abi.js.org with Bun@${{ matrix.bun-version }} under ${{ matrix.operating-system }}
 
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 🍱 Install, build, and upload your site
-        uses: withastro/action@v2
-        with:
-          path: ./website
-          node-version: ${{ matrix.node-version }}
-          package-manager: bun@${{ matrix.bun-version }}
+      - name: ⚡️ Install dependencies
+        run: bun install
 
-  deploy:
-    needs: build
+      - name: 📦 Build the website
+        run: bun run build
 
-    runs-on: ${{ matrix.operating-system }}
-
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-
-    name: Deploy abi.js.org 🚀
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
       - name: 📂 Deploy to GitHub Pages
         id: deployment
         uses: peaceiris/actions-gh-pages@v4
