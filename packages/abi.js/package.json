@@ -22,7 +22,7 @@
   "author": {
     "name": "Sigui Kessé Emmanuel",
     "email": "siguici@proton.me",
-    "url": "https://github.com/siguici"
+    "url": "https://siguici.deno.dev/"
   },
   "files": ["src"],
   "keywords": ["router", "server", "handler", "resolver", "middleware"],

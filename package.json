@@ -1,5 +1,5 @@
 {
-  "name": "abi.js",
+  "name": "abi.js-monorepo",
   "version": "0.0.0",
   "description": "The next-generation deno-based framework for modern web developers focused on reliability and efficiency.",
   "type": "module",
@@ -21,8 +21,8 @@
   "bugs": "https://github.com/abi-js/abi/issues",
   "author": {
     "name": "Sigui Kessé Emmanuel",
-    "email": "dev@sikessem.com",
-    "url": "https://sikessem.com"
+    "email": "siguici@proton.me",
+    "url": "https://siguici.deno.dev/"
   },
   "scripts": {
     "check": "biome ci .",

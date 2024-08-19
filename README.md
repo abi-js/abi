@@ -6,7 +6,7 @@
 [![ci-icon]][ci-link]
 [![twitter-icon]][twitter-link]
 
-[Abi.js][abi-docs] is a fast, type-safe and easy-to-use web framework
+[Abi.js][abi-repo] is a fast, type-safe and easy-to-use web framework
 for building robust web applications in no time without any hassle.
 
 [Click to read the full documentation][abi-docs].
@@ -30,4 +30,5 @@ for building robust web applications in no time without any hassle.
 [license-icon]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-link]: https://github.com/abi-js/abi/blob/HEAD/LICENSE "Abi.js License"
 
-[abi-docs]: https://abi-js.github.io/ "Abi.js Docs"
+[abi-docs]: https://abi.js.org/ "Abi.js Documentation"
+[abi-repo]: https://github.com/abi-js/ "Abi.js Repository"

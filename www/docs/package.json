@@ -2,7 +2,7 @@
   "name": "abi.js.org",
   "type": "module",
   "version": "0.0.1",
-  "description": "Abi Docs.",
+  "description": "Abi Docs 📚",
   "private": true,
   "engines": {
     "bun": ">=1.1.24",
@@ -21,8 +21,8 @@
   "bugs": "https://github.com/abi-js/abi/issues",
   "author": {
     "name": "Sigui Kessé Emmanuel",
-    "email": "dev@sikessem.com",
-    "url": "https://sikessem.com"
+    "email": "siguici@proton.me",
+    "url": "https://siguici.deno.dev/"
   },
   "scripts": {
     "astro": "astro",
