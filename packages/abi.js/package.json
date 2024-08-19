@@ -43,5 +43,8 @@
     "denoify": "^1.6.13",
     "rimraf": "^6.0.1",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "buno.js": "^0.1.10"
   }
 }
