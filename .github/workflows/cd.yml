@@ -67,7 +67,7 @@ jobs:
         # below accordingly.
         if: github.ref == 'refs/heads/trunk'
         with:
-          github_token: ${{ secrets.PERSONAL_TOKEN }}
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: website/dist
           destination_dir: .
           external_repository: abi-js/abi-js.github.io
