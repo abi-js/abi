@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": ["./packages/abi.js/biome.json", "./website/biome.json"],
+  "extends": ["./packages/abi.js/biome.json", "./www/docs/biome.json"],
   "organizeImports": {
     "enabled": true,
     "ignore": ["dist", "node_modules"]
