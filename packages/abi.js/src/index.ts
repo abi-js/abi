@@ -3,16 +3,27 @@ import { join } from 'node:path';
 import type { Handler, Pattern, Resolver } from './base/routing';
 import { FileSystem } from './bun/fs';
 import { ActionRouter, FileRouter } from './bun/routing';
+import {
+  type Config,
+  type UserConfig,
+  defaultConfig,
+  defineConfig,
+} from './config';
 
 export class Application {
+  #config: Config;
   #routesHandler: ActionRouter;
   #assetsHandler: FileRouter;
 
-  constructor() {
+  constructor(config: UserConfig = defaultConfig) {
     this.fetch = this.fetch.bind(this);
+    this.#config = defineConfig(config);
     this.#routesHandler = new ActionRouter();
 
-    const assets_path = join(process.cwd(), 'assets');
+    const assets_path = join(
+      this.#config.rootDirectory,
+      this.#config.assetsFolder,
+    );
     const assets = new FileSystem(assets_path);
     this.#assetsHandler = new FileRouter(assets);
   }
@@ -57,11 +68,11 @@ export class Application {
   }
 }
 
-export function app(): Application {
-  return new Application();
+export function app(config: UserConfig): Application {
+  return new Application(config);
 }
 
-export { Application as Abi, app as abi };
+export { Application as Abi, app as abi, type UserConfig as AbiConfig };
 
 const _app = app();
 
