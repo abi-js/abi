@@ -19,7 +19,9 @@ export interface RouterContract {
 }
 
 export abstract class BaseFileRouter implements FileRouterContract {
-  public constructor(public fs: FileSystemContract) {}
+  public constructor(public fs: FileSystemContract) {
+    this.handle = this.handle.bind(this);
+  }
   abstract handle(request: Request): Response;
 }
 
@@ -201,6 +203,10 @@ export abstract class BaseActionRouter {
     [Method.updateredirectref]: [],
     [Method.version_control]: [],
   };
+
+  constructor() {
+    this.handle = this.handle.bind(this);
+  }
 
   public add(method: Method, action: Action): this {
     this.actions[method].push(action);
