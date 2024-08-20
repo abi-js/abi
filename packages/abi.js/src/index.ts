@@ -21,8 +21,8 @@ export class Application {
     this.#routesHandler = new ActionRouter();
 
     const assets_path = path.join(
-      this.#config.rootDirectory,
-      this.#config.assetsFolder,
+      this.#config.root,
+      this.#config.assets,
     );
     const assets = new FileSystem(assets_path);
     this.#assetsHandler = new FileRouter(assets);

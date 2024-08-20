@@ -3,19 +3,17 @@ import { cwd } from './utils';
 export type UserConfig = Partial<Config> | undefined;
 
 export type Config = {
-  rootDirectory: string;
-  routerFile: string;
-  assetsFolder: string;
-  routesFolder: string;
-  errorsFolder: string;
+  root: string;
+  assets: string;
+  routes: string;
+  errors: string;
 };
 
 export const defaultConfig: Config = {
-  rootDirectory: cwd,
-  routerFile: 'router.ts',
-  assetsFolder: 'assets',
-  routesFolder: 'routes',
-  errorsFolder: 'errors',
+  root: cwd,
+  assets: 'assets',
+  routes: 'routes',
+  errors: 'errors',
 } as const;
 
 export function defineConfig(config: UserConfig): Config {

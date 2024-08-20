@@ -1,7 +1,7 @@
 import { Abi } from 'abi.js';
 
 const abi = new Abi({
-  assetsFolder: '../frontend/dist/',
+  assets: '../frontend/dist/',
 });
 
 abi.onGet('/', () => 'Welcome to my homepage');
