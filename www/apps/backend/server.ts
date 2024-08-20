@@ -4,8 +4,8 @@ const abi = new Abi({
   assets: '../frontend/dist/',
 });
 
-abi.onGet('/', () => 'Welcome to my homepage');
-abi.onGet(
+abi.get('/', () => 'Welcome to my homepage');
+abi.get(
   '/users/[user:number=0]/profile',
   (request: Request, user = 5) => `${request.method} User ${user}`,
 );

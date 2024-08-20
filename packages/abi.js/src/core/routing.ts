@@ -150,15 +150,15 @@ export interface ActionRouterContract extends RouterContract {
 
   on(method: Method, pattern: Pattern, resolver: Resolver): this;
 
-  onFetch(pattern: Pattern, resolver: Resolver): this;
+  fetch(pattern: Pattern, resolver: Resolver): this;
 
-  onGet(pattern: Pattern, resolver: Resolver): this;
+  get(pattern: Pattern, resolver: Resolver): this;
 
-  onPost(pattern: Pattern, resolver: Resolver): this;
+  post(pattern: Pattern, resolver: Resolver): this;
 
-  onPut(pattern: Pattern, resolver: Resolver): this;
+  put(pattern: Pattern, resolver: Resolver): this;
 
-  onDelete(pattern: Pattern, resolver: Resolver): this;
+  delete(pattern: Pattern, resolver: Resolver): this;
 }
 
 export abstract class BaseActionRouter {
@@ -218,34 +218,34 @@ export abstract class BaseActionRouter {
     return this;
   }
 
-  public onFetch(pattern: Pattern, resolver: Resolver): this {
+  public fetch(pattern: Pattern, resolver: Resolver): this {
     for (const method in this.actions) {
       this.on(method as Method, pattern, resolver);
     }
     return this;
   }
 
-  public onGet(pattern: Pattern, resolver: Resolver): this {
+  public get(pattern: Pattern, resolver: Resolver): this {
     return this.on(Method.get, pattern, resolver);
   }
 
-  public onHead(pattern: Pattern, resolver: Resolver): this {
+  public head(pattern: Pattern, resolver: Resolver): this {
     return this.on(Method.head, pattern, resolver);
   }
 
-  public onPost(pattern: Pattern, resolver: Resolver): this {
+  public post(pattern: Pattern, resolver: Resolver): this {
     return this.on(Method.post, pattern, resolver);
   }
 
-  public onPut(pattern: Pattern, resolver: Resolver): this {
+  public put(pattern: Pattern, resolver: Resolver): this {
     return this.on(Method.put, pattern, resolver);
   }
 
-  public onPatch(pattern: Pattern, resolver: Resolver): this {
+  public patch(pattern: Pattern, resolver: Resolver): this {
     return this.on(Method.patch, pattern, resolver);
   }
 
-  public onDelete(pattern: Pattern, resolver: Resolver): this {
+  public delete(pattern: Pattern, resolver: Resolver): this {
     return this.on(Method.delete, pattern, resolver);
   }
 

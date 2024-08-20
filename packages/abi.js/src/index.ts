@@ -20,31 +20,28 @@ export class Application {
     this.#config = defineConfig(config);
     this.#routesHandler = new ActionRouter();
 
-    const assets_path = path.join(
-      this.#config.root,
-      this.#config.assets,
-    );
+    const assets_path = path.join(this.#config.root, this.#config.assets);
     const assets = new FileSystem(assets_path);
     this.#assetsHandler = new FileRouter(assets);
   }
 
-  onGet(pattern: Pattern, resolver: Resolver): this {
-    this.#routesHandler.onGet(pattern, resolver);
+  get(pattern: Pattern, resolver: Resolver): this {
+    this.#routesHandler.get(pattern, resolver);
     return this;
   }
 
-  onPost(pattern: Pattern, resolver: Resolver): this {
-    this.#routesHandler.onPost(pattern, resolver);
+  post(pattern: Pattern, resolver: Resolver): this {
+    this.#routesHandler.post(pattern, resolver);
     return this;
   }
 
-  onPut(pattern: Pattern, resolver: Resolver): this {
-    this.#routesHandler.onPut(pattern, resolver);
+  put(pattern: Pattern, resolver: Resolver): this {
+    this.#routesHandler.put(pattern, resolver);
     return this;
   }
 
-  onDelete(pattern: Pattern, resolver: Resolver): this {
-    this.#routesHandler.onDelete(pattern, resolver);
+  delete(pattern: Pattern, resolver: Resolver): this {
+    this.#routesHandler.delete(pattern, resolver);
     return this;
   }
 
