@@ -42,12 +42,12 @@
   },
   "devDependencies": {
     "@types/bun": "^1.1.6",
-    "@types/node": "^22.4.0",
+    "@types/node": "^22.4.1",
     "denoify": "^1.6.13",
     "rimraf": "^6.0.1",
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "buno.js": "^0.1.10"
+    "buno.js": "^0.1.11"
   }
 }
