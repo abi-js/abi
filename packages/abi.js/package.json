@@ -27,7 +27,9 @@
     "email": "siguici@proton.me",
     "url": "https://siguici.deno.dev/"
   },
-  "files": ["src"],
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "keywords": ["router", "server", "handler", "resolver", "middleware"],
   "scripts": {
     "build": "pnpm build.node && pnpm build.deno",
