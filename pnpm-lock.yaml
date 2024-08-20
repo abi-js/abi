@@ -37,14 +37,14 @@ importers:
   www/apps/backend:
     devDependencies:
       '@types/bun':
-        specifier: latest
+        specifier: ^1.1.6
         version: 1.1.6
       '@types/node':
         specifier: ^22.4.1
         version: 22.4.1
       abi.js:
-        specifier: ^0.0.0
-        version: 0.0.0
+        specifier: workspace:*
+        version: link:../../../packages/abi.js
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -931,10 +931,6 @@ packages:
 
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
-
-  abi.js@0.0.0:
-    resolution: {integrity: sha512-lCGg/miakyUAVUqcUm/ypCp2l/XPRtsa5yjmX3s/hMgnW3RX3z8rV/VHSsjQfP9Y7uCI6rTL3GOWcUezzCrOxg==}
-    engines: {bun: '>=1.0.29'}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -3771,8 +3767,6 @@ snapshots:
       vscode-uri: 2.1.2
 
   '@vscode/l10n@0.0.18': {}
-
-  abi.js@0.0.0: {}
 
   acorn-jsx@5.3.2(acorn@8.12.1):
     dependencies:
