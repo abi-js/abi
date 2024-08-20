@@ -1,11 +1,11 @@
-import { existsSync } from 'https://deno.land/std/fs/mod.ts';
-import { BaseFileSystem } from '../base/fs.ts';
-import type { PathContract } from '../base/path.ts';
-import { Path } from '../path.ts';
+import { BaseFileSystem } from './core/fs';
+import type { PathContract } from './core/path';
+import { Path } from './path';
+import { fileExists } from './utils';
 
 export class FileSystem extends BaseFileSystem {
   exists(pathname: string): boolean {
-    return existsSync(this.fullpath(pathname).toString());
+    return fileExists(this.fullpath(pathname).toString());
   }
 
   fullpath(pathname: string): PathContract {

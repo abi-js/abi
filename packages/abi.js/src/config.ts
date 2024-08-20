@@ -1,3 +1,5 @@
+import { cwd } from './utils';
+
 export type UserConfig = Partial<Config> | undefined;
 
 export type Config = {
@@ -9,7 +11,7 @@ export type Config = {
 };
 
 export const defaultConfig: Config = {
-  rootDirectory: process.cwd(),
+  rootDirectory: cwd,
   routerFile: 'router.ts',
   assetsFolder: 'assets',
   routesFolder: 'routes',

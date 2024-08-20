@@ -4,8 +4,8 @@ import {
   extname,
   isAbsolute,
   normalize,
-} from 'https://deno.land/std/path/mod.ts';
-import { BasePath, type PathInfo } from './base/path.ts';
+} from 'jsr:@std/path';
+import { BasePath, type PathInfo } from './core/path.ts';
 
 export class Path extends BasePath {
   override get info(): PathInfo {

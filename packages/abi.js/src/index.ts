@@ -1,14 +1,14 @@
 import 'buno.js';
-import { join } from 'node:path';
-import type { Handler, Pattern, Resolver } from './base/routing';
-import { FileSystem } from './bun/fs';
-import { ActionRouter, FileRouter } from './bun/routing';
+import { path } from 'buno.js';
 import {
   type Config,
   type UserConfig,
   defaultConfig,
   defineConfig,
 } from './config';
+import type { Handler, Pattern, Resolver } from './core/routing';
+import { FileSystem } from './fs';
+import { ActionRouter, FileRouter } from './routing';
 
 export class Application {
   #config: Config;
@@ -20,7 +20,7 @@ export class Application {
     this.#config = defineConfig(config);
     this.#routesHandler = new ActionRouter();
 
-    const assets_path = join(
+    const assets_path = path.join(
       this.#config.rootDirectory,
       this.#config.assetsFolder,
     );
@@ -74,6 +74,6 @@ export function app(config: UserConfig): Application {
 
 export { Application as Abi, app as abi, type UserConfig as AbiConfig };
 
-const _app = app();
+const _app = app(defaultConfig);
 
 export default _app;

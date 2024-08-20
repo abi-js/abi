@@ -1,0 +1,93 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@std/fs": "jsr:@std/fs@1.0.1",
+      "jsr:@std/path": "jsr:@std/path@1.0.2",
+      "jsr:@std/path@^1.0.2": "jsr:@std/path@1.0.2",
+      "npm:buno.js@0.1.11": "npm:buno.js@0.1.11"
+    },
+    "jsr": {
+      "@std/fs@1.0.1": {
+        "integrity": "d6914ca2c21abe591f733b31dbe6331e446815e513e2451b3b9e472daddfefcb",
+        "dependencies": [
+          "jsr:@std/path@^1.0.2"
+        ]
+      },
+      "@std/path@1.0.2": {
+        "integrity": "a452174603f8c620bd278a380c596437a9eef50c891c64b85812f735245d9ec7"
+      }
+    },
+    "npm": {
+      "buno.js@0.1.11": {
+        "integrity": "sha512-KCKdUpi4htbP4/hgw930zX702Bm2g04e7o+tqxlYLjCPMc4s37vZgJYgTTJvVx1xKU9C7SNDltpK1OeJq05B1w==",
+        "dependencies": {
+          "urlpattern-polyfill": "urlpattern-polyfill@10.0.0"
+        }
+      },
+      "urlpattern-polyfill@10.0.0": {
+        "integrity": "sha512-H/A06tKD7sS1O1X2SshBVeA5FLycRpjqiBeqGKmBwBDBy28EnRjORxTNe269KSSr5un5qyWi1iL61wLxpd+ZOg==",
+        "dependencies": {}
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@biomejs/biome@^1.8.3"
+      ]
+    },
+    "members": {
+      "packages/abi.js": {
+        "packageJson": {
+          "dependencies": [
+            "npm:@types/bun@^1.1.6",
+            "npm:@types/node@^22.4.1",
+            "npm:buno.js@^0.1.11",
+            "npm:denoify@^1.6.13",
+            "npm:rimraf@^6.0.1",
+            "npm:typescript@^5.5.4"
+          ]
+        }
+      },
+      "www/apps/backend": {
+        "packageJson": {
+          "dependencies": [
+            "npm:@types/bun@^1.1.6",
+            "npm:@types/node@^22.4.1",
+            "npm:typescript@^5.5.4"
+          ]
+        }
+      },
+      "www/apps/frontend": {
+        "packageJson": {
+          "dependencies": [
+            "npm:typescript@^5.5.4",
+            "npm:vite@^5.4.1"
+          ]
+        }
+      },
+      "www/docs": {
+        "packageJson": {
+          "dependencies": [
+            "npm:@astrojs/check@^0.9.3",
+            "npm:@astrojs/starlight-tailwind@^2.0.3",
+            "npm:@astrojs/starlight@^0.26.1",
+            "npm:@astrojs/tailwind@^5.1.0",
+            "npm:@types/node@^22.4.1",
+            "npm:astro@^4.14.2",
+            "npm:autoprefixer@^10.4.20",
+            "npm:postcss-import@^16.1.0",
+            "npm:postcss-nested@^6.2.0",
+            "npm:postcss@^8.4.41",
+            "npm:sharp@^0.33.5",
+            "npm:tailwindcss@^3.4.10",
+            "npm:ts-node@^10.9.2",
+            "npm:typescript@^5.5.4"
+          ]
+        }
+      }
+    }
+  }
+}

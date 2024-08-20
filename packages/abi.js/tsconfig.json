@@ -6,6 +6,8 @@
     "outDir": "js",
     "declaration": true,
     "declarationDir": "ts",
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
     "lib": ["ESNext", "DOM", "webworker", "DOM.Iterable"],
     "module": "ESNext",
     "target": "ESNext",

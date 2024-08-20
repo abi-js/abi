@@ -1,6 +1,6 @@
 import { lstatSync, realpathSync } from 'node:fs';
 import { basename, dirname, extname, isAbsolute, normalize } from 'node:path';
-import { BasePath, type PathInfo } from '../base/path';
+import { BasePath, type PathInfo } from './core/path';
 
 export class Path extends BasePath {
   override get info(): PathInfo {
