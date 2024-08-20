@@ -5,10 +5,13 @@
   "sideEffects": false,
   "type": "module",
   "engines": {
+    "node": ">=20.16.0",
+    "deno": ">=1.45.5",
     "bun": ">=1.1.24",
-    "npm": "prefer using bun"
+    "pnpm": ">=9.7.1",
+    "npm": "use pnpm instead"
   },
-  "packageManager": "bun@1.1.24",
+  "packageManager": "pnpm@9.7.1",
   "publishConfig": {
     "access": "public"
   },
@@ -27,16 +30,14 @@
   "files": ["src"],
   "keywords": ["router", "server", "handler", "resolver", "middleware"],
   "scripts": {
-    "test": "bun test",
-    "build": "bun run build.node && bun run build.deno",
-    "build.node": "bun run clear.node && tsc --build",
-    "build.deno": "bun run clear.deno && pnpm denoify",
-    "clear": "bun run clear.node && bun run clear.deno",
+    "build": "pnpm build.node && pnpm build.deno",
+    "build.node": "pnpm clear.node && tsc --build",
+    "build.deno": "pnpm clear.deno && pnpm denoify",
+    "clear": "pnpm clear.node && pnpm clear.deno",
     "clear.node": "rimraf js && rimraf ts",
     "clear.deno": "rimraf jsr/*",
     "denoify": "denoify --out jsr"
   },
-  "workspaces": ["packages/*"],
   "devDependencies": {
     "@types/bun": "^1.1.6",
     "@types/node": "^22.4.0",

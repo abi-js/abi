@@ -12,21 +12,27 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        bun-version: [1.1.24]
+        node-version: [20.16]
+        pnpm-version: [9.7.1]
 
-    name: 🧪 CI Abi.js on Bun@${{ matrix.bun-version }} under ${{ matrix.operating-system }}
+    name: 🧪 CI Abi.js on Node@${{ matrix.node-version }} with PNPM@${{ matrix.pnpm-version }} under ${{ matrix.operating-system }}
 
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 🎉 Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: 🎉 Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: ${{ matrix.bun-version }}
+          node-version: ${{ matrix.node-version }}
+
+      - name: ✨ Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ matrix.pnpm-version }}
 
       - name: ⚡️ Install dependencies
-        run: bun install
+        run: pnpm install
 
       - name: ✅ Check code style
-        run: bun check
+        run: pnpm check

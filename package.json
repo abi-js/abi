@@ -1,14 +1,17 @@
 {
-  "name": "abi.js-monorepo",
+  "name": "@abi-js/abi",
   "version": "0.0.0",
   "description": "The next-generation deno-based framework for modern web developers focused on reliability and efficiency.",
   "type": "module",
   "private": true,
   "engines": {
+    "node": ">=20.16.0",
+    "deno": ">=1.45.5",
     "bun": ">=1.1.24",
-    "npm": "prefer using bun"
+    "pnpm": ">=9.7.1",
+    "npm": "use pnpm instead"
   },
-  "packageManager": "bun@1.1.24",
+  "packageManager": "pnpm@9.7.1",
   "publishConfig": {
     "access": "public"
   },
@@ -28,10 +31,10 @@
     "check": "biome ci .",
     "check.format": "biome format .",
     "check.lint": "biome check .",
-    "fix": "bun lint && bun format",
+    "fix": "pnpm lint && pnpm format",
     "format": "biome format --write .",
     "lint": "biome check --write .",
-    "prod": "cd website && bun prod"
+    "prod": "pnpm -C www/docs prod"
   },
   "workspaces": ["packages/*", "www/**"],
   "devDependencies": {
