@@ -6,9 +6,8 @@ import {
   defaultConfig,
   defineConfig,
 } from './config';
-import type { Handler, Pattern, Resolver } from './core/routing';
-import { FileSystem } from './fs';
-import { ActionRouter, FileRouter } from './routing';
+import type { Handler, Pattern, Resolver } from './server';
+import { ActionRouter, FileRouter } from './server';
 
 export class Application {
   #config: Config;
@@ -20,8 +19,7 @@ export class Application {
     this.#config = defineConfig(config);
     this.#routesHandler = new ActionRouter();
 
-    const assets_path = path.join(this.#config.root, this.#config.assets);
-    const assets = new FileSystem(assets_path);
+    const assets = path.join(this.#config.root, this.#config.assets);
     this.#assetsHandler = new FileRouter(assets);
   }
 
