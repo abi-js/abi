@@ -1,6 +1,6 @@
 import { path } from 'buno.js';
 import container from './container';
-import { Method } from './method';
+import { DELETE, GET, HEAD, type Method, PATCH, POST, PUT } from './method';
 import { get_extension_type } from './mime';
 import { fileExists, pathinfo, readFile } from './utils';
 
@@ -128,47 +128,7 @@ export class Action {
 }
 
 export class ActionRouter {
-  protected actions: Actions = {
-    [Method.get]: [],
-    [Method.head]: [],
-    [Method.post]: [],
-    [Method.put]: [],
-    [Method.delete]: [],
-    [Method.acl]: [],
-    [Method.baseline_control]: [],
-    [Method.bind]: [],
-    [Method.checkin]: [],
-    [Method.checkout]: [],
-    [Method.connect]: [],
-    [Method.copy]: [],
-    [Method.label]: [],
-    [Method.link]: [],
-    [Method.lock]: [],
-    [Method.merge]: [],
-    [Method.mkactivity]: [],
-    [Method.mkcalendar]: [],
-    [Method.mkcol]: [],
-    [Method.mkredirectref]: [],
-    [Method.mkworkspace]: [],
-    [Method.move]: [],
-    [Method.options]: [],
-    [Method.orderpatch]: [],
-    [Method.patch]: [],
-    [Method.pri]: [],
-    [Method.propfind]: [],
-    [Method.proppatch]: [],
-    [Method.rebind]: [],
-    [Method.report]: [],
-    [Method.search]: [],
-    [Method.trace]: [],
-    [Method.unbind]: [],
-    [Method.uncheckout]: [],
-    [Method.unlink]: [],
-    [Method.unlock]: [],
-    [Method.update]: [],
-    [Method.updateredirectref]: [],
-    [Method.version_control]: [],
-  };
+  protected actions: Actions = Record<Method, Action[]>;
 
   constructor() {
     this.handle = this.handle.bind(this);
@@ -186,38 +146,38 @@ export class ActionRouter {
 
   public fetch(pattern: Pattern, resolver: Resolver): this {
     for (const method in this.actions) {
-      this.on(method as Method, pattern, resolver);
+      this.on(method, pattern, resolver);
     }
     return this;
   }
 
   public get(pattern: Pattern, resolver: Resolver): this {
-    return this.on(Method.get, pattern, resolver);
+    return this.on(GET, pattern, resolver);
   }
 
   public head(pattern: Pattern, resolver: Resolver): this {
-    return this.on(Method.head, pattern, resolver);
+    return this.on(HEAD, pattern, resolver);
   }
 
   public post(pattern: Pattern, resolver: Resolver): this {
-    return this.on(Method.post, pattern, resolver);
+    return this.on(POST, pattern, resolver);
   }
 
   public put(pattern: Pattern, resolver: Resolver): this {
-    return this.on(Method.put, pattern, resolver);
+    return this.on(PUT, pattern, resolver);
   }
 
   public patch(pattern: Pattern, resolver: Resolver): this {
-    return this.on(Method.patch, pattern, resolver);
+    return this.on(PATCH, pattern, resolver);
   }
 
   public delete(pattern: Pattern, resolver: Resolver): this {
-    return this.on(Method.delete, pattern, resolver);
+    return this.on(DELETE, pattern, resolver);
   }
 
   public find(method: string, action: string): Action | null {
     for (const [_method, actions] of Object.entries(this.actions)) {
-      if (_method.toString() === method) {
+      if (_method === method) {
         for (const _action of actions) {
           if (_action.matches(action)) {
             return _action;
