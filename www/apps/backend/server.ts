@@ -6,7 +6,7 @@ const abi = new Abi({
 
 abi.get('/', () => 'Welcome to my homepage');
 abi.get(
-  '/users/[user:number=0]/profile',
+  '/users(/:user<number>=5)?/profile',
   (request: Request, user = 5) => `${request.method} User ${user}`,
 );
 

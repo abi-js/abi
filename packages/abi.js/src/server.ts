@@ -40,12 +40,13 @@ export class Action {
 
     const params: Parameter[] = [];
 
-    const re = /\[([a-z]+)(?:\s*:\s*(number|string))?(?:\s*\=\s*(\w+))?\]/;
+    const re =
+      /\:([a-z]+)(?:\s*\<\s*(num(?:ber)|str(?:ing))\s*\>)?(?:\s*\=\s*(\w+))?/;
     pattern = pattern.replace('(', '(?:');
     while (re.test(pattern)) {
       const m = re.exec(pattern)!;
       const search = m[0];
-      const type = m[2] === 'number' ? 'number' : 'string';
+      const type = m[2] in ['number', 'num'] ? 'number' : 'string';
       const value = type === 'number' ? Number(m[3]) : m[3];
       const param: Parameter = {
         name: m[1],
