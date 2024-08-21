@@ -20,13 +20,14 @@ export type Options = Record<Key, QueryValue>;
 
 export type Result = number | string | object | Response;
 export type Pattern = string;
-export type Actions = Record<Method, Action[]>;
+export type Routes = Set<Route>;
 export type Resolver = (...args: any[]) => Result;
 
-export class Action {
+export class Route {
   protected options: Options = {};
 
   constructor(
+    protected method: Method,
     protected pattern: Pattern,
     protected resolver: Resolver,
   ) {}
@@ -128,55 +129,56 @@ export class Action {
 }
 
 export class ActionRouter {
-  protected actions: Actions = Record<Method, Action[]>;
+  #routes: Routes;
 
   constructor() {
     this.handle = this.handle.bind(this);
+    this.#routes = new Set<Route>();
   }
 
-  public add(method: Method, action: Action): this {
-    this.actions[method].push(action);
+  public addRoute(route: Route): this {
+    this.#routes.add(route);
     return this;
   }
 
-  public on(method: Method, pattern: Pattern, resolver: Resolver) {
-    this.add(method, new Action(pattern, resolver));
+  public add(method: Method, pattern: Pattern, resolver: Resolver) {
+    this.addRoute(new Route(method, pattern, resolver));
     return this;
   }
 
   public fetch(pattern: Pattern, resolver: Resolver): this {
-    for (const method in this.actions) {
-      this.on(method, pattern, resolver);
+    for (const method in this.#routes) {
+      this.add(method, pattern, resolver);
     }
     return this;
   }
 
   public get(pattern: Pattern, resolver: Resolver): this {
-    return this.on(GET, pattern, resolver);
+    return this.add(GET, pattern, resolver);
   }
 
   public head(pattern: Pattern, resolver: Resolver): this {
-    return this.on(HEAD, pattern, resolver);
+    return this.add(HEAD, pattern, resolver);
   }
 
   public post(pattern: Pattern, resolver: Resolver): this {
-    return this.on(POST, pattern, resolver);
+    return this.add(POST, pattern, resolver);
   }
 
   public put(pattern: Pattern, resolver: Resolver): this {
-    return this.on(PUT, pattern, resolver);
+    return this.add(PUT, pattern, resolver);
   }
 
   public patch(pattern: Pattern, resolver: Resolver): this {
-    return this.on(PATCH, pattern, resolver);
+    return this.add(PATCH, pattern, resolver);
   }
 
   public delete(pattern: Pattern, resolver: Resolver): this {
-    return this.on(DELETE, pattern, resolver);
+    return this.add(DELETE, pattern, resolver);
   }
 
-  public find(method: string, action: string): Action | null {
-    for (const [_method, actions] of Object.entries(this.actions)) {
+  public find(method: string, action: string): Route | null {
+    for (const [_method, actions] of Object.entries(this.#routes)) {
       if (_method === method) {
         for (const _action of actions) {
           if (_action.matches(action)) {
