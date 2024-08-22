@@ -1,3 +1,4 @@
+import { serialize as bunSerialize } from 'bun:jsc';
 import { lstatSync, realpathSync } from 'node:fs';
 import { basename, dirname, extname, isAbsolute, normalize } from 'node:path';
 import type { PathInfo } from './types';
@@ -23,6 +24,10 @@ export function pathinfo(name: string): PathInfo {
   };
 }
 
+export const serialize = (data: any) =>
+  bunSerialize(data, { binaryType: 'nodebuffer' });
+export { deserialize } from 'bun:jsc';
+export { inflateSync, deflateSync } from 'bun';
 export { join as joinPath } from 'node:path';
 export { existsSync as fileExists, readFileSync as readFile } from 'node:fs';
 export const cwd = process.cwd();

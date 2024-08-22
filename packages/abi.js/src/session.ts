@@ -1,10 +1,10 @@
-import { deserialize, serialize } from 'bun:jsc';
+import { deflateSync, deserialize, inflateSync, serialize } from './utils';
 
 export type SessionData = Record<string, any>;
 
 export class SessionHandler {
   constructor(
-    readonly path = `${import.meta.dir}/.sessions`,
+    readonly path = `${import.meta.dirname}/.sessions`,
     readonly prefix = 'session_',
   ) {}
 
@@ -12,7 +12,7 @@ export class SessionHandler {
     const file = Bun.file(this.getPath(id));
     const raw = (await file.exists()) ? await file.text() : '';
     console.log(raw);
-    const data = Bun.deflateSync(raw);
+    const data = deflateSync(raw);
     console.log(data);
     return deserialize(data);
   }
@@ -22,9 +22,7 @@ export class SessionHandler {
   }
 
   write(id: string, data: SessionData) {
-    const raw = Bun.inflateSync(
-      serialize(data, { binaryType: 'nodebuffer' }),
-    ).toString();
+    const raw = inflateSync(serialize(data)).toString();
     console.log('Data', raw.toString());
     Bun.write(this.getPath(id), raw);
   }

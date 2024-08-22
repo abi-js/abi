@@ -20,6 +20,8 @@ export function pathinfo(name: string): PathInfo {
   };
 }
 
+export { serialize, deserialize } from 'node:v8';
+export { inflateSync, deflateSync } from 'node:zlib';
 export { join as joinPath } from 'jsr:@std/path';
 export { existsSync as fileExists } from 'jsr:@std/fs';
 export const cwd = Deno.cwd();
