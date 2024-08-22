@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
+        bun-version: [1.1.25]
         node-version: [20.16]
         pnpm-version: [9.7.1]
 
@@ -25,6 +26,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: 🎉 Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ matrix.bun-version }}
 
       - name: ✨ Setup PNPM
         uses: pnpm/action-setup@v4
