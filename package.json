@@ -28,6 +28,7 @@
     "url": "https://siguici.deno.dev/"
   },
   "scripts": {
+    "build": "pnpm -C packages/abi.js build",
     "check": "biome ci .",
     "check.format": "biome format .",
     "check.lint": "biome check .",

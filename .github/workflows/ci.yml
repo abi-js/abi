@@ -32,7 +32,16 @@ jobs:
           version: ${{ matrix.pnpm-version }}
 
       - name: ⚡️ Install dependencies
-        run: pnpm install
+        run: pnpm install -r
 
       - name: ✅ Check code style
         run: pnpm check
+
+      - name: 📦 Build the website
+        run: pnpm build
+
+      - name: 📂 Upload Deno distribution files
+        uses: actions/upload-artifact@v4
+        with:
+          name: deno_dist
+          path: packages/abi.js/jsr

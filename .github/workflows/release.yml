@@ -1,0 +1,58 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - trunk
+
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [trunk]
+
+defaults:
+  run:
+    working-directory: ./packages/abi.js
+
+jobs:
+  deploy:
+    runs-on: ${{ matrix.operating-system }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    environment: 
+      name: production
+      url: https://jsr.io/@abi-js/abi
+
+    permissions:
+      id-token: write
+      contents: read
+
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        deno-version: [1.45.5]
+
+    name: 🚀 Deploy Abi.js to JSR using Deno ${{ matrix.deno-version }}
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 🔨 Configure Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno-version }}
+
+      - name: 📦️ Download Deno distribution files
+        uses: actions/download-artifact@v4
+        with:
+          name: deno_dist
+          path: packages/abi.js/jsr
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🚨 Fix code style
+        run: deno task fix
+
+      - name: 🚀 Publish to JSR
+        run: deno publish
