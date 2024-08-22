@@ -91,7 +91,7 @@ export class Application {
     });
   }
 
-  fetch(request: Request): Response {
+  fetch(request: Request): Promise<Response> {
     this.use((request: Request): Response => {
       const url = new URL(request.url);
       const pathname = decodeURIComponent(url.pathname);
