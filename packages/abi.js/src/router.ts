@@ -10,12 +10,27 @@ export class Router {
     this.#routes = new Map<Method, Set<Route>>();
   }
 
-  public add(method: Method, pattern: Pattern, resolver: Resolver): Route {
-    const route = new Route(pattern, resolver);
-    this.#routes.has(method)
-      ? this.#routes.get(method)!.add(route)
-      : this.#routes.set(method, new Set([route]));
-    return route;
+  public add(
+    method: Method,
+    pattern: Pattern,
+    resolver: Resolver,
+    ...resolvers: Resolver[]
+  ): this {
+    const _resolvers = [resolver, ...resolvers];
+
+    let routes = new Set<Route>();
+    for (const _resolver of _resolvers) {
+      routes.add(new Route(pattern, _resolver));
+    }
+
+    const _routes = this.#routes.get(method);
+    if (_routes) {
+      routes = _routes.union(routes);
+    }
+
+    this.#routes.set(method, routes);
+
+    return this;
   }
 
   public get(method: string, path: Path): Route | null {

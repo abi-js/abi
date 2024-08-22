@@ -21,11 +21,21 @@ export type Resolver = (...args: any[]) => Result;
 
 export class Route {
   protected options: Options = {};
+  #pattern: Pattern;
+  #resolver: Resolver;
 
-  constructor(
-    protected pattern: Pattern,
-    protected resolver: Resolver,
-  ) {}
+  constructor(pattern: Pattern, resolver: Resolver) {
+    this.#pattern = pattern;
+    this.#resolver = resolver;
+  }
+
+  get pattern(): string {
+    return this.#pattern;
+  }
+
+  get resolver(): Resolver {
+    return this.#resolver;
+  }
 
   static from(pattern: Pattern, resolver: Resolver): Route {
     return new Route(pattern, resolver);
@@ -33,7 +43,9 @@ export class Route {
 
   public matches(subject: string): boolean {
     let pattern = this.normalizedPattern();
-    if (pattern === this.normalize(subject)) {
+    const _subject = this.normalize(subject);
+
+    if (pattern === _subject) {
       return true;
     }
 
@@ -62,7 +74,7 @@ export class Route {
     pattern = pattern.replace('/', '\\/');
     pattern = `^${pattern}$`;
 
-    const matches = subject.match(pattern);
+    const matches = _subject.match(pattern);
     if (matches) {
       let i = 0;
       for (const param of params) {
