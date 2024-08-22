@@ -1,65 +1,60 @@
 import 'buno.js';
-import { path } from 'buno.js';
 import {
   type Config,
   type UserConfig,
   defaultConfig,
   defineConfig,
 } from './config';
-import type { Handler, Pattern, Resolver } from './server';
-import { ActionRouter, FileRouter } from './server';
+import type { Pattern, Resolver } from './route';
+import { Server } from './server';
 
 export class Application {
   #config: Config;
-  #routesHandler: ActionRouter;
-  #assetsHandler: FileRouter;
+  #server: Server;
 
   constructor(config: UserConfig = defaultConfig) {
     this.fetch = this.fetch.bind(this);
     this.#config = defineConfig(config);
-    this.#routesHandler = new ActionRouter();
+    this.#server = new Server(this.#config.root, this.#config.assets);
+  }
 
-    const assets = path.join(this.#config.root, this.#config.assets);
-    this.#assetsHandler = new FileRouter(assets);
+  use(handler: Handler): this {
+    this.#server.pipe(handler);
+    return this;
   }
 
   get(pattern: Pattern, resolver: Resolver): this {
-    this.#routesHandler.get(pattern, resolver);
+    this.#server.get(pattern, resolver);
+    return this;
+  }
+
+  head(pattern: Pattern, resolver: Resolver): this {
+    this.#server.head(pattern, resolver);
     return this;
   }
 
   post(pattern: Pattern, resolver: Resolver): this {
-    this.#routesHandler.post(pattern, resolver);
+    this.#server.post(pattern, resolver);
     return this;
   }
 
   put(pattern: Pattern, resolver: Resolver): this {
-    this.#routesHandler.put(pattern, resolver);
+    this.#server.put(pattern, resolver);
+    return this;
+  }
+
+  patch(pattern: Pattern, resolver: Resolver): this {
+    this.#server.patch(pattern, resolver);
     return this;
   }
 
   delete(pattern: Pattern, resolver: Resolver): this {
-    this.#routesHandler.delete(pattern, resolver);
+    this.#server.delete(pattern, resolver);
     return this;
   }
 
-  async fetch(request: Request): Promise<Response> {
-    const handlers: Handler[] = [
-      this.#routesHandler.handle,
-      this.#assetsHandler.handle,
-    ];
-
-    for (const handler of handlers) {
-      const response = await handler(request);
-
-      if (response.ok) {
-        return response;
-      }
-    }
-
-    return new Response('Error 404', {
-      status: 404,
-    });
+  fetch(request: Request): Promise<Response> {
+    return this.#server.fetch(request);
   }
 }
 

@@ -1,218 +1,55 @@
 import { path } from 'buno.js';
-import container from './container';
-import { DELETE, GET, HEAD, type Method, PATCH, POST, PUT } from './method';
+import type { Method } from './method';
 import { get_extension_type } from './mime';
+import type { Pattern, Resolver } from './route';
+import { Router } from './router';
 import { fileExists, pathinfo, readFile } from './utils';
 
 export type Handler = (request: Request) => Response | Promise<Response>;
 
-export type QueryType = 'string' | 'number';
-export type QueryValue = string | number;
-export type Index = number;
-export type Name = string;
-export type Key = Index | Name;
-export type Argument = { index: Index; value: QueryValue };
-export type Parameter = { name: Name; type: QueryType; value: QueryValue };
-export type Option = { key: Key; value: QueryValue };
-export type Arguments = Record<Index, QueryValue>;
-export type Parameters = Record<Name, QueryValue>;
-export type Options = Record<Key, QueryValue>;
-
-export type Result = number | string | object | Response;
-export type Pattern = string;
-export type Routes = Set<Route>;
-export type Resolver = (...args: any[]) => Result;
-
-export class Route {
-  protected options: Options = {};
+export class Server extends Router {
+  #middlewares: Handler[] = [];
 
   constructor(
-    protected method: Method,
-    protected pattern: Pattern,
-    protected resolver: Resolver,
-  ) {}
-
-  public matches(subject: string): boolean {
-    let pattern = this.normalizedPattern();
-    subject = this.normalize(subject);
-    if (pattern === subject) {
-      return true;
-    }
-
-    const params: Parameter[] = [];
-
-    const re =
-      /\:([a-z]+)(?:\s*\<\s*(num(?:ber)|str(?:ing))\s*\>)?(?:\s*\=\s*(\w+))?/;
-    pattern = pattern.replace('(', '(?:');
-    while (re.test(pattern)) {
-      const m = re.exec(pattern)!;
-      const search = m[0];
-      const type = m[2] in ['number', 'num'] ? 'number' : 'string';
-      const value = type === 'number' ? Number(m[3]) : m[3];
-      const param: Parameter = {
-        name: m[1],
-        type,
-        value,
-      };
-      params.push(param);
-      const replace = `(${
-        param.type === 'number' ? '[0-9]+' : '[^\\/\\[\\]]+'
-      })${value === undefined ? '' : '?'}`;
-      pattern = pattern.replace(search, replace);
-    }
-
-    pattern = pattern.replace('/', '\\/');
-    pattern = `^${pattern}$`;
-
-    const matches = subject.match(pattern);
-    if (matches) {
-      let i = 0;
-      for (const param of params) {
-        let value = matches[i + 1] || param.value;
-        if (param.type === 'number') {
-          value = Number(value);
-        }
-        this.options[i++] = value;
-        this.options[param.name] = value;
-      }
-      return true;
-    }
-
-    return false;
+    protected root: string,
+    protected assets = '',
+  ) {
+    super();
+    this.run = this.run.bind(this);
+    this.fetch = this.fetch.bind(this);
   }
 
-  protected normalize(subject: string): string {
-    subject = subject.trim();
-    if (subject.startsWith('/')) {
-      subject = subject.substring(1);
-    }
-    if (subject.endsWith('/')) {
-      subject = subject.substring(0, subject.length - 1);
-    }
-    return subject;
-  }
-
-  protected normalizedPattern(): string {
-    return this.normalize(this.pattern);
-  }
-
-  public resolve(request: Request): Response {
-    const options = this.options;
-    const result = container({ request, options }).call<Result>(
-      this.resolver,
-      options,
-    );
-    return this.render(result);
-  }
-
-  public render(result: Result): Response {
-    if (result instanceof Response) {
-      return result;
-    }
-
-    if (typeof result === 'string') {
-      return new Response(result);
-    }
-
-    if (typeof result === 'number') {
-      return new Response('', {
-        status: result,
-      });
-    }
-
-    return new Response(JSON.stringify(result), {
-      headers: {
-        'Content-Type': get_extension_type('json'),
-      },
-    });
-  }
-}
-
-export class ActionRouter {
-  #routes: Routes;
-
-  constructor() {
-    this.handle = this.handle.bind(this);
-    this.#routes = new Set<Route>();
-  }
-
-  public addRoute(route: Route): this {
-    this.#routes.add(route);
+  request(method: Method, pattern: Pattern, resolver: Resolver): this {
+    this.addRoute(method, pattern, resolver);
     return this;
   }
 
-  public add(method: Method, pattern: Pattern, resolver: Resolver) {
-    this.addRoute(new Route(method, pattern, resolver));
+  pipe(handler: Handler): this {
+    this.#middlewares.push(handler);
     return this;
   }
 
-  public fetch(pattern: Pattern, resolver: Resolver): this {
-    for (const method in this.#routes) {
-      this.add(method, pattern, resolver);
-    }
-    return this;
-  }
-
-  public get(pattern: Pattern, resolver: Resolver): this {
-    return this.add(GET, pattern, resolver);
-  }
-
-  public head(pattern: Pattern, resolver: Resolver): this {
-    return this.add(HEAD, pattern, resolver);
-  }
-
-  public post(pattern: Pattern, resolver: Resolver): this {
-    return this.add(POST, pattern, resolver);
-  }
-
-  public put(pattern: Pattern, resolver: Resolver): this {
-    return this.add(PUT, pattern, resolver);
-  }
-
-  public patch(pattern: Pattern, resolver: Resolver): this {
-    return this.add(PATCH, pattern, resolver);
-  }
-
-  public delete(pattern: Pattern, resolver: Resolver): this {
-    return this.add(DELETE, pattern, resolver);
-  }
-
-  public find(method: string, action: string): Route | null {
-    for (const [_method, actions] of Object.entries(this.#routes)) {
-      if (_method === method) {
-        for (const _action of actions) {
-          if (_action.matches(action)) {
-            return _action;
-          }
-        }
-      }
-    }
-    return null;
-  }
-
-  handle(request: Request): Response {
+  run(request: Request): Response {
     const url = new URL(request.url);
     const pathname = decodeURIComponent(url.pathname);
-    const action = this.find(request.method, pathname);
-    if (action) {
+    const route = this.getRoute(request.method, pathname);
+    if (route) {
       console.log(`Handle action ${pathname}`);
-      return action.resolve(request);
+      return route.resolve(request);
     }
 
     return new Response(`Action ${pathname} not found`, {
       status: 404,
     });
   }
-}
-
-export class FileRouter {
-  constructor(protected root: string) {
-    this.handle = this.handle.bind(this);
-  }
 
   handle(request: Request): Response {
     const url = new URL(request.url);
-    const pathname = path.join(this.root, decodeURIComponent(url.pathname));
+    const pathname = path.join(
+      this.root,
+      this.assets,
+      decodeURIComponent(url.pathname),
+    );
 
     if (fileExists(pathname)) {
       const fileinfo = pathinfo(pathname);
@@ -227,6 +64,22 @@ export class FileRouter {
     }
 
     return new Response(`File ${pathname} not found`, {
+      status: 404,
+    });
+  }
+
+  async fetch(request: Request): Promise<Response> {
+    const handlers: Handler[] = [...this.#middlewares, this.run];
+
+    for (const handler of handlers) {
+      const response = await handler(request);
+
+      if (response.ok) {
+        return response;
+      }
+    }
+
+    return new Response('Error 404', {
       status: 404,
     });
   }

@@ -5,7 +5,7 @@ import reflex, {
   ReflectionObject,
   ReflectionParameter,
   reflect,
-} from './reflex';
+} from './container';
 
 class Foo {
   public bar() {
