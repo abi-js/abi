@@ -30,7 +30,7 @@ export class Server {
     return this.error(`Cannot ${request.method} ${request.url}`);
   }
 
-  async error<T>(err: T): Promise<Response> {
+  error<T>(err: T): Response {
     console.log(`Unexpected server error: ${err}`);
 
     return new Response('Error 500: Server error.', {

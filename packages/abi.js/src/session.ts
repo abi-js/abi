@@ -16,10 +16,10 @@ export class SessionHandler {
     readonly prefix = 'session_',
   ) {}
 
-  async read(id: string): Promise<SessionData> {
+  read(id: string): SessionData {
     const file = this.getPath(id);
     const raw = fileExists(file) ? readFile(file) : '';
-    const data = deflateSync(raw);
+    const data = deflateSync(raw.toString());
     return deserialize(data);
   }
 
@@ -44,8 +44,8 @@ export class Session {
     this.id = id ?? crypto.randomUUID();
   }
 
-  async load() {
-    this.data = (await this.handler.read(this.id)) || {};
+  load() {
+    this.data = this.handler.read(this.id) || {};
   }
 
   set<T>(key: string, value: T): this {

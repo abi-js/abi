@@ -3,6 +3,6 @@ import { type UserConfig, defaultConfig } from './config';
 
 export { Application as Abi, app as abi, type UserConfig as AbiConfig };
 
-const _app = app(defaultConfig);
+const _app: Application = app(defaultConfig);
 
 export default _app;

@@ -3,7 +3,7 @@ import { parse_str } from './parser';
 export type Locale = string;
 export type Attrs = Record<string, string>;
 export type Props = Record<string, any>;
-export type EltName = keyof HTMLElementTagNameMap;
+export type EltName = string;
 export type Translations = Record<Locale, string>;
 
 export abstract class Node {
