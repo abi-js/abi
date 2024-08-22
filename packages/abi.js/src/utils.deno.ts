@@ -20,6 +20,7 @@ export function pathinfo(name: string): PathInfo {
   };
 }
 
+export { join as joinPath } from 'jsr:@std/path';
 export { existsSync as fileExists } from 'jsr:@std/fs';
 export const cwd = Deno.cwd();
 export function readFile(path: string): string | ReadableStream | Uint8Array {

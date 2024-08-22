@@ -23,6 +23,6 @@ export function pathinfo(name: string): PathInfo {
   };
 }
 
+export { join as joinPath } from 'node:path';
 export { existsSync as fileExists, readFileSync as readFile } from 'node:fs';
-export * from 'node:fs';
 export const cwd = process.cwd();

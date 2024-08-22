@@ -1,13 +1,12 @@
 import { Abi } from 'abi.js';
 
-const abi = new Abi({
-  assets: '../frontend/dist/',
-});
+const abi = new Abi()
 
-abi.get('/', () => 'Welcome to my homepage');
-abi.get(
-  '/users(/:user<number>=5)?/profile',
-  (request: Request, user = 5) => `${request.method} User ${user}`,
-);
+  .handle('../frontend/dist/')
+  .get('/', () => 'Welcome to my homepage')
+  .get(
+    '/users(/:user<number>=5)?/profile',
+    (request: Request, user = 5) => `${request.method} User ${user}`,
+  );
 
 export default abi;

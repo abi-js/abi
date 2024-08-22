@@ -1,3 +1,4 @@
+import 'buno.js';
 import container from './container';
 import { get_extension_type } from './mime';
 
@@ -23,17 +24,16 @@ export class Route {
 
   constructor(
     protected pattern: Pattern,
-    protected resolver: Resolver<T>,
+    protected resolver: Resolver,
   ) {}
 
   static from(pattern: Pattern, resolver: Resolver): Route {
-    return new Route(context, pattern, resolver);
+    return new Route(pattern, resolver);
   }
 
   public matches(subject: string): boolean {
     let pattern = this.normalizedPattern();
-    subject = this.normalize(subject);
-    if (pattern === subject) {
+    if (pattern === this.normalize(subject)) {
       return true;
     }
 
@@ -80,14 +80,14 @@ export class Route {
   }
 
   protected normalize(subject: string): string {
-    subject = subject.trim();
-    if (subject.startsWith('/')) {
-      subject = subject.substring(1);
+    let _subject = subject.trim();
+    if (_subject.startsWith('/')) {
+      _subject = _subject.substring(1);
     }
-    if (subject.endsWith('/')) {
-      subject = subject.substring(0, subject.length - 1);
+    if (_subject.endsWith('/')) {
+      _subject = _subject.substring(0, _subject.length - 1);
     }
-    return subject;
+    return _subject;
   }
 
   protected normalizedPattern(): string {
