@@ -2,14 +2,16 @@
   "name": "@abi-js/abi",
   "version": "0.0.1",
   "exports": {
-    ".": "./jsr/index.ts"
+    ".": "./dist/deno/index.ts"
   },
   "include": ["deno.json", "jsr/*.ts", "README.md", "LICENSE.md"],
   "exclude": [
     ".*",
-    "jsr/*.test.ts",
-    "js/*",
-    "ts/*",
+    "dist/deno/*.test.ts",
+    "dist/deno/*.d.ts",
+    "dist/deno/*.js",
+    "dist/deno/deps/**",
+    "dist/node/*",
     "src/*",
     "tests/*",
     "biome.json",
@@ -17,11 +19,19 @@
     "deno.lock"
   ],
   "publish": {
-    "include": ["jsr/**", "deno.json", "README.md", "LICENSE.md"],
-    "exclude": ["!jsr/*.ts"]
+    "include": ["dist/deno/**", "deno.json", "README.md", "LICENSE.md"],
+    "exclude": ["!dist/deno/*.ts", "dist/deno/*.d.ts", "dist/deno/*.js"]
   },
   "compilerOptions": {
-    "lib": ["ESNext", "DOM", "webworker", "DOM.Iterable"]
+    "lib": [
+      "esnext",
+      "webworker",
+      "deno.ns",
+      "deno.window",
+      "dom",
+      "dom.iterable",
+      "dom.asynciterable"
+    ]
   },
   "fmt": {
     "useTabs": false,
@@ -37,10 +47,12 @@
     }
   },
   "tasks": {
-    "check": "deno task check:fmt && deno task check:lint",
+    "build": "deno run -A scripts/nodify.ts",
+    "check": "deno task check:fmt && deno task check:lint && deno task check:types",
     "check:fmt": "deno fmt --check",
-    "check:lint": "deno check jsr/*.ts",
-    "fix": "deno lint && deno fmt"
+    "check:lint": "deno lint",
+    "check:types": "deno check deno/*.ts deno/*.js",
+    "fix": "deno lint --fix && deno fmt"
   },
   "imports": {
     "@std/fs": "jsr:@std/fs@^1.0.1",

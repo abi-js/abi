@@ -27,23 +27,47 @@
     "email": "siguici@proton.me",
     "url": "https://siguici.deno.dev/"
   },
+  "module": "./dist/node/index.mjs",
+  "main": "./dist/node/index.cjs",
+  "types": "./dist/node/index.d.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "bun": "./dist/node/index.ts",
+      "deno": "./dist/deno/index.js",
+      "types": "./dist/node/index.d.ts",
+      "import": "./dist/node/index.mjs",
+      "require": "./dist/node/index.cjs"
+    }
   },
-  "keywords": ["router", "server", "handler", "resolver", "middleware"],
+  "keywords": [
+    "router",
+    "server",
+    "handler",
+    "resolver",
+    "middleware",
+    "cross-platform",
+    "framework",
+    "runtime",
+    "adapter",
+    "JavaScript",
+    "TypeScript",
+    "Node.js",
+    "Bun",
+    "Deno",
+    "API"
+  ],
   "scripts": {
-    "build": "pnpm build.node && pnpm build.deno",
-    "build.node": "pnpm clear.node && tsc --build",
-    "build.deno": "pnpm clear.deno && pnpm denoify",
-    "clear": "pnpm clear.node && pnpm clear.deno",
-    "clear.node": "rimraf js && rimraf ts",
-    "clear.deno": "rimraf jsr/*",
-    "denoify": "denoify --out jsr"
+    "build": "bun run build.node && bun run build.deno",
+    "build.node": "rimraf dist/node && tsc --build && bun scripts/build.ts",
+    "build.deno": "rimraf dist/deno/*.{js,ts,d.ts} && denoify --out dist/deno && bun scripts/denoify.ts",
+    "denoify": "denoify"
   },
   "devDependencies": {
     "@types/bun": "^1.1.6",
     "@types/node": "^22.4.1",
     "denoify": "^1.6.13",
+    "esbuild": "^0.23.1",
+    "globby": "^14.0.2",
     "rimraf": "^6.0.1",
     "typescript": "^5.5.4"
   },

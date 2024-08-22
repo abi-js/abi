@@ -1,9 +1,9 @@
 {
   "organizeImports": {
-    "ignore": ["node_modules", "jsr", "js", "ts"]
+    "ignore": ["tmp", "node_modules", "dist"]
   },
   "linter": {
-    "ignore": ["node_modules", "jsr", "js", "ts"],
+    "ignore": ["tmp", "node_modules", "dist"],
     "rules": {
       "style": {
         "noNonNullAssertion": "off"
@@ -12,11 +12,12 @@
         "noBannedTypes": "off"
       },
       "suspicious": {
-        "noExplicitAny": "off"
+        "noExplicitAny": "off",
+        "noConfusingVoidType": "off"
       }
     }
   },
   "formatter": {
-    "ignore": ["node_modules", "jsr", "js", "ts"]
+    "ignore": ["tmp", "node_modules", "dist"]
   }
 }

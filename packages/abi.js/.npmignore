@@ -1,7 +1,5 @@
-src/*.deno
-js/
-ts/
-jsr/
+src/
+tmp/
 tests/
 biome.json
 deno.json
@@ -9,4 +7,4 @@ deno.lock
 tsconfig.json
 *.config.ts
 *.config.?ts
-*.tsbuildinfo
+dist/node/tsconfig.tsbuildinfo
