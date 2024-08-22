@@ -41,5 +41,9 @@
     "check:fmt": "deno fmt --check",
     "check:lint": "deno check jsr/*.ts",
     "fix": "deno lint && deno fmt"
+  },
+  "imports": {
+    "@std/fs": "jsr:@std/fs@^1.0.1",
+    "@std/path": "jsr:@std/path@^1.0.2"
   }
 }

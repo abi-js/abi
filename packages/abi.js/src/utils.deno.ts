@@ -1,10 +1,4 @@
-import {
-  basename,
-  dirname,
-  extname,
-  isAbsolute,
-  normalize,
-} from 'jsr:@std/path';
+import { basename, dirname, extname, isAbsolute, normalize } from '@std/path';
 import type { PathInfo } from './types.ts';
 
 export function pathinfo(name: string): PathInfo {
@@ -22,8 +16,8 @@ export function pathinfo(name: string): PathInfo {
 
 export { serialize, deserialize } from 'node:v8';
 export { inflateSync, deflateSync } from 'node:zlib';
-export { join as joinPath } from 'jsr:@std/path';
-export { existsSync as fileExists } from 'jsr:@std/fs';
+export { join as joinPath } from '@std/path';
+export { existsSync as fileExists } from '@std/fs';
 export const cwd = Deno.cwd();
 export function readFile(path: string): string | ReadableStream | Uint8Array {
   return Deno.readFileSync(path);
