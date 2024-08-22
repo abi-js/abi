@@ -35,7 +35,7 @@ export class SessionHandler {
 
 export class Session {
   readonly id: string;
-  public data: SessionData;
+  public data?: SessionData;
 
   constructor(
     protected handler: SessionHandler,
@@ -49,26 +49,33 @@ export class Session {
   }
 
   set<T>(key: string, value: T): this {
+    if (!this.data) {
+      this.data = {};
+    }
     this.data[key] = value;
     return this;
   }
 
   get<T>(key: string, defaultValue?: T): T | null | undefined {
-    return this.data[key] !== undefined
+    return this.data && this.data[key] !== undefined
       ? (this.data[key] satisfies T)
       : defaultValue;
   }
 
   has(key: string): boolean {
-    return this.data[key] !== undefined;
+    return this.data ? this.data[key] !== undefined : false;
   }
 
   remove(key: string): this {
-    delete this.data[key];
+    if (this.data) {
+      delete this.data[key];
+    }
     return this;
   }
 
   save(): void {
-    this.handler.write(this.id, this.data);
+    if (this.data) {
+      this.handler.write(this.id, this.data);
+    }
   }
 }
