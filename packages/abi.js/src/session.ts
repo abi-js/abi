@@ -1,4 +1,12 @@
-import { deflateSync, deserialize, inflateSync, serialize } from './utils';
+import {
+  deflateSync,
+  deserialize,
+  fileExists,
+  inflateSync,
+  readFile,
+  serialize,
+  writeFile,
+} from './utils';
 
 export type SessionData = Record<string, any>;
 
@@ -9,11 +17,9 @@ export class SessionHandler {
   ) {}
 
   async read(id: string): Promise<SessionData> {
-    const file = Bun.file(this.getPath(id));
-    const raw = (await file.exists()) ? await file.text() : '';
-    console.log(raw);
+    const file = this.getPath(id);
+    const raw = fileExists(file) ? readFile(file) : '';
     const data = deflateSync(raw);
-    console.log(data);
     return deserialize(data);
   }
 
@@ -23,8 +29,7 @@ export class SessionHandler {
 
   write(id: string, data: SessionData) {
     const raw = inflateSync(serialize(data)).toString();
-    console.log('Data', raw.toString());
-    Bun.write(this.getPath(id), raw);
+    writeFile(this.getPath(id), raw);
   }
 }
 

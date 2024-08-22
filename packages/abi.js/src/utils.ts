@@ -29,5 +29,9 @@ export const serialize = (data: any) =>
 export { deserialize } from 'bun:jsc';
 export { inflateSync, deflateSync } from 'bun';
 export { join as joinPath } from 'node:path';
-export { existsSync as fileExists, readFileSync as readFile } from 'node:fs';
+export {
+  existsSync as fileExists,
+  readFileSync as readFile,
+  writeFileSync as writeFile,
+} from 'node:fs';
 export const cwd = process.cwd();

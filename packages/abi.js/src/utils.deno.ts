@@ -28,3 +28,6 @@ export const cwd = Deno.cwd();
 export function readFile(path: string): string | ReadableStream | Uint8Array {
   return Deno.readFileSync(path);
 }
+export function writeFile(path: string, data: string): void {
+  Deno.writeFileSync(path, new TextEncoder().encode(data));
+}
