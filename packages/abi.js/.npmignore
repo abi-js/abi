@@ -1,4 +1,6 @@
-src/
+src/*.deno
+js/
+ts/
 jsr/
 tests/
 biome.json
