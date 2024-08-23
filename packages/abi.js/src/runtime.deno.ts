@@ -1,3 +1,4 @@
+export * from './engine.ts';
 import { basename, dirname, extname, isAbsolute, normalize } from '@std/path';
 import type { PathInfo } from './types.ts';
 
@@ -14,8 +15,6 @@ export function pathinfo(name: string): PathInfo {
   };
 }
 
-export { serialize, deserialize } from 'node:v8';
-export { inflateSync, deflateSync } from 'node:zlib';
 export { join as joinPath } from '@std/path';
 export { existsSync as fileExists } from '@std/fs';
 export const cwd = Deno.cwd();

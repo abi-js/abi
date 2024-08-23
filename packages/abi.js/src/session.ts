@@ -6,7 +6,7 @@ import {
   readFile,
   serialize,
   writeFile,
-} from './utils';
+} from './runtime';
 
 export type SessionData = Record<string, any>;
 

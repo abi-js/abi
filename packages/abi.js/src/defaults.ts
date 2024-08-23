@@ -1,5 +1,5 @@
+import { cwd } from './runtime';
 import type { Config, Hostname, Port } from './types';
-import { cwd } from './utils';
 
 export const defaultRoot = cwd;
 export const defaultPort: Port = 3000;
