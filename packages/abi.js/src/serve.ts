@@ -3,20 +3,23 @@ import {
   type ServerResponse,
   createServer,
 } from 'node:http';
-import { getServeOptionsAndHandler } from './helpers';
-import type { Address, ServeHandler, ServeOptions } from './types';
+import { toServeOptions } from './helpers';
+import type {
+  Address,
+  Hostname,
+  Port,
+  ServeHandler,
+  ServeOptions,
+} from './types';
 
-function serve(handler: ServeHandler): void;
-function serve(portOrHost: number | string, handler: ServeHandler): void;
-function serve(options: ServeOptions, handler: ServeHandler): void;
-function serve<T extends ServeOptions | ServeHandler>(
-  optionsOrHandler: T,
-  handler?: T extends ServeOptions ? ServeHandler : never,
-): Address {
-  const [_options, _handler] = getServeOptionsAndHandler(
-    optionsOrHandler,
-    handler,
-  );
+function serve(handler: ServeHandler): Address;
+function serve(port: Port, handler: ServeHandler): Address;
+function serve(hostname: Hostname, handler: ServeHandler): Address;
+function serve(port: Port, hostname: Hostname, handler: ServeHandler): Address;
+function serve(address: Address, handler: ServeHandler): Address;
+function serve(options: ServeOptions): Address;
+function serve(arg1: any, arg2?: any, arg3?: any): Address {
+  const { port, hostname, handler } = toServeOptions(arg1, arg2, arg3);
   const server = createServer(
     async (req: IncomingMessage, res: ServerResponse) => {
       const request = new Request(req.url || '/', {
@@ -29,13 +32,13 @@ function serve<T extends ServeOptions | ServeHandler>(
         }),
       });
 
-      const response = await _handler(request);
+      const response = await handler(request);
       res.writeHead(200, Object.fromEntries(response.headers.entries()));
       res.end(response.body);
     },
   );
 
-  server.listen(_options.port, _options.hostname);
+  server.listen(port, hostname);
   const address = server.address();
 
   return address && typeof address === 'object'
@@ -43,7 +46,7 @@ function serve<T extends ServeOptions | ServeHandler>(
         port: address.port,
         hostname: address.address,
       }
-    : { port: _port, hostname: _hostname };
+    : { port, hostname };
 }
 
 export { serve };

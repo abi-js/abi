@@ -1,9 +1,10 @@
 export type Port = number;
 export type Hostname = `${number}.${number}.${number}.${number}` | string;
-export type PortOrHost = Port | Hostname;
 export type Address = { port: Port; hostname: Hostname };
-export type ServeOptions = PortOrHost | Address;
 export type ServeHandler = (request: Request) => Response | Promise<Response>;
+export type ServeOptions = Address & {
+  handler: ServeHandler;
+};
 
 export type UserConfig = Partial<Config> | undefined;
 
