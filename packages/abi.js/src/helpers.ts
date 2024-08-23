@@ -1,7 +1,7 @@
 import { defaultHost, defaultPort } from './defaults';
 import type {
+  Address,
   Hostname,
-  ListenAddress,
   Port,
   ServeHandler,
   ServeOptions,
@@ -15,7 +15,7 @@ export function isHostname(host: any): host is Hostname {
   return typeof host === 'string';
 }
 
-export function isListenAddress(address: any): address is ListenAddress {
+export function isAddress(address: any): address is Address {
   return (
     typeof address === 'object' &&
     'port' in address &&
@@ -26,24 +26,24 @@ export function isListenAddress(address: any): address is ListenAddress {
 }
 
 export function isServeOptions(options: any): options is ServeOptions {
-  return isPort(options) || isHostname(options) || isListenAddress(options);
+  return isPort(options) || isHostname(options) || isAddress(options);
 }
 
 function getServeOptionsAndHandler(
   handler: ServeHandler,
-): [Required<ListenAddress>, ServeHandler];
+): [Required<Address>, ServeHandler];
 function getServeOptionsAndHandler(
   portOrHost: number | string,
   handler: ServeHandler,
-): [Required<ListenAddress>, ServeHandler];
+): [Required<Address>, ServeHandler];
 function getServeOptionsAndHandler(
   options: ServeOptions,
   handler: ServeHandler,
-): [Required<ListenAddress>, ServeHandler];
+): [Required<Address>, ServeHandler];
 function getServeOptionsAndHandler<T extends ServeOptions | ServeHandler>(
   optionsOrHandler: T,
   handler: T extends ServeOptions ? ServeHandler : never,
-): [Required<ListenAddress>, ServeHandler] {
+): [Required<Address>, ServeHandler] {
   let _options: Required<ServeOptions>;
   let _handler: ServeHandler;
 

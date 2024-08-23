@@ -1,5 +1,5 @@
 import { getServeOptionsAndHandler } from './helpers';
-import type { ListenAddress, ServeHandler, ServeOptions } from './types';
+import type { Address, ServeHandler, ServeOptions } from './types';
 
 function serve(handler: ServeHandler): void;
 function serve(portOrHost: number | string, handler: ServeHandler): void;
@@ -7,7 +7,7 @@ function serve(options: ServeOptions, handler: ServeHandler): void;
 function serve<T extends ServeOptions | ServeHandler>(
   optionsOrHandler: T,
   handler?: T extends ServeOptions ? ServeHandler : never,
-): ListenAddress {
+): Address {
   const [_options, _handler] = getServeOptionsAndHandler(
     optionsOrHandler,
     handler,
