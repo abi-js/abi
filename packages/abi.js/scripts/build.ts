@@ -1,4 +1,4 @@
-import { fs, path, process, zlib } from 'buno.js';
+import { fs, path, zlib, process } from 'buno.js';
 import esbuild, { type BuildOptions, type BuildResult } from 'esbuild';
 import { globbySync } from 'globby';
 import pkg from '../package.json';
@@ -12,9 +12,8 @@ const entryPoints = globbySync(tsconfig.include, {
   ignore: tsconfig.exclude,
 });
 
-const defaultFormat = pkg.type && pkg.type.toLowerCase() === 'module'
-  ? 'esm'
-  : 'cjs';
+const defaultFormat =
+  pkg.type && pkg.type.toLowerCase() === 'module' ? 'esm' : 'cjs';
 const outdir = tsconfig.compilerOptions.outDir;
 const target = tsconfig.compilerOptions.target || 'default';
 const minify = !tsconfig.compilerOptions.pretty;
@@ -100,11 +99,12 @@ function getBuildOptions(
     sourcemap: false,
     bundle: true,
     external: ['bun', 'bun:test', 'bun:jsc'],
-    outExtension: format === 'cjs'
-      ? { '.js': '.cjs' }
-      : format === 'esm'
-      ? { '.js': '.mjs' }
-      : { '.js': '.js' },
+    outExtension:
+      format === 'cjs'
+        ? { '.js': '.cjs' }
+        : format === 'esm'
+          ? { '.js': '.mjs' }
+          : { '.js': '.js' },
     define,
   };
 }
