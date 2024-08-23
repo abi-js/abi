@@ -109,13 +109,14 @@ export class Application {
 
   #send(filename: string): Response {
     if (fileExists(filename)) {
-      const { isFile, extension, realname } = pathinfo(filename);
+      const { isFile, extension, realname, size } = pathinfo(filename);
       const type = get_extension_type(extension);
       if (isFile) {
         console.log(`Serve static file ${realname}`);
         return new Response(readFile(realname), {
           headers: {
             'Content-Type': type,
+            'Content-Length': size.toString(),
           },
         });
       }
