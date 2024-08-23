@@ -9,7 +9,8 @@ import { DELETE, GET, HEAD, PATCH, POST, PUT } from './method';
 import { get_extension_type } from './mime';
 import type { Pattern, Resolver } from './route';
 import { Router } from './router';
-import { type Handler, Server } from './server';
+import { Server } from './server';
+import type { ServeHandler as Handler } from './types';
 import { fileExists, joinPath, pathinfo, readFile } from './utils';
 
 export class Application {

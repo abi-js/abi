@@ -1,7 +1,8 @@
-export type Handler = (request: Request) => Response | Promise<Response>;
+import { serve } from './serve';
+import type { ServeHandler, ServeOptions } from './types';
 
 export class Server {
-  #handlers = new Set<Handler>();
+  #handlers = new Set<ServeHandler>();
 
   constructor(
     protected root: string,
@@ -10,7 +11,7 @@ export class Server {
     this.fetch = this.fetch.bind(this);
   }
 
-  pipe(handler: Handler, ...handlers: Handler[]): this {
+  pipe(handler: ServeHandler, ...handlers: ServeHandler[]): this {
     this.#handlers.add(handler);
     for (const _handler of handlers) {
       this.#handlers.add(_handler);
@@ -28,6 +29,10 @@ export class Server {
     }
 
     return this.error(`Cannot ${request.method} ${request.url}`);
+  }
+
+  listen(options?: ServeOptions): void {
+    options ? serve(options, this.fetch) : serve(this.fetch);
   }
 
   error<T>(err: T): Response {
