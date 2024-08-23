@@ -26,7 +26,7 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
 
     req
       .on('error', (err) => {
-        throw new Error(err);
+        throw err;
       })
       .on('data', (chunk) => {
         data.push(chunk);
