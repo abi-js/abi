@@ -1,11 +1,11 @@
-import { toServeOptions } from './helpers';
+import { toServeOptions } from './helpers.ts';
 import type {
   Address,
   Hostname,
   Port,
   ServeHandler,
   ServeOptions,
-} from './types';
+} from './types.ts';
 
 function serve(handler: ServeHandler): Address;
 function serve(port: Port, handler: ServeHandler): Address;
