@@ -1,7 +1,10 @@
 export * from './engine';
 import { lstatSync, realpathSync } from 'node:fs';
 import { basename, dirname, extname, isAbsolute, normalize } from 'node:path';
-import type { PathInfo } from './types';
+import type { PathInfo, Runtime } from './types';
+
+export const runtime: Runtime =
+  process.versions != null && process.versions.node != null ? 'Node.js' : 'Bun';
 
 export function pathinfo(name: string): PathInfo {
   const info = lstatSync(name);

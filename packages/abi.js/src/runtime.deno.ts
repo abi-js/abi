@@ -1,6 +1,8 @@
 export * from './engine.ts';
 import { basename, dirname, extname, isAbsolute, normalize } from '@std/path';
-import type { PathInfo } from './types.ts';
+import type { PathInfo, Runtime } from './types.ts';
+
+export const runtime: Runtime = 'Deno';
 
 export function pathinfo(name: string): PathInfo {
   return {

@@ -6,6 +6,9 @@ export type ServeOptions = Address & {
   handler: ServeHandler;
 };
 
+export type Engine = 'V8' | 'JSC';
+export type Runtime = 'Node.js' | 'Deno' | 'Bun';
+
 export type UserConfig = Partial<Config> | undefined;
 
 export type Config = {
