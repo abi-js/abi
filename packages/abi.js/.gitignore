@@ -1,3 +1,4 @@
 # Build
+/tmp/
 /dist/**/*
 !/dist/deno/

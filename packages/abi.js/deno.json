@@ -4,12 +4,13 @@
   "exports": {
     ".": "./dist/deno/index.ts"
   },
-  "include": ["deno.json", "jsr/*.ts", "README.md", "LICENSE.md"],
+  "include": ["deno.json", "dist/deno/*.ts", "README.md", "LICENSE.md"],
   "exclude": [
     ".*",
+    "tmp/**/*",
     "dist/deno/*.test.ts",
     "dist/deno/*.d.ts",
-    "dist/deno/*.js",
+    "dist/deno/**/*.js",
     "dist/deno/deps/**",
     "dist/node/*",
     "src/*",
@@ -20,18 +21,7 @@
   ],
   "publish": {
     "include": ["dist/deno/**", "deno.json", "README.md", "LICENSE.md"],
-    "exclude": ["!dist/deno/*.ts", "dist/deno/*.d.ts", "dist/deno/*.js"]
-  },
-  "compilerOptions": {
-    "lib": [
-      "esnext",
-      "webworker",
-      "deno.ns",
-      "deno.window",
-      "dom",
-      "dom.iterable",
-      "dom.asynciterable"
-    ]
+    "exclude": ["!dist/deno/*.ts", "dist/deno/*.d.ts", "dist/deno/**/*.js"]
   },
   "fmt": {
     "useTabs": false,
@@ -51,7 +41,7 @@
     "check": "deno task check:fmt && deno task check:lint && deno task check:types",
     "check:fmt": "deno fmt --check",
     "check:lint": "deno lint",
-    "check:types": "deno check deno/*.ts deno/*.js",
+    "check:types": "deno check dist/deno/*.ts dist/deno/*.js",
     "fix": "deno lint --fix && deno fmt"
   },
   "imports": {

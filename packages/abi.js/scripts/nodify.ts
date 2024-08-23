@@ -5,6 +5,8 @@ const outDir = './tmp';
 const distDir = './dist/deno';
 
 await emptyDir(outDir);
+await emptyDir(`${distDir}/deps`);
+await emptyDir(`${distDir}/node_modules`);
 
 await build({
   importMap: 'deno.json',

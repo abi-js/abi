@@ -1,0 +1,18 @@
+{
+  "workspace": ["./packages/abi.js", "./www/apps/backend"],
+  "compilerOptions": {
+    "lib": [
+      "esnext",
+      "webworker",
+      "deno.ns",
+      "deno.window",
+      "dom",
+      "dom.iterable",
+      "dom.asynciterable"
+    ]
+  },
+  "imports": {
+    "@abi-js/abi": "./packages/abi.js/dist/deno/index.ts",
+    "@abi-js/abi/": "./packages/abi.js/dist/deno/"
+  }
+}

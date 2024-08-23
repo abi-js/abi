@@ -2,8 +2,5 @@
   "tasks": {
     "start": "deno serve -A --check --watch server.ts",
     "serve": "deno serve -A --check server.ts"
-  },
-  "imports": {
-    "abi.js": "../../../packages/abi.js/jsr/index.ts"
   }
 }
