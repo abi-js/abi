@@ -1,4 +1,3 @@
-import { getServeOptionsAndHandler } from './helpers';
 import { toServeOptions } from './helpers';
 import type {
   Address,
