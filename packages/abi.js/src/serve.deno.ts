@@ -18,7 +18,7 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
 
   const server = Deno.serve(options);
 
-  return { port: server.port, hostname: server.hostname };
+  return { port: server.addr.port, hostname: server.addr.hostname };
 }
 
 export { serve };
