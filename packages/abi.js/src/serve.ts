@@ -57,10 +57,27 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
         }
 
         const request = new Request(url.toString(), requestOptions);
-
         const response = await handler(request);
-        res.writeHead(200, Object.fromEntries(response.headers.entries()));
-        res.end(response.body);
+
+        if (response.body instanceof ReadableStream) {
+          const reader = response.body.getReader();
+          const streamData: Uint8Array[] = [];
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) {
+              break;
+            }
+            streamData.push(value);
+          }
+
+          const finalBuffer = Buffer.concat(streamData);
+          res.writeHead(200, Object.fromEntries(response.headers.entries()));
+          res.end(finalBuffer);
+        } else {
+          res.writeHead(200, Object.fromEntries(response.headers.entries()));
+          res.end(response.body);
+        }
       });
   });
 
