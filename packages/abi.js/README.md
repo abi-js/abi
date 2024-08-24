@@ -45,18 +45,27 @@ You can install [`Abi`](https://abi.js.org) from [`NPM`](https://npmjs.com/packa
 
 ## 💡 Usage
 
-- Use `Abi` in a few lines of code:
+`Abi` works the same way under `Bun`, `Deno` and `Node` like this:
 
-```typescript
+1. Create a file, example `app.js` and copy/paste this code:
+
+```javascript
 import abi from 'abi.js';
 
 abi.get('', 'Welcome to Abi!');
-abi.get(':user', (name: string) => `Hello ${name}!`);
+abi.get(':user', (name) => `Hello ${name}!`);
 
 abi.start();
 ```
 
-- Under Bun and Deno, you just need to use a default export:
+2. Run your file with:
+
+- **Node**: `node app.js`
+- **Deno**: `deno run app.js`
+- **Bun**: `bun run app.js`
+
+Under `Bun` and `Deno`, you just need to use a default export.
+You can also use a TypeScript `app.ts` file instead of `app.js` like this:
 
 ```typescript
 import abi from 'abi.js';
@@ -67,13 +76,17 @@ abi.get(':user', (name: string) => `Hello ${name}!`);
 export default abi;
 ```
 
+Then run your script with `deno serve app.ts` (with Deno)
+or `bun run app.ts` (with Bun).
+
 ## 📖 Documentation
 
 Find more examples and in-depth use cases by [visiting the documentation][abi-docs].
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE.md file](./LICENSE.md) for details.
+This project is licensed under the MIT License -
+see the [LICENSE.md file](./LICENSE.md) for details.
 
 ***
 
