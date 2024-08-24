@@ -32,7 +32,7 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
         data.push(chunk);
       })
       .on('end', async () => {
-        const body = Buffer.concat(data);
+        const requestBody = Buffer.concat(data);
         const method = req.method?.toUpperCase() || 'GET';
         const url = new URL(req.url || '/', `http://${hostname}:${port}`);
         const requestOptions: RequestInit = {
@@ -53,11 +53,12 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
         };
 
         if (!(method === 'GET' || method === 'HEAD')) {
-          requestOptions.body = body;
+          requestOptions.body = requestBody;
         }
 
         const request = new Request(url.toString(), requestOptions);
         const response = await handler(request);
+        let responseBody: Buffer | null = null;
 
         if (response.body instanceof ReadableStream) {
           const reader = response.body.getReader();
@@ -71,13 +72,18 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
             streamData.push(value);
           }
 
-          const finalBuffer = Buffer.concat(streamData);
-          res.writeHead(200, Object.fromEntries(response.headers.entries()));
-          res.end(finalBuffer);
-        } else {
-          res.writeHead(200, Object.fromEntries(response.headers.entries()));
-          res.end(response.body);
+          responseBody = Buffer.concat(streamData);
+        } else if (response.body) {
+          responseBody = Buffer.isBuffer(response.body)
+            ? response.body
+            : Buffer.from(response.body);
         }
+
+        res.writeHead(
+          response.status || 200,
+          Object.fromEntries(response.headers.entries()),
+        );
+        res.end(responseBody);
       });
   });
 
