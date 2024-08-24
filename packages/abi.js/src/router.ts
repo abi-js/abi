@@ -18,17 +18,15 @@ export class Router {
   ): this {
     const _resolvers = [resolver, ...resolvers];
 
-    let routes = new Set<Route>();
+    if (!this.#routes.has(method)) {
+      this.#routes.set(method, new Set<Route>());
+    }
+
+    const routes = this.#routes.get(method)!;
+
     for (const _resolver of _resolvers) {
       routes.add(new Route(pattern, _resolver));
     }
-
-    const _routes = this.#routes.get(method);
-    if (_routes) {
-      routes = _routes.union(routes);
-    }
-
-    this.#routes.set(method, routes);
 
     return this;
   }
