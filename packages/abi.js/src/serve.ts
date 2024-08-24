@@ -35,8 +35,7 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
         const body = Buffer.concat(data);
         const method = req.method?.toUpperCase() || 'GET';
         const url = new URL(req.url || '/', `http://${hostname}:${port}`);
-
-        const request = new Request(url.toString(), {
+        const requestOptions: RequestInit = {
           method,
           headers: Object.entries(req.headers).reduce(
             (headers, [key, value]) => {
@@ -51,8 +50,13 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
             },
             new Headers(),
           ),
-          body: method in ['GET', 'HEAD'] ? null : body,
-        });
+        };
+
+        if (!(method === 'GET' || method === 'HEAD')) {
+          requestOptions.body = body;
+        }
+
+        const request = new Request(url.toString(), requestOptions);
 
         const response = await handler(request);
         res.writeHead(200, Object.fromEntries(response.headers.entries()));
