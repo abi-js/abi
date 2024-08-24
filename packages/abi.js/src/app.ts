@@ -107,6 +107,10 @@ export class Application {
   }
 
   run(): void {
+    this.start();
+  }
+
+  start(): void {
     this.#useRoutes();
     this.#server.start();
   }
