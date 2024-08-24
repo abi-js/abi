@@ -1,8 +1,8 @@
-# Abi.js ROADMAP 📈
+# Abi ROADMAP 📈
 
 ## 🚀 **Phase 1: Core Framework Development**
 
-- [ ] **Initial Release of Abi.js Core**
+- [ ] **Initial Release of Abi Core**
   - **Features**: Basic routing, HTTP server, and client HTTP functionality.
   - **Objective**: Provide foundational features for handling HTTP requests
   and serving web content.
@@ -27,7 +27,7 @@
 
 - [ ] **Basic CLI Tools**
   - **Features**: Implement CLI commands for project creation and management.
-  - **Objective**: Enable users to create and manage Abi.js projects
+  - **Objective**: Enable users to create and manage Abi projects
   from the command line.
   - **Deliverables**: `@abi.js/cli`, initial set of CLI commands
   (e.g., `create`, `init`, `add`, `serve`).
@@ -36,11 +36,11 @@
 
 - [ ] **Template Engine Integration**
   - **Features**: Support for existing template engines (e.g., EJS, Edge).
-  - **Objective**: Allow users to use popular template engines within Abi.js projects.
+  - **Objective**: Allow users to use popular template engines within Abi projects.
   - **Deliverables**: Integration guides and plugins for EJS and Edge.
 
 - [ ] **Custom Template Engine Development**
-  - **Features**: Develop a custom template engine integrated with Abi.js.
+  - **Features**: Develop a custom template engine integrated with Abi.
   - **Objective**: Provide a native template engine
   that can also be used in other projects.
   - **Deliverables**: Custom template engine and documentation.
@@ -80,7 +80,7 @@
 - [ ] **Plugin System for Easy Integration**
   - **Features**: Develop a plugin system for easy integration
   of third-party tools and custom modules.
-  - **Objective**: Allow users to extend Abi.js with additional tools and plugins.
+  - **Objective**: Allow users to extend Abi with additional tools and plugins.
   - **Deliverables**: Plugin system and documentation.
 
 - [ ] **Enhanced CLI Tools**
@@ -91,30 +91,30 @@
 
 - [ ] **Community and Ecosystem Growth**
   - **Features**: Engage with the community, support third-party modules,
-  and promote Abi.js.
-  - **Objective**: Grow the Abi.js ecosystem and support community-driven development.
+  and promote Abi.
+  - **Objective**: Grow the Abi ecosystem and support community-driven development.
   - **Deliverables**: Community guidelines, support for third-party modules,
   and promotional materials.
 
 - [ ] **Performance and Scalability Improvements**
-  - **Features**: Optimize Abi.js for performance and scalability.
-  - **Objective**: Ensure Abi.js can handle large-scale applications and high traffic.
+  - **Features**: Optimize Abi for performance and scalability.
+  - **Objective**: Ensure Abi can handle large-scale applications and high traffic.
   - **Deliverables**: Performance benchmarks, optimization guides.
 
 - [ ] **Cross-Platform Enhancements**
   - **Features**: Improve cross-platform support for Node.js and Cloudflare Workers.
-  - **Objective**: Expand Abi.js compatibility across different platforms and environments.
+  - **Objective**: Expand Abi compatibility across different platforms and environments.
   - **Deliverables**: Platform-specific enhancements and documentation.
 
 - [ ] **Comprehensive Documentation and Learning Resources**
   - **Features**: Develop extensive documentation, tutorials, and learning resources.
   - **Objective**: Provide users with all the information they need
-  to effectively use Abi.js.
+  to effectively use Abi.
   - **Deliverables**: Updated documentation, tutorial videos, and guides.
 
 - [ ] **Continuous Improvement and User Feedback**
   - **Features**: Regular updates based on user feedback and contributions.
-  - **Objective**: Evolve Abi.js to meet the needs of its users
+  - **Objective**: Evolve Abi to meet the needs of its users
   and address emerging trends.
   - **Deliverables**: Regular updates and feature enhancements
   based on community feedback.

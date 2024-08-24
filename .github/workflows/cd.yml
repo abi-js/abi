@@ -33,7 +33,7 @@ jobs:
 
     environment:
       name: github-pages
-      url: https://abi-js.github.io
+      url: https://abi-framework.github.io
 
     name: 🚀 Deploy abi.js.org on Node@${{ matrix.node-version }} with PNPM@${{ matrix.pnpm-version }} under ${{ matrix.operating-system }}
 
@@ -68,5 +68,5 @@ jobs:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: www/docs/dist
           destination_dir: .
-          external_repository: abi-js/abi-js.github.io
+          external_repository: abi-framework/abi-framework.github.io
           cname: abi.js.org

@@ -18,11 +18,11 @@ export default defineConfig({
       },
       title: 'Abi.js',
       social: {
-        github: 'https://github.com/abi-js',
-        twitter: 'https://x.com/abidotjs',
+        github: 'https://github.com/abi-framework',
+        twitter: 'https://x.com/abi_framework',
       },
       editLink: {
-        baseUrl: 'https://github.com/abi-js/abi/edit/trunk/apps/website/',
+        baseUrl: 'https://github.com/abi-framework/abi/edit/trunk/www/docs/',
       },
       customCss: ['./src/design/global.css'],
       sidebar: [

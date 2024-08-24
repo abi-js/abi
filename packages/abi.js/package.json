@@ -18,10 +18,10 @@
   "homepage": "https://abi.js.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abi-js/abi",
+    "url": "https://github.com/abi-framework/abi",
     "directory": "packages/abi.js"
   },
-  "bugs": "https://github.com/abi-js/abi/issues",
+  "bugs": "https://github.com/abi-framework/abi/issues",
   "author": {
     "name": "Sigui Kessé Emmanuel",
     "email": "siguici@proton.me",
