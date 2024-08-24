@@ -6,4 +6,8 @@ export const engine: Engine = 'JSC';
 export const serialize = (data: any) =>
   _serialize(data, { binaryType: 'nodebuffer' });
 export { deserialize } from 'bun:jsc';
-export { inflateSync, deflateSync } from 'bun';
+
+const inflateSync =  Bun.inflateSync;
+const deflateSync = Bun.deflateSync;
+
+export { inflateSync, deflateSync };
