@@ -34,7 +34,9 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
       .on('end', async () => {
         const body = Buffer.concat(data);
         const method = req.method?.toUpperCase() || 'GET';
-        const request = new Request(req.url || '/', {
+        const url = new URL(req.url || '/', `http://${hostname}:${port}`);
+
+        const request = new Request(url.toString(), {
           method,
           headers: Object.entries(req.headers).reduce(
             (headers, [key, value]) => {
