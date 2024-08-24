@@ -11,7 +11,7 @@ import type { Pattern, Resolver } from './route';
 import { Router } from './router';
 import { fileExists, joinPath, pathinfo, readFile } from './runtime';
 import { Server } from './server';
-import type { ServeHandler as Handler } from './types';
+import type { Address, ServeHandler as Handler, Hostname, Port } from './types';
 
 export class Application {
   #config: Config;
@@ -92,7 +92,7 @@ export class Application {
     });
   }
 
-  fetch(request: Request): Promise<Response> {
+  #useRoutes() {
     this.use((request: Request): Response => {
       const url = new URL(request.url);
       const pathname = decodeURIComponent(url.pathname);
@@ -104,8 +104,25 @@ export class Application {
 
       return this.#abort(404, `Route ${request.method} ${pathname} not found.`);
     });
+  }
 
+  run(): void {
+    this.#useRoutes();
+    this.#server.start();
+  }
+
+  fetch(request: Request): Promise<Response> {
+    this.#useRoutes();
     return this.#server.fetch(request);
+  }
+
+  listen(port: Port): void;
+  listen(hostname: Hostname): void;
+  listen(port: Port, hostname: Hostname): void;
+  listen(address: Address): void;
+  listen(arg1?: any, arg2?: any): void {
+    this.#useRoutes();
+    this.#server.listen(arg1, arg2);
   }
 
   #send(filename: string): Response {

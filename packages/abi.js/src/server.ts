@@ -1,5 +1,5 @@
 import { serve } from './serve';
-import type { ServeHandler, ServeOptions } from './types';
+import type { Address, Hostname, Port, ServeHandler } from './types';
 
 export class Server {
   #handlers = new Set<ServeHandler>();
@@ -31,8 +31,16 @@ export class Server {
     return this.error(`Cannot ${request.method} ${request.url}`);
   }
 
-  listen(options?: ServeOptions): void {
-    options ? serve(options, this.fetch) : serve(this.fetch);
+  start() {
+    serve(this.fetch);
+  }
+
+  listen(port: Port): void;
+  listen(hostname: Hostname): void;
+  listen(port: Port, hostname: Hostname): void;
+  listen(address: Address): void;
+  listen(arg1?: any, arg2?: any): void {
+    serve(arg1, arg2, this.fetch);
   }
 
   error<T>(err: T): Response {
