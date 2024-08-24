@@ -6,10 +6,10 @@ import {
   defineConfig,
 } from './config';
 import { DELETE, GET, HEAD, PATCH, POST, PUT } from './method';
-import { get_extension_type } from './mime';
 import type { Pattern, Resolver } from './route';
 import { Router } from './router';
-import { fileExists, joinPath, pathinfo, readFile } from './runtime';
+import { joinPath } from './runtime';
+import { sendFile } from './send';
 import { Server } from './server';
 import type { Address, ServeHandler as Handler, Hostname, Port } from './types';
 
@@ -71,7 +71,7 @@ export class Application {
 
       const filename = joinPath(this.#config.root, path);
 
-      return this.#send(filename);
+      return this.#send(filename, request);
     });
   }
 
@@ -88,7 +88,7 @@ export class Application {
         ? urlPathname.replace(base, root)
         : joinPath(root, urlPathname);
 
-      return this.#send(filename);
+      return this.#send(filename, request);
     });
   }
 
@@ -129,22 +129,8 @@ export class Application {
     this.#server.listen(arg1, arg2);
   }
 
-  #send(filename: string): Response {
-    if (fileExists(filename)) {
-      const { isFile, extension, realname, size } = pathinfo(filename);
-      const type = get_extension_type(extension);
-      if (isFile) {
-        console.log(`Serve static file ${realname}`);
-        return new Response(readFile(realname), {
-          headers: {
-            'Content-Type': type,
-            'Content-Length': size.toString(),
-          },
-        });
-      }
-    }
-
-    return this.#abort(404, `File ${filename} not found`);
+  #send(filename: string, request: Request): Response {
+    return sendFile(filename, request);
   }
 
   #abort(code = 500, message?: string): Response {
