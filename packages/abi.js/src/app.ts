@@ -5,7 +5,7 @@ import {
   defaultConfig,
   defineConfig,
 } from './config';
-import { DELETE, GET, HEAD, PATCH, POST, PUT } from './method';
+import { type Method, DELETE, GET, HEAD, PATCH, POST, PUT } from './method';
 import type { Pattern, Resolver } from './route';
 import { Router } from './router';
 import { joinPath } from './runtime';
@@ -57,6 +57,11 @@ export class Application {
 
   delete(pattern: Pattern, resolver: Resolver): this {
     this.#router.add(DELETE, pattern, resolver);
+    return this;
+  }
+
+  on(method: Method, pattern: Pattern, resolver: Resolver): this {
+    this.#router.add(method, pattern, resolver);
     return this;
   }
 
