@@ -101,5 +101,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: abi
-          entrypoint: backend/server.ts
-          root: apps
+          entrypoint: backend/abi.ts
+          root: www/apps
