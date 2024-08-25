@@ -40,7 +40,10 @@ export class Server {
   listen(port: Port, hostname: Hostname): void;
   listen(address: Address): void;
   listen(arg1?: any, arg2?: any): void {
-    serve(arg1, arg2, this.fetch);
+    const args = [arg1, arg2].filter(
+      (arg) => arg !== undefined && arg !== null,
+    ) as [typeof arg1?, typeof arg2?];
+    serve(...args, this.fetch);
   }
 
   error<T>(err: T): Response {

@@ -9,4 +9,4 @@ const abi = new Abi()
     (request, user = 5) => `${request.method} User ${user}`,
   );
 
-abi.run();
+abi.listen(8080);
