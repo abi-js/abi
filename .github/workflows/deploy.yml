@@ -91,12 +91,6 @@ jobs:
       - name: 🗃️ List distribution files
         run: ls -R www/apps/frontend/dist
 
-      - name: ⚗️  Check files
-        run: deno task check
-
-      - name: 📦️ Build app
-        run: deno task build
-
       - name: 📂 Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
