@@ -92,8 +92,8 @@ export class Application {
     });
   }
 
-  #useRoutes() {
-    this.use((request: Request): Response => {
+  routes(): Handler {
+    return (request: Request): Response => {
       const url = new URL(request.url);
       const pathname = decodeURIComponent(url.pathname);
       const route = this.#router.get(request.method, pathname);
@@ -103,7 +103,13 @@ export class Application {
       }
 
       return this.#abort(404, `Route ${request.method} ${pathname} not found.`);
-    });
+    };
+  }
+
+  useRoutes(): this {
+    this.use(this.routes());
+
+    return this;
   }
 
   run(): void {
@@ -111,12 +117,12 @@ export class Application {
   }
 
   start(): void {
-    this.#useRoutes();
+    this.useRoutes();
     this.#server.start();
   }
 
   fetch(request: Request): Promise<Response> {
-    this.#useRoutes();
+    this.useRoutes();
     return this.#server.fetch(request);
   }
 
@@ -125,7 +131,7 @@ export class Application {
   listen(port: Port, hostname: Hostname): void;
   listen(address: Address): void;
   listen(arg1?: any, arg2?: any): void {
-    this.#useRoutes();
+    this.useRoutes();
     this.#server.listen(arg1, arg2);
   }
 
