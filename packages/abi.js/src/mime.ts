@@ -1508,7 +1508,7 @@ export const db: Record<ContentType, MimeType> = {
     compressible: true,
     charset: '',
   },
-  'application/media_control+xml': {
+  'application/mediaControl+xml': {
     source: 'iana',
     extensions: [],
     compressible: true,
@@ -14196,43 +14196,45 @@ export const db: Record<ContentType, MimeType> = {
   },
 };
 
-export function get_extentions(): Record<string, string> {
+export function getExtentions(): Record<string, string> {
   const extensions: Record<string, string> = {};
-  for (const [content_type, mime_type] of Object.entries(db)) {
-    for (const extension of mime_type.extensions) {
-      extensions[extension] = content_type;
+  for (const [contentType, mimeType] of Object.entries(db)) {
+    for (const extension of mimeType.extensions) {
+      extensions[extension] = contentType;
     }
   }
   return extensions;
 }
 
-export function get_mime_type(mime_type: string): MimeType {
-  return db[mime_type];
+export function getMimeType(mimeType: string): MimeType {
+  return db[mimeType];
 }
 
-export function get_extension_type(extension: string): string {
-  for (const mime_type of Object.values(db)) {
-    if (mime_type.extensions.includes(extension)) {
-      return get_content_type(mime_type);
-    }
+export function getExtensionType(extension: string): string {
+  if (extension === '') {
+    return '';
   }
-  return '';
+
+  let _extension = extension.startsWith('.') ? extension.slice(1) : extension;
+  _extension = _extension.toLowerCase();
+
+  return getExtentions()[_extension] || '';
 }
 
-export function get_content_type(mime_type: string | MimeType): string {
-  const mt_struct = typeof mime_type === 'string' ? db[mime_type] : mime_type;
+export function getContentType(mimeType: string | MimeType): string {
+  const mt_struct = typeof mimeType === 'string' ? db[mimeType] : mimeType;
   const charset =
     mt_struct.charset.length > 0 ? mt_struct.charset.toLowerCase() : 'utf-8';
-  return `${mime_type}; charset=${charset}`;
+  return `${mimeType}; charset=${charset}`;
 }
 
-export function get_default_extension(mime_type: string): string {
-  if (db[mime_type].extensions.length > 0) {
-    return db[mime_type].extensions[0];
+export function getDefaultExtension(mimeType: string): string {
+  if (db[mimeType].extensions.length > 0) {
+    return db[mimeType].extensions[0];
   }
   return '';
 }
 
-export function exists(mime_type: string): boolean {
-  return mime_type in db;
+export function exists(mimeType: string): boolean {
+  return mimeType in db;
 }

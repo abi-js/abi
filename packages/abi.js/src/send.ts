@@ -1,32 +1,35 @@
 import { createReadStream } from 'node:fs';
 import type { Readable } from 'node:stream';
-import { get_extension_type } from './mime';
-import { fileExists, joinPath, pathinfo } from './runtime';
+import { getExtensionType } from './mime';
+import { fileExists, joinPath, pathinfo, readFile } from './runtime';
 
 export function sendFile(
   file: string,
   request: Request,
-  index = 'index.html',
+  index?: string,
 ): Response {
   if (!fileExists(file)) {
     return new Response('404 Not Found', { status: 404 });
   }
 
-  const info = pathinfo(file);
+  const { isDirectory, realname } = pathinfo(file);
   let path: string;
 
-  if (info.isDirectory) {
-    path = joinPath(info.realname, index);
-    if (!fileExists(path)) {
-      return new Response('404 Not Found', { status: 404 });
+  if (isDirectory) {
+    if (index) {
+      path = joinPath(realname, index);
+      if (!fileExists(path)) {
+        return new Response('404 Not Found', { status: 404 });
+      }
+    } else {
+      return new Response('403 Forbidden', { status: 403 });
     }
   } else {
-    path = info.realname;
+    path = realname;
   }
 
-  const { extension, size, mtime } = info;
-  const mimeType =
-    get_extension_type(extension.toLowerCase()) || 'application/octet-stream';
+  const { extension, size, mtime } = pathinfo(path);
+  const mimeType = getExtensionType(extension) || 'application/octet-stream';
 
   const range = request.headers.get('Range');
   if (range) {
@@ -55,8 +58,8 @@ export function sendFile(
     });
   }
 
-  const stream = createReadStream(path);
-  return new Response(streamToReadable(stream), {
+  const data = readFile(path);
+  return new Response(data, {
     status: 200,
     headers: new Headers({
       'Content-Type': mimeType,

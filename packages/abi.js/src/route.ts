@@ -1,6 +1,6 @@
 import 'buno.js';
 import container from './container';
-import { get_extension_type } from './mime';
+import { getExtensionType } from './mime';
 
 export type QueryType = 'string' | 'number';
 export type QueryValue = string | number;
@@ -132,7 +132,7 @@ export class Route {
 
     return new Response(JSON.stringify(result), {
       headers: {
-        'Content-Type': get_extension_type('json'),
+        'Content-Type': getExtensionType('json'),
       },
     });
   }
