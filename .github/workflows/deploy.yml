@@ -42,7 +42,7 @@ jobs:
         run: bun run build
 
       - name: 🗃️ List distribution files
-        run: ls -R www/apps/frontend/dist
+        run: ls -R dist
 
       - name: 🚚 Upload distribution files
         uses: actions/upload-artifact@v4
@@ -89,7 +89,7 @@ jobs:
           path: www/apps/frontend/dist
 
       - name: 🗃️ List distribution files
-        run: ls -R www/apps/frontend/dist
+        run: ls -R ../frontend/dist
 
       - name: 📂 Upload to Deno Deploy
         uses: denoland/deployctl@v1
