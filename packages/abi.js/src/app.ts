@@ -5,7 +5,7 @@ import {
   defaultConfig,
   defineConfig,
 } from './config';
-import { type Method, DELETE, GET, HEAD, PATCH, POST, PUT } from './method';
+import { DELETE, GET, HEAD, type Method, PATCH, POST, PUT } from './method';
 import type { Pattern, Resolver } from './route';
 import { Router } from './router';
 import { joinPath } from './runtime';
@@ -25,43 +25,48 @@ export class Application {
     this.#server = new Server(this.#config.root, this.#config.assets);
   }
 
-  use(handler: Handler): this {
-    this.#server.pipe(handler);
+  use(handler: Handler, ...handlers: Handler[]): this {
+    this.#server.pipe(handler, ...handlers);
     return this;
   }
 
-  get(pattern: Pattern, resolver: Resolver): this {
-    this.#router.add(GET, pattern, resolver);
+  get(pattern: Pattern, resolver: Resolver, ...resolvers: Resolver[]): this {
+    this.#router.add(GET, pattern, resolver, ...resolvers);
     return this;
   }
 
-  head(pattern: Pattern, resolver: Resolver): this {
-    this.#router.add(HEAD, pattern, resolver);
+  head(pattern: Pattern, resolver: Resolver, ...resolvers: Resolver[]): this {
+    this.#router.add(HEAD, pattern, resolver, ...resolvers);
     return this;
   }
 
-  post(pattern: Pattern, resolver: Resolver): this {
-    this.#router.add(POST, pattern, resolver);
+  post(pattern: Pattern, resolver: Resolver, ...resolvers: Resolver[]): this {
+    this.#router.add(POST, pattern, resolver, ...resolvers);
     return this;
   }
 
-  put(pattern: Pattern, resolver: Resolver): this {
-    this.#router.add(PUT, pattern, resolver);
+  put(pattern: Pattern, resolver: Resolver, ...resolvers: Resolver[]): this {
+    this.#router.add(PUT, pattern, resolver, ...resolvers);
     return this;
   }
 
-  patch(pattern: Pattern, resolver: Resolver): this {
-    this.#router.add(PATCH, pattern, resolver);
+  patch(pattern: Pattern, resolver: Resolver, ...resolvers: Resolver[]): this {
+    this.#router.add(PATCH, pattern, resolver, ...resolvers);
     return this;
   }
 
-  delete(pattern: Pattern, resolver: Resolver): this {
-    this.#router.add(DELETE, pattern, resolver);
+  delete(pattern: Pattern, resolver: Resolver, ...resolvers: Resolver[]): this {
+    this.#router.add(DELETE, pattern, resolver, ...resolvers);
     return this;
   }
 
-  on(method: Method, pattern: Pattern, resolver: Resolver): this {
-    this.#router.add(method, pattern, resolver);
+  on(
+    method: Method,
+    pattern: Pattern,
+    resolver: Resolver,
+    ...resolvers: Resolver[]
+  ): this {
+    this.#router.add(method, pattern, resolver, ...resolvers);
     return this;
   }
 
