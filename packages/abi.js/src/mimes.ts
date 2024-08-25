@@ -1,13 +1,4 @@
-export type ContentType = string;
-
-export interface MimeType {
-  source: string;
-  extensions: string[];
-  compressible: boolean;
-  charset: string;
-}
-
-export const db: Record<ContentType, MimeType> = {
+export const mimeInfos = {
   'application/1d-interleaved-parityfec': {
     source: 'iana',
     extensions: [],
@@ -730,7 +721,7 @@ export const db: Record<ContentType, MimeType> = {
   },
   'application/docbook+xml': {
     source: 'apache',
-    extensions: ['dbk'],
+    extensions: ['mimeInfosk'],
     compressible: true,
     charset: '',
   },
@@ -920,7 +911,7 @@ export const db: Record<ContentType, MimeType> = {
     compressible: false,
     charset: '',
   },
-  'application/fastinfoset': {
+  'application/fastmimeInfoset': {
     source: 'iana',
     extensions: [],
     compressible: false,
@@ -2557,7 +2548,7 @@ export const db: Record<ContentType, MimeType> = {
     compressible: false,
     charset: '',
   },
-  'application/soap+fastinfoset': {
+  'application/soap+fastmimeInfoset': {
     source: 'iana',
     extensions: [],
     compressible: false,
@@ -3739,7 +3730,7 @@ export const db: Record<ContentType, MimeType> = {
     compressible: true,
     charset: '',
   },
-  'application/vnd.blink-idb-value-wrapper': {
+  'application/vnd.blink-imimeInfos-value-wrapper': {
     source: 'iana',
     extensions: [],
     compressible: false,
@@ -3999,7 +3990,7 @@ export const db: Record<ContentType, MimeType> = {
   },
   'application/vnd.contact.cmsg': {
     source: 'iana',
-    extensions: ['cdbcmsg'],
+    extensions: ['cmimeInfoscmsg'],
     compressible: false,
     charset: '',
   },
@@ -4039,7 +4030,7 @@ export const db: Record<ContentType, MimeType> = {
     compressible: false,
     charset: '',
   },
-  'application/vnd.crick.clicker.wordbank': {
+  'application/vnd.crick.clicker.wormimeInfosank': {
     source: 'iana',
     extensions: ['clkw'],
     compressible: false,
@@ -4207,9 +4198,9 @@ export const db: Record<ContentType, MimeType> = {
     compressible: true,
     charset: '',
   },
-  'application/vnd.dbf': {
+  'application/vnd.mimeInfosf': {
     source: 'iana',
-    extensions: ['dbf'],
+    extensions: ['mimeInfosf'],
     compressible: false,
     charset: '',
   },
@@ -6049,7 +6040,7 @@ export const db: Record<ContentType, MimeType> = {
     compressible: false,
     charset: '',
   },
-  'application/vnd.maxmind.maxmind-db': {
+  'application/vnd.maxmind.maxmind-mimeInfos': {
     source: 'iana',
     extensions: [],
     compressible: false,
@@ -6519,7 +6510,7 @@ export const db: Record<ContentType, MimeType> = {
   },
   'application/vnd.ms-works': {
     source: 'iana',
-    extensions: ['wps', 'wks', 'wcm', 'wdb'],
+    extensions: ['wps', 'wks', 'wcm', 'wmimeInfos'],
     compressible: false,
     charset: '',
   },
@@ -6843,7 +6834,7 @@ export const db: Record<ContentType, MimeType> = {
   },
   'application/vnd.oasis.opendocument.database': {
     source: 'apache',
-    extensions: ['odb'],
+    extensions: ['omimeInfos'],
     compressible: false,
     charset: '',
   },
@@ -7902,7 +7893,7 @@ export const db: Record<ContentType, MimeType> = {
   },
   'application/vnd.palm': {
     source: 'iana',
-    extensions: ['pdb', 'pqa', 'oprc'],
+    extensions: ['pmimeInfos', 'pqa', 'oprc'],
     compressible: false,
     charset: '',
   },
@@ -9834,7 +9825,7 @@ export const db: Record<ContentType, MimeType> = {
   },
   'application/x-keepass2': {
     source: '',
-    extensions: ['kdbx'],
+    extensions: ['kmimeInfosx'],
     compressible: false,
     charset: '',
   },
@@ -9912,7 +9903,7 @@ export const db: Record<ContentType, MimeType> = {
   },
   'application/x-msaccess': {
     source: 'apache',
-    extensions: ['mdb'],
+    extensions: ['mmimeInfos'],
     compressible: false,
     charset: '',
   },
@@ -10014,7 +10005,7 @@ export const db: Record<ContentType, MimeType> = {
   },
   'application/x-pilot': {
     source: 'nginx',
-    extensions: ['prc', 'pdb'],
+    extensions: ['prc', 'pmimeInfos'],
     compressible: false,
     charset: '',
   },
@@ -11644,7 +11635,7 @@ export const db: Record<ContentType, MimeType> = {
     compressible: false,
     charset: '',
   },
-  'chemical/x-pdb': {
+  'chemical/x-pmimeInfos': {
     source: 'apache',
     extensions: [],
     compressible: false,
@@ -12328,7 +12319,7 @@ export const db: Record<ContentType, MimeType> = {
     compressible: false,
     charset: '',
   },
-  'message/feedback-report': {
+  'message/feemimeInfosack-report': {
     source: 'iana',
     extensions: [],
     compressible: false,
@@ -12648,13 +12639,13 @@ export const db: Record<ContentType, MimeType> = {
   },
   'model/x3d+binary': {
     source: 'apache',
-    extensions: ['x3db', 'x3dbz'],
+    extensions: ['x3mimeInfos', 'x3mimeInfosz'],
     compressible: false,
     charset: '',
   },
-  'model/x3d+fastinfoset': {
+  'model/x3d+fastmimeInfoset': {
     source: 'iana',
-    extensions: ['x3db'],
+    extensions: ['x3mimeInfos'],
     compressible: false,
     charset: '',
   },
@@ -14194,47 +14185,68 @@ export const db: Record<ContentType, MimeType> = {
     compressible: true,
     charset: '',
   },
-};
+} as const;
 
-export function getExtentions(): Record<string, string> {
-  const extensions: Record<string, string> = {};
-  for (const [contentType, mimeType] of Object.entries(db)) {
-    for (const extension of mimeType.extensions) {
-      extensions[extension] = contentType;
+export type MimeType = keyof typeof mimeInfos;
+export type MimeInfo = (typeof mimeInfos)[MimeType];
+
+export function mimeExtentions(): Record<string, MimeType> {
+  const extensions: Record<string, MimeType> = {};
+
+  for (const [mimeType, mimeInfo] of Object.entries(mimeInfos)) {
+    for (const extension of mimeInfo.extensions) {
+      extensions[extension] = mimeType as MimeType;
     }
   }
+
   return extensions;
 }
 
-export function getMimeType(mimeType: string): MimeType {
-  return db[mimeType];
+export function mimeInfo(mimeType: MimeType): MimeInfo {
+  return mimeInfos[mimeType];
 }
 
-export function getExtensionType(extension: string): string {
+export function extensionMime(extension: string): string {
   if (extension === '') {
     return '';
   }
 
-  let _extension = extension.startsWith('.') ? extension.slice(1) : extension;
-  _extension = _extension.toLowerCase();
-
-  return getExtentions()[_extension] || '';
+  return mimeExtentions()[normalizeExtension(extension)] || '';
 }
 
-export function getContentType(mimeType: string | MimeType): string {
-  const mt_struct = typeof mimeType === 'string' ? db[mimeType] : mimeType;
+export function extensionType(extension: string): string {
+  const mimeType = extensionMime(extension);
+  return contentType(mimeType);
+}
+
+export function contentType(mime: string | MimeInfo): string {
+  let info: MimeInfo;
+  if (typeof mime === 'string') {
+    if (mime === '' || !mimeExists(mime)) {
+      return '';
+    }
+    info = mimeInfo(mime);
+  } else {
+    info = mime;
+  }
   const charset =
-    mt_struct.charset.length > 0 ? mt_struct.charset.toLowerCase() : 'utf-8';
-  return `${mimeType}; charset=${charset}`;
+    info.charset.length > 0 ? info.charset.toLowerCase() : 'utf-8';
+  return `${mime}; charset=${charset}`;
 }
 
-export function getDefaultExtension(mimeType: string): string {
-  if (db[mimeType].extensions.length > 0) {
-    return db[mimeType].extensions[0];
+export function defaultExtension(mimeType: string): string {
+  if (mimeExists(mimeType) && mimeInfos[mimeType].extensions.length > 0) {
+    return mimeInfos[mimeType].extensions[0] || '';
   }
   return '';
 }
 
-export function exists(mimeType: string): boolean {
-  return mimeType in db;
+export function mimeExists(mimeType: string): mimeType is MimeType {
+  return mimeType in mimeInfos;
+}
+
+function normalizeExtension(extension: string): string {
+  return (
+    extension.startsWith('.') ? extension.slice(1) : extension
+  ).toLowerCase();
 }

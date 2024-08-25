@@ -1,6 +1,6 @@
 import { createReadStream } from 'node:fs';
 import type { Readable } from 'node:stream';
-import { getExtensionType } from './mime';
+import { extensionType } from './mimes';
 import { fileExists, joinPath, pathinfo, readFile } from './runtime';
 
 export function sendFile(
@@ -29,7 +29,7 @@ export function sendFile(
   }
 
   const { extension, size, mtime } = pathinfo(path);
-  const mimeType = getExtensionType(extension) || 'application/octet-stream';
+  const mimeType = extensionType(extension) || 'application/octet-stream';
 
   const range = request.headers.get('Range');
   if (range) {
