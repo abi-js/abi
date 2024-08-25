@@ -5,9 +5,16 @@ on:
     branches:
       - trunk
 
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+    branches: [trunk]
+
 jobs:
   frontend:
     runs-on: ${{ matrix.operating-system }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
 
     defaults:
       run:
