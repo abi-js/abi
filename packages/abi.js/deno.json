@@ -4,16 +4,18 @@
   "exports": {
     ".": "./dist/deno/index.ts"
   },
-  "include": ["deno.json", "dist/deno/*.ts", "README.md", "LICENSE.md"],
+  "include": ["deno.json", "dist/deno/*.ts"],
   "exclude": [
     ".*",
-    "tmp/**/*",
     "dist/deno/*.test.ts",
     "dist/deno/*.d.ts",
     "dist/deno/**/*.js",
     "dist/deno/deps/**",
+    "**/*.md",
     "dist/node/*",
+    "scripts/*",
     "src/*",
+    "tmp/**/*",
     "tests/*",
     "biome.json",
     "tsconfig.json",
