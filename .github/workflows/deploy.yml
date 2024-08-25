@@ -1,0 +1,96 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - trunk
+
+jobs:
+  frontend:
+    runs-on: ${{ matrix.operating-system }}
+
+    defaults:
+      run:
+        working-directory: ./www/apps/frontend
+
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        bun-version: [1.1.25]
+
+    name: 📦️ Build the frontend on ${{ matrix.operating-system }} using Bun@${{ matrix.bun-version }}
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ matrix.bun-version }}
+
+      - name: ⚡️ Install dependencies
+        run: bun install
+
+      - name: 🍱 Build assets
+        run: bun run build
+
+      - name: 🚚 Upload distribution files
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: www/apps/frontend/dist
+
+  deploy:
+    needs: frontend
+    runs-on: ${{ matrix.operating-system }}
+
+    environment:
+      name: production
+      url: https://abi.deno.dev
+
+    permissions:
+      id-token: write
+      contents: read
+
+    defaults:
+      run:
+        working-directory: ./www/apps/backend
+
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        deno-version: [1.45.5]
+
+    name: 🚀 Deploy abi.deno.dev to ${{ matrix.operating-system }} on Deno-${{ matrix.deno-version }}
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 🔨 Configure Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno-version }}
+
+      - name: 🚚 Download distribution files
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+          path: www/apps/frontend/dist
+
+      - name: 🗃️ List distribution files
+        run: ls -R www/apps/frontend/dist
+
+      - name: ⚗️  Check files
+        run: deno task check
+
+      - name: 📦️ Build app
+        run: deno task build
+
+      - name: 📂 Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: abi
+          entrypoint: backend/server.ts
+          root: apps
