@@ -1,5 +1,6 @@
 import type { Method } from './method';
-import { type Path, type Pattern, type Resolver, Route } from './route';
+import { Route } from './route';
+import type { Path, Pattern, Resolver } from './types';
 
 export type Routes = Map<Method, Set<Route>>;
 
