@@ -1,6 +1,6 @@
 import 'buno.js';
 import container from './container';
-import { extensionType } from './mimes';
+import { Context } from './context';
 import type { Options, Parameter, Pattern, Resolver, Result } from './types';
 
 export class Route {
@@ -91,33 +91,12 @@ export class Route {
   }
 
   public resolve(request: Request): Response {
+    const context = new Context(request);
     const options = this.options;
     const result = container({ request, options }).call<Result>(
       this.resolver,
       options,
     );
-    return this.render(result);
-  }
-
-  public render(result: Result): Response {
-    if (result instanceof Response) {
-      return result;
-    }
-
-    if (typeof result === 'string') {
-      return new Response(result);
-    }
-
-    if (typeof result === 'number') {
-      return new Response('', {
-        status: result,
-      });
-    }
-
-    return new Response(JSON.stringify(result), {
-      headers: {
-        'Content-Type': extensionType('json'),
-      },
-    });
+    return context.render(result);
   }
 }

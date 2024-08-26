@@ -1,5 +1,5 @@
 import type { Method } from './method';
-import type { Logger } from './types';
+import type { Logger, Result } from './types';
 
 export class Context {
   constructor(
@@ -40,6 +40,26 @@ export class Context {
     }
 
     return new Response(JSON.stringify(arg1), arg2);
+  }
+
+  text(body: string, init?: ResponseInit): Response {
+    return new Response(body, init);
+  }
+
+  public render(result: Result): Response {
+    if (result instanceof Response) {
+      return result;
+    }
+
+    if (typeof result === 'string') {
+      return this.text(result);
+    }
+
+    if (typeof result === 'number') {
+      return this.respond(null, {}, result);
+    }
+
+    return this.json(result);
   }
 
   abort(code = 500, message?: string, headers?: HeadersInit): Response {
