@@ -7,12 +7,18 @@ import {
 } from './config';
 import { Context } from './context';
 import { DELETE, GET, HEAD, type Method, PATCH, POST, PUT } from './method';
-import type { Pattern, Resolver } from './route';
 import { Router } from './router';
 import { joinPath } from './runtime';
 import { sendFile } from './send';
 import { Server } from './server';
-import type { Address, ServeHandler as Handler, Hostname, Port } from './types';
+import type {
+  Address,
+  ServeHandler as Handler,
+  Hostname,
+  Pattern,
+  Port,
+  Resolver,
+} from './types';
 
 export class Application {
   #config: Config;

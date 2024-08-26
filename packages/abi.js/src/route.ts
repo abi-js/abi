@@ -1,23 +1,7 @@
 import 'buno.js';
 import container from './container';
 import { extensionType } from './mimes';
-
-export type QueryType = 'string' | 'number';
-export type QueryValue = string | number;
-export type Index = number;
-export type Name = string;
-export type Key = Index | Name;
-export type Argument = { index: Index; value: QueryValue };
-export type Parameter = { name: Name; type: QueryType; value: QueryValue };
-export type Option = { key: Key; value: QueryValue };
-export type Arguments = Record<Index, QueryValue>;
-export type Parameters = Record<Name, QueryValue>;
-export type Options = Record<Key, QueryValue>;
-
-export type Result = boolean | number | string | object | Response;
-export type Path = string;
-export type Pattern = string;
-export type Resolver = (...args: any[]) => Result;
+import type { Options, Parameter, Pattern, Resolver, Result } from './types';
 
 export class Route {
   protected options: Options = {};
