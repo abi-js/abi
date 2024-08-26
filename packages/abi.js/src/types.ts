@@ -20,6 +20,12 @@ export type Config = {
   errors: string;
 };
 
+export interface Logger {
+  log(...args: any[]): void;
+  warn(...args: any[]): void;
+  error(...args: any[]): void;
+}
+
 export interface PathInfo {
   name: string;
   realname: string;

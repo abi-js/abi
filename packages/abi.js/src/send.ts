@@ -1,5 +1,6 @@
 import { createReadStream } from 'node:fs';
 import type { Readable } from 'node:stream';
+import { Context } from './context';
 import { extensionType } from './mimes';
 import { fileExists, joinPath, pathinfo, readFile } from './runtime';
 
@@ -8,8 +9,10 @@ export function sendFile(
   request: Request,
   index?: string,
 ): Response {
+  const context = new Context(request);
+
   if (!fileExists(file)) {
-    return new Response('404 Not Found', { status: 404 });
+    return context.abort(404);
   }
 
   const { isDirectory, realname } = pathinfo(file);
@@ -19,10 +22,10 @@ export function sendFile(
     if (index) {
       path = joinPath(realname, index);
       if (!fileExists(path)) {
-        return new Response('404 Not Found', { status: 404 });
+        return context.abort(404);
       }
     } else {
-      return new Response('403 Forbidden', { status: 403 });
+      return context.abort(403);
     }
   } else {
     path = realname;
@@ -38,36 +41,39 @@ export function sendFile(
     const end = endStr ? Number.parseInt(endStr, 10) : size - 1;
 
     if (start >= size || end >= size) {
-      return new Response(null, {
-        status: 416,
-        headers: new Headers({
+      return context.respond(
+        null,
+        {
           'Content-Range': `bytes */${size}`,
-        }),
-      });
+        },
+        416,
+      );
     }
 
     const stream = createReadStream(path, { start, end });
-    return new Response(streamToReadable(stream), {
-      status: 206,
-      headers: new Headers({
+    return context.respond(
+      streamToReadable(stream),
+      {
         'Content-Range': `bytes ${start}-${end}/${size}`.toString(),
         'Accept-Ranges': 'bytes',
         'Content-Length': (end - start + 1).toString(),
         'Content-Type': mimeType,
-      }),
-    });
+      },
+      206,
+    );
   }
 
   const data = readFile(path);
-  return new Response(data, {
-    status: 200,
-    headers: new Headers({
+  return context.respond(
+    data,
+    {
       'Content-Type': mimeType,
       'Content-Length': size.toString(),
       'Last-Modified': mtime?.toUTCString() || new Date().toUTCString(),
       'Cache-Control': 'public, max-age=31536000',
-    }),
-  });
+    },
+    200,
+  );
 }
 
 function streamToReadable(stream: Readable): ReadableStream<Uint8Array> {

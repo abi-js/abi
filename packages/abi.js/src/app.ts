@@ -5,6 +5,7 @@ import {
   defaultConfig,
   defineConfig,
 } from './config';
+import { Context } from './context';
 import { DELETE, GET, HEAD, type Method, PATCH, POST, PUT } from './method';
 import type { Pattern, Resolver } from './route';
 import { Router } from './router';
@@ -23,6 +24,10 @@ export class Application {
     this.#config = defineConfig(config);
     this.#router = new Router();
     this.#server = new Server(this.#config.root, this.#config.assets);
+  }
+
+  context(request: Request): Context {
+    return new Context(request);
   }
 
   use(handler: Handler, ...handlers: Handler[]): this {
@@ -72,11 +77,11 @@ export class Application {
 
   serve(path: string, base?: string): this {
     return this.use((request: Request): Response => {
-      const url = new URL(request.url);
-      const urlPathname = decodeURIComponent(url.pathname);
+      const context = this.context(request);
+      const urlPathname = context.pathname;
 
       if (base && !urlPathname.startsWith(base)) {
-        return this.#abort(400);
+        return context.abort(400);
       }
 
       const filename = joinPath(this.#config.root, path);
@@ -87,11 +92,11 @@ export class Application {
 
   handle(root: string, base?: string): this {
     return this.use((request: Request): Response => {
-      const url = new URL(request.url);
-      const urlPathname = decodeURIComponent(url.pathname);
+      const context = this.context(request);
+      const urlPathname = context.pathname;
 
       if (base && !urlPathname.startsWith(base)) {
-        return this.#abort(400);
+        return context.abort(400);
       }
 
       const filename = base
@@ -104,15 +109,18 @@ export class Application {
 
   routes(): Handler {
     return (request: Request): Response => {
-      const url = new URL(request.url);
-      const pathname = decodeURIComponent(url.pathname);
-      const route = this.#router.get(request.method, pathname);
+      const context = this.context(request);
+      const pathname = context.pathname;
+      const route = this.#router.get(context.method, pathname);
       if (route) {
-        console.log(`Handle ${request.method} ${pathname}`);
+        context.log(`Handle ${context.method} ${pathname}`);
         return route.resolve(request);
       }
 
-      return this.#abort(404, `Route ${request.method} ${pathname} not found.`);
+      return context.abort(
+        404,
+        `Route ${context.method} ${pathname} not found.`,
+      );
     };
   }
 
@@ -147,15 +155,6 @@ export class Application {
 
   #send(filename: string, request: Request): Response {
     return sendFile(filename, request);
-  }
-
-  #abort(code = 500, message?: string): Response {
-    const err = `Error ${code}${message ? `: ${message}` : ''}`;
-    console.error(err);
-
-    return new Response(err, {
-      status: code,
-    });
   }
 }
 
