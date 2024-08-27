@@ -1,10 +1,114 @@
 import { parse_str } from './parser';
 
+export type DocType = 'html' | 'xhtml' | 'xml';
+export type DocVersion<T extends DocType> = T extends 'html'
+  ? 5 | 4.01 | 4.0 | 3.2 | 2.0 | 1.0
+  : 1.0 | 1.1;
+export type DocMode<T extends DocType> = T extends 'html' | 'xhtml'
+  ? 'strict' | 'frameset' | 'transitional'
+  : never;
 export type Locale = string;
 export type Attrs = Record<string, string>;
 export type Props = Record<string, any>;
 export type EltName = string;
 export type Translations = Record<Locale, string>;
+
+export class Doc<T extends DocType = 'html'> {
+  readonly version: DocVersion<T>;
+  readonly mode: DocMode<T>;
+
+  constructor(
+    readonly root: Node,
+    readonly type: T = 'html' as T,
+    readonly charset = 'UTF-8',
+    version?: DocVersion<typeof type>,
+    mode?: DocMode<typeof type>,
+  ) {
+    if (version === undefined) {
+      this.version = (this.type === 'html' ? 5 : 1.0) as DocVersion<T>;
+    } else {
+      this.version = version;
+    }
+
+    if (mode === undefined) {
+      this.mode = 'strict' as DocMode<T>;
+    } else {
+      this.mode = mode;
+    }
+  }
+
+  render(locale?: Locale): string {
+    let str = '';
+
+    switch (this.type) {
+      case 'xml':
+        str += `<?xml version="${this.version.toFixed(1)}" encoding="${this.charset}"?>\n`;
+        break;
+
+      case 'xhtml':
+        if (this.version === 1.1) {
+          str += `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">`;
+        } else if (this.version === 1.0) {
+          switch (this.mode) {
+            case 'strict':
+              str += `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">`;
+              break;
+            case 'frameset':
+              str += `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">`;
+              break;
+            default:
+              str += `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">`;
+          }
+        }
+        break;
+
+      case 'html':
+        if (this.version >= 5) {
+          str += '<!DOCTYPE html>';
+        } else if (this.version === 4.01) {
+          switch (this.mode) {
+            case 'strict':
+              str +=
+                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">';
+              break;
+            case 'frameset':
+              str +=
+                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">';
+              break;
+            default:
+              str +=
+                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
+          }
+        } else if (this.version === 4.0) {
+          switch (this.mode) {
+            case 'strict':
+              str +=
+                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">';
+              break;
+            case 'frameset':
+              str +=
+                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN" "http://www.w3.org/TR/REC-html40/frameset.dtd">';
+              break;
+            default:
+              str +=
+                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">';
+          }
+        } else if (this.version === 3.2) {
+          str += '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">';
+        } else if (this.version === 2.0) {
+          str += '<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">';
+        } else if (this.version === 1.0) {
+          str += '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 1.0//EN">';
+        }
+        break;
+
+      default:
+        throw new Error(`Unsupported document type: ${this.type}`);
+    }
+
+    return str + this.root.render(locale);
+  }
+}
 
 export abstract class Node {
   abstract render(locale?: Locale): string;
@@ -343,6 +447,16 @@ export class Template {
 
     return content;
   }
+}
+
+export function doc<T extends DocType = 'html'>(
+  root: Node,
+  type: T = 'html' as T,
+  charset = 'UTF-8',
+  version?: DocVersion<typeof type>,
+  mode?: DocMode<typeof type>,
+): Doc<T> {
+  return new Doc(root, type, charset, version, mode);
 }
 
 export function text(value: string, translations: Translations = {}): Text {

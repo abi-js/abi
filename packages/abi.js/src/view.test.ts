@@ -1,6 +1,7 @@
 import { expect, test } from 'bun:test';
 import {
   Component,
+  Doc,
   Element,
   Node,
   Slot,
@@ -8,10 +9,19 @@ import {
   Template,
   Text,
   component,
+  doc,
   element,
   template,
   text,
 } from './view';
+
+test('Test doc', () => {
+  const _doc = doc(element('html'), 'html');
+
+  expect(_doc).toBeInstanceOf(Doc);
+  expect(_doc.root).toBeInstanceOf(Node);
+  expect(_doc.render()).toEqual('<!DOCTYPE html><html></html>');
+});
 
 test('Test text', () => {
   const txt = text('Hello', {
