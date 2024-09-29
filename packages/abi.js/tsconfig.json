@@ -7,6 +7,8 @@
     "declaration": true,
     "declarationDir": "dist/node",
     "emitDeclarationOnly": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "allowImportingTsExtensions": true,
     "lib": ["ESNext", "DOM", "webworker", "DOM.Iterable"],
     "module": "ESNext",

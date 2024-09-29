@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { parse_params } from './parser';
 
 export function reflect<T extends Function | object>(
