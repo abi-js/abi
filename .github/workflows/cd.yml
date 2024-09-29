@@ -28,8 +28,8 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        node-version: [20.16]
-        pnpm-version: [9.7.1]
+        node-version: [20.17]
+        pnpm-version: [9.11.0]
 
     environment:
       name: github-pages

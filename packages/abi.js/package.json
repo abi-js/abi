@@ -5,13 +5,13 @@
   "sideEffects": false,
   "type": "module",
   "engines": {
-    "node": ">=20.16.0",
-    "deno": ">=1.45.5",
-    "bun": ">=1.1.24",
-    "pnpm": ">=9.7.1",
+    "node": ">=20.17.0",
+    "deno": ">=1.46.3",
+    "bun": ">=1.1.29",
+    "pnpm": ">=9.11.0",
     "npm": "use pnpm instead"
   },
-  "packageManager": "pnpm@9.7.1",
+  "packageManager": "pnpm@9.11.0",
   "publishConfig": {
     "access": "public"
   },

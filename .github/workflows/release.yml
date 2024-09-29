@@ -30,7 +30,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        deno-version: [1.45.5]
+        deno-version: [1.46.3]
 
     name: 🚀 Deploy Abi.js to JSR using Deno ${{ matrix.deno-version }}
 
