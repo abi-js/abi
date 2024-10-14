@@ -5,16 +5,16 @@ description: Explore the essential classes and methods of the Abi framework. Thi
 
 ## Introduction 🚀
 
-Abi is a lightweight and versatile TypeScript framework designed
+Abi.js is a lightweight and versatile TypeScript framework designed
 to be used across Node, Bun, and Deno environments.
 It allows you to build web applications, manage HTTP routes,
 and make HTTP requests in a simple and intuitive manner.
 This section of the documentation serves as a reference
 for the available APIs in Abi.
 
-## Abi Class 🏗️
+## Abi.js Class 🏗️
 
-The `Abi` class is the main class of the framework, combining routing, the server, and the HTTP client into one entity.
+The `Abi.js` class is the main class of the framework, combining routing, the server, and the HTTP client into one entity.
 
 ### Methods
 
@@ -94,9 +94,9 @@ The `Client` class is used to make HTTP requests.
     const response = await Client.get('https://api.example.com/data');
     ```
 
-## Abi Configuration ⚙️
+## Abi.js Configuration ⚙️
 
-Abi can be configured using the `defineConfig` method.
+Abi.js can be configured using the `defineConfig` method.
 
 ### Types
 
@@ -111,7 +111,7 @@ Abi can be configured using the `defineConfig` method.
   - **Example**:
 
     ```typescript
-    import { defineConfig } from 'abi-framework';
+    import { defineConfig } from 'abi.js/config';
 
     const config = defineConfig({
         rootDirectory: '/my/custom/path',

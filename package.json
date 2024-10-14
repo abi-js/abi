@@ -19,9 +19,9 @@
   "homepage": "https://abi.js.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abi-framework/abi"
+    "url": "https://github.com/abi-js/abi"
   },
-  "bugs": "https://github.com/abi-framework/abi/issues",
+  "bugs": "https://github.com/abi-js/abi/issues",
   "author": {
     "name": "Sigui Kessé Emmanuel",
     "email": "siguici@proton.me",
