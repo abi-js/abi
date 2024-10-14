@@ -1,6 +1,5 @@
 !*.js
 *.ts
 !*.d.ts
-deps/
 README.md
 package.json
