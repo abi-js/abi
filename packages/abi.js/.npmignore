@@ -1,6 +1,7 @@
 src/
 tmp/
 tests/
+scripts/
 biome.json
 deno.json
 deno.lock
