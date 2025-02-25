@@ -8,9 +8,9 @@
     "serve": "bun server.ts"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.13",
-    "@types/node": "^22.9.0",
+    "@types/bun": "^1.2.3",
+    "@types/node": "^22.13.5",
     "abi.js": "workspace:*",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.3"
   }
 }

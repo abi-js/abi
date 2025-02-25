@@ -68,14 +68,14 @@
   },
   "devDependencies": {
     "denoify": "^1.6.16",
-    "esbuild": "^0.24.0",
-    "globby": "^14.0.2",
+    "esbuild": "^0.25.0",
+    "globby": "^14.1.0",
     "rimraf": "^6.0.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@types/bun": "^1.1.13",
-    "@types/node": "^22.9.0",
+    "@types/bun": "^1.2.3",
+    "@types/node": "^22.13.5",
     "buno.js": "^0.1.11",
     "reflect-metadata": "^0.2.2"
   }
