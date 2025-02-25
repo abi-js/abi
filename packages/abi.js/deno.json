@@ -34,8 +34,16 @@
     "proseWrap": "preserve"
   },
   "lint": {
+    "include": ["dist/deno/"],
+    "exclude": [
+      "!dist/deno/*.ts",
+      "dist/deno/*.d.ts",
+      "dist/deno/**/*.js",
+      "no-explicit-any",
+      "ban-types"
+    ],
     "rules": {
-      "exclude": ["no-explicit-any", "ban-types"]
+      "tags": ["recommended"]
     }
   },
   "tasks": {
