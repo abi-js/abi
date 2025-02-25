@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        bun-version: [1.1.34]
-        node-version: [22.11]
+        bun-version: [1.2.3]
+        node-version: [22.14]
         pnpm-version: [9.12.3]
 
     name: 🧪 CI Abi on Node@${{ matrix.node-version }} with PNPM@${{ matrix.pnpm-version }} under ${{ matrix.operating-system }}

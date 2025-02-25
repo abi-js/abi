@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        node-version: [22.11]
+        node-version: [22.14]
         pnpm-version: [9.12.3]
 
     environment:
