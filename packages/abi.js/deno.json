@@ -26,6 +26,7 @@
     "exclude": ["!dist/deno/*.ts", "dist/deno/*.d.ts", "dist/deno/**/*.js"]
   },
   "fmt": {
+    "exclude": ["dist/deno/_dnt.*.ts"],
     "useTabs": false,
     "lineWidth": 80,
     "indentWidth": 2,
@@ -37,13 +38,13 @@
     "include": ["dist/deno/"],
     "exclude": [
       "!dist/deno/*.ts",
+      "dist/deno/_dnt.*.ts",
       "dist/deno/*.d.ts",
-      "dist/deno/**/*.js",
-      "no-explicit-any",
-      "ban-types"
+      "dist/deno/**/*.js"
     ],
     "rules": {
-      "tags": ["recommended"]
+      "tags": ["recommended"],
+      "exclude": ["no-explicit-any", "ban-types"]
     }
   },
   "tasks": {
