@@ -1,0 +1,15 @@
+{
+  "name": "@abi-js/node-starter",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "serve": "node ./server.js"
+  },
+  "dependencies": {
+    "abi.js": "^0.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.4"
+  },
+  "main": "server.js"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "@abi-js/deno-starter",
+  "tasks": {
+    "serve": "deno serve server.ts"
+  }
+}

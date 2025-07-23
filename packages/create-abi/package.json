@@ -1,0 +1,120 @@
+{
+  "name": "create-abi",
+  "type": "module",
+  "license": "MIT",
+  "version": "0.0.0",
+  "description": "Interactive CLI for create Abi.js projects.",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "tsup-node --env.NODE_ENV production",
+    "prod": "pnpm check && pnpm build",
+    "start": "tsup-node --env.NODE_ENV development --watch",
+    "test": "pnm tsx bin/test.ts",
+    "tsx": "tsx"
+  },
+  "contributors": [
+    {
+      "name": "Sigui Kessé Emmanuel",
+      "email": "contact@sigui.ci",
+      "url": "https://twitter.com/siguici"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abi-js/abi",
+    "directory": "packages/create-abi"
+  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
+    "./app": {
+      "types": "./dist/app.d.ts",
+      "import": "./dist/app.js",
+      "require": "./dist/app.cjs",
+      "default": "./dist/app.js"
+    },
+    "./cli": {
+      "types": "./dist/cli.d.ts",
+      "import": "./dist/cli.js",
+      "require": "./dist/cli.cjs",
+      "default": "./dist/cli.js"
+    },
+    "./console": {
+      "types": "./dist/console.d.ts",
+      "import": "./dist/console.js",
+      "require": "./dist/console.cjs",
+      "default": "./dist/console.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs",
+      "default": "./dist/core.js"
+    },
+    "./tester": {
+      "types": "./dist/tester.d.ts",
+      "import": "./dist/tester.js",
+      "require": "./dist/tester.cjs",
+      "default": "./dist/tester.js"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "import": "./dist/utils.js",
+      "require": "./dist/utils.cjs",
+      "default": "./dist/utils.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "starters"
+  ],
+  "bin": "./dist/cli.js",
+  "keywords": [
+    "abi",
+    "abi-js",
+    "abi.js",
+    "cli",
+    "console",
+    "create-abi",
+    "generator",
+    "skeleton",
+    "starter-kit",
+    "template"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": "https://github.com/@abi-js/abi/issues",
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "cross-spawn": "^7.0.6",
+    "fs-extra": "^11.3.0",
+    "kleur": "^4.1.5",
+    "panam": "^0.3.0",
+    "tsx": "^4.20.3",
+    "which": "^5.0.0",
+    "which-pm-runs": "^1.1.0",
+    "yargs": "^18.0.0"
+  },
+  "devDependencies": {
+    "@japa/assert": "^4.0.1",
+    "@japa/runner": "^4.2.0",
+    "@types/cross-spawn": "^6.0.6",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^24.0.10",
+    "@types/which": "^3.0.4",
+    "@types/which-pm-runs": "^1.0.2",
+    "@types/yargs": "^17.0.33",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
+  }
+}
