@@ -1,5 +1,5 @@
-import { Application, app } from './app';
-import { type UserConfig, defaultConfig } from './config';
+import { Application, app } from "./app";
+import { defaultConfig, type UserConfig } from "./config";
 
 export { Application as Abi, app as abi, type UserConfig as AbiConfig };
 

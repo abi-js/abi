@@ -1,18 +1,18 @@
 {
-  "name": "@abi-js/bun-starter",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "serve": "bun server.ts"
-  },
-  "dependencies": {
-    "abi.js": "^0.1.2"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.2.18"
-  },
-  "module": "server.ts",
-  "peerDependencies": {
-    "typescript": "^5.8.3"
-  }
+	"name": "@abi-js/bun-starter",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"serve": "bun server.ts"
+	},
+	"dependencies": {
+		"abi.js": "^0.1.2"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.2.18"
+	},
+	"module": "server.ts",
+	"peerDependencies": {
+		"typescript": "^5.8.3"
+	}
 }

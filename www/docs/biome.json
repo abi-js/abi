@@ -1,11 +1,36 @@
 {
-  "organizeImports": {
-    "ignore": [".astro", ".vscode", "dist", "node_modules"]
-  },
-  "linter": {
-    "ignore": [".astro", ".vscode", "dist", "node_modules"]
-  },
-  "formatter": {
-    "ignore": [".astro", ".vscode", "dist", "node_modules"]
-  }
+	"root": false,
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"linter": {
+		"includes": [
+			"**",
+			"!**/.astro",
+			"!**/.vscode",
+			"!**/dist",
+			"!**/node_modules"
+		],
+		"rules": {
+			"style": {
+				"noParameterAssign": "error",
+				"useAsConstAssertion": "error",
+				"useDefaultParameterLast": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useSingleVarDeclarator": "error",
+				"noUnusedTemplateLiteral": "error",
+				"useNumberNamespace": "error",
+				"noInferrableTypes": "error",
+				"noUselessElse": "error"
+			}
+		}
+	},
+	"formatter": {
+		"includes": [
+			"**",
+			"!**/.astro",
+			"!**/.vscode",
+			"!**/dist",
+			"!**/node_modules"
+		]
+	}
 }

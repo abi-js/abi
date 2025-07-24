@@ -1,84 +1,84 @@
-import type { Method } from './method';
-import type { Logger, Result } from './types';
+import type { Method } from "./method";
+import type { Logger, Result } from "./types";
 
 export class Context {
-  constructor(
-    readonly request: Request,
-    readonly logger: Logger = console,
-  ) {}
+	constructor(
+		readonly request: Request,
+		readonly logger: Logger = console,
+	) {}
 
-  get url(): URL {
-    return new URL(this.request.url);
-  }
+	get url(): URL {
+		return new URL(this.request.url);
+	}
 
-  get method(): Method {
-    return this.request.method;
-  }
+	get method(): Method {
+		return this.request.method;
+	}
 
-  get pathname(): string {
-    return decodeURIComponent(this.url.pathname);
-  }
+	get pathname(): string {
+		return decodeURIComponent(this.url.pathname);
+	}
 
-  respond(
-    body?: BodyInit | null,
-    headers?: HeadersInit,
-    status?: number,
-    statusText?: string,
-  ): Response {
-    return new Response(body, { status, statusText, headers });
-  }
+	respond(
+		body?: BodyInit | null,
+		headers?: HeadersInit,
+		status?: number,
+		statusText?: string,
+	): Response {
+		return new Response(body, { status, statusText, headers });
+	}
 
-  redirect(location: string | URL, status?: number): Response {
-    return Response.redirect(location, status);
-  }
+	redirect(location: string | URL, status?: number): Response {
+		return Response.redirect(location, status);
+	}
 
-  json<T>(): T;
-  json<T>(body?: T, init?: ResponseInit): Response;
-  json(arg1?: any, arg2?: any): any {
-    if (arg1 === undefined && arg2 === undefined) {
-      return this.request.json();
-    }
+	json<T>(): T;
+	json<T>(body?: T, init?: ResponseInit): Response;
+	json(arg1?: any, arg2?: any): any {
+		if (arg1 === undefined && arg2 === undefined) {
+			return this.request.json();
+		}
 
-    return new Response(JSON.stringify(arg1), arg2);
-  }
+		return new Response(JSON.stringify(arg1), arg2);
+	}
 
-  text(body: string, init?: ResponseInit): Response {
-    return new Response(body, init);
-  }
+	text(body: string, init?: ResponseInit): Response {
+		return new Response(body, init);
+	}
 
-  public render(result: Result): Response {
-    if (result instanceof Response) {
-      return result;
-    }
+	public render(result: Result): Response {
+		if (result instanceof Response) {
+			return result;
+		}
 
-    if (typeof result === 'string') {
-      return this.text(result);
-    }
+		if (typeof result === "string") {
+			return this.text(result);
+		}
 
-    if (typeof result === 'number') {
-      return this.respond(null, {}, result);
-    }
+		if (typeof result === "number") {
+			return this.respond(null, {}, result);
+		}
 
-    return this.json(result);
-  }
+		return this.json(result);
+	}
 
-  abort(code = 500, message?: string, headers?: HeadersInit): Response {
-    const err = `Error ${code}${message ? `: ${message}` : ''}`;
+	abort(code = 500, message?: string, headers?: HeadersInit): Response {
+		const err = `Error ${code}${message ? `: ${message}` : ""}`;
 
-    this.logger.error(err);
+		this.logger.error(err);
 
-    return this.respond(err, headers, code);
-  }
+		return this.respond(err, headers, code);
+	}
 
-  log(...args: any[]) {
-    this.logger.log(...args);
-  }
+	log(...args: any[]) {
+		this.logger.log(...args);
+	}
 
-  warn(...args: any[]) {
-    this.logger.warn(...args);
-  }
+	warn(...args: any[]) {
+		this.logger.warn(...args);
+	}
 
-  error(...args: any[]) {
-    this.logger.error(...args);
-  }
+	error(...args: any[]) {
+		this.logger.error(...args);
+	}
 }

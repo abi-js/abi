@@ -1,82 +1,82 @@
 {
-  "name": "abi.js",
-  "version": "0.1.2",
-  "private": false,
-  "sideEffects": false,
-  "type": "module",
-  "engines": {
-    "node": ">=22.14.0",
-    "deno": ">=2.2.2",
-    "bun": ">=1.2.3",
-    "pnpm": ">=9.12.3",
-    "npm": "use pnpm instead"
-  },
-  "packageManager": "pnpm@9.12.3",
-  "publishConfig": {
-    "access": "public"
-  },
-  "homepage": "https://abi.js.org",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/abi-js/abi",
-    "directory": "packages/abi.js"
-  },
-  "bugs": "https://github.com/abi-js/abi/issues",
-  "author": {
-    "name": "Sigui Kessé Emmanuel",
-    "email": "siguici@proton.me",
-    "url": "https://siguici.deno.dev/"
-  },
-  "module": "./dist/node/index.mjs",
-  "main": "./dist/node/index.cjs",
-  "types": "./dist/node/index.d.ts",
-  "exports": {
-    ".": {
-      "bun": "./dist/node/index.ts",
-      "deno": "./dist/deno/index.js",
-      "types": "./dist/node/index.d.ts",
-      "import": "./dist/node/index.mjs",
-      "require": "./dist/node/index.cjs"
-    }
-  },
-  "keywords": [
-    "Abi",
-    "Abi.js",
-    "abidotjs",
-    "abi-js",
-    "router",
-    "server",
-    "handler",
-    "resolver",
-    "middleware",
-    "cross-platform",
-    "framework",
-    "runtime",
-    "adapter",
-    "JavaScript",
-    "TypeScript",
-    "Node.js",
-    "Bun",
-    "Deno",
-    "API"
-  ],
-  "scripts": {
-    "build": "bun run build.node && bun run build.deno",
-    "build.node": "rimraf dist/node && tsc --build && bun scripts/build.ts",
-    "build.deno": "rimraf dist/deno/*.{js,ts,d.ts} && denoify --out dist/deno && bun scripts/denoify.ts",
-    "denoify": "denoify"
-  },
-  "devDependencies": {
-    "denoify": "^1.6.16",
-    "esbuild": "^0.25.0",
-    "globby": "^14.1.0",
-    "rimraf": "^6.0.1",
-    "typescript": "^5.7.3"
-  },
-  "dependencies": {
-    "@types/bun": "^1.2.3",
-    "@types/node": "^22.13.5",
-    "buno.js": "^0.1.11",
-    "reflect-metadata": "^0.2.2"
-  }
+	"name": "abi.js",
+	"version": "0.1.2",
+	"private": false,
+	"sideEffects": false,
+	"type": "module",
+	"engines": {
+		"node": ">=22.14.0",
+		"deno": ">=2.2.2",
+		"bun": ">=1.2.3",
+		"pnpm": ">=9.12.3",
+		"npm": "use pnpm instead"
+	},
+	"packageManager": "pnpm@9.12.3",
+	"publishConfig": {
+		"access": "public"
+	},
+	"homepage": "https://abi.js.org",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/abi-js/abi",
+		"directory": "packages/abi.js"
+	},
+	"bugs": "https://github.com/abi-js/abi/issues",
+	"author": {
+		"name": "Sigui Kessé Emmanuel",
+		"email": "siguici@proton.me",
+		"url": "https://siguici.deno.dev/"
+	},
+	"module": "./dist/node/index.mjs",
+	"main": "./dist/node/index.cjs",
+	"types": "./dist/node/index.d.ts",
+	"exports": {
+		".": {
+			"bun": "./dist/node/index.ts",
+			"deno": "./dist/deno/index.js",
+			"types": "./dist/node/index.d.ts",
+			"import": "./dist/node/index.mjs",
+			"require": "./dist/node/index.cjs"
+		}
+	},
+	"keywords": [
+		"Abi",
+		"Abi.js",
+		"abidotjs",
+		"abi-js",
+		"router",
+		"server",
+		"handler",
+		"resolver",
+		"middleware",
+		"cross-platform",
+		"framework",
+		"runtime",
+		"adapter",
+		"JavaScript",
+		"TypeScript",
+		"Node.js",
+		"Bun",
+		"Deno",
+		"API"
+	],
+	"scripts": {
+		"build": "bun run build.node && bun run build.deno",
+		"build.node": "rimraf dist/node && tsc --build && bun scripts/build.ts",
+		"build.deno": "rimraf dist/deno/*.{js,ts,d.ts} && denoify --out dist/deno && bun scripts/denoify.ts",
+		"denoify": "denoify"
+	},
+	"devDependencies": {
+		"denoify": "^1.6.17",
+		"esbuild": "^0.25.8",
+		"globby": "^14.1.0",
+		"rimraf": "^6.0.1",
+		"typescript": "^5.8.3"
+	},
+	"dependencies": {
+		"@types/bun": "^1.2.19",
+		"@types/node": "^24.1.0",
+		"buno.js": "^0.1.11",
+		"reflect-metadata": "^0.2.2"
+	}
 }

@@ -1,16 +1,16 @@
 import {
-  type IncomingMessage,
-  type ServerResponse,
-  createServer,
-} from 'node:http';
-import { toServeOptions } from './helpers';
+	createServer,
+	type IncomingMessage,
+	type ServerResponse,
+} from "node:http";
+import { toServeOptions } from "./helpers";
 import type {
-  Address,
-  Hostname,
-  Port,
-  ServeHandler,
-  ServeOptions,
-} from './types';
+	Address,
+	Hostname,
+	Port,
+	ServeHandler,
+	ServeOptions,
+} from "./types";
 
 function serve(handler: ServeHandler): Address;
 function serve(port: Port, handler: ServeHandler): Address;
@@ -19,84 +19,84 @@ function serve(port: Port, hostname: Hostname, handler: ServeHandler): Address;
 function serve(address: Address, handler: ServeHandler): Address;
 function serve(options: ServeOptions): Address;
 function serve(arg1: any, arg2?: any, arg3?: any): Address {
-  const { port, hostname, handler } = toServeOptions(arg1, arg2, arg3);
+	const { port, hostname, handler } = toServeOptions(arg1, arg2, arg3);
 
-  const server = createServer((req: IncomingMessage, res: ServerResponse) => {
-    const data: Uint8Array[] = [];
+	const server = createServer((req: IncomingMessage, res: ServerResponse) => {
+		const data: Uint8Array[] = [];
 
-    req
-      .on('error', (err) => {
-        throw err;
-      })
-      .on('data', (chunk) => {
-        data.push(chunk);
-      })
-      .on('end', async () => {
-        const requestBody = Buffer.concat(data);
-        const method = req.method?.toUpperCase() || 'GET';
-        const url = new URL(req.url || '/', `http://${hostname}:${port}`);
-        const requestOptions: RequestInit = {
-          method,
-          headers: Object.entries(req.headers).reduce(
-            (headers, [key, value]) => {
-              if (Array.isArray(value)) {
-                for (const v of value) {
-                  headers.append(key, v);
-                }
-              } else if (value !== undefined) {
-                headers.set(key, value);
-              }
-              return headers;
-            },
-            new Headers(),
-          ),
-        };
+		req
+			.on("error", (err) => {
+				throw err;
+			})
+			.on("data", (chunk) => {
+				data.push(chunk);
+			})
+			.on("end", async () => {
+				const requestBody = Buffer.concat(data);
+				const method = req.method?.toUpperCase() || "GET";
+				const url = new URL(req.url || "/", `http://${hostname}:${port}`);
+				const requestOptions: RequestInit = {
+					method,
+					headers: Object.entries(req.headers).reduce(
+						(headers, [key, value]) => {
+							if (Array.isArray(value)) {
+								for (const v of value) {
+									headers.append(key, v);
+								}
+							} else if (value !== undefined) {
+								headers.set(key, value);
+							}
+							return headers;
+						},
+						new Headers(),
+					),
+				};
 
-        if (!(method === 'GET' || method === 'HEAD')) {
-          requestOptions.body = requestBody;
-        }
+				if (!(method === "GET" || method === "HEAD")) {
+					requestOptions.body = requestBody;
+				}
 
-        const request = new Request(url.toString(), requestOptions);
-        const response = await handler(request);
-        let responseBody: Buffer | null = null;
+				const request = new Request(url.toString(), requestOptions);
+				const response = await handler(request);
+				let responseBody: Buffer | null = null;
 
-        if (response.body instanceof ReadableStream) {
-          const reader = response.body.getReader();
-          const streamData: Uint8Array[] = [];
+				if (response.body instanceof ReadableStream) {
+					const reader = response.body.getReader();
+					const streamData: Uint8Array[] = [];
 
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) {
-              break;
-            }
-            streamData.push(value);
-          }
+					while (true) {
+						const { done, value } = await reader.read();
+						if (done) {
+							break;
+						}
+						streamData.push(value);
+					}
 
-          responseBody = Buffer.concat(streamData);
-        } else if (response.body) {
-          responseBody = Buffer.isBuffer(response.body)
-            ? response.body
-            : Buffer.from(response.body);
-        }
+					responseBody = Buffer.concat(streamData);
+				} else if (response.body) {
+					responseBody = Buffer.isBuffer(response.body)
+						? response.body
+						: Buffer.from(response.body);
+				}
 
-        res.writeHead(
-          response.status || 200,
-          Object.fromEntries(response.headers.entries()),
-        );
-        res.end(responseBody);
-      });
-  });
+				res.writeHead(
+					response.status || 200,
+					Object.fromEntries(response.headers.entries()),
+				);
+				res.end(responseBody);
+			});
+	});
 
-  server.listen(port, hostname);
+	server.listen(port, hostname);
 
-  const address = server.address();
+	const address = server.address();
 
-  return address && typeof address === 'object'
-    ? {
-        port: address.port,
-        hostname: address.address,
-      }
-    : { port, hostname };
+	return address && typeof address === "object"
+		? {
+				port: address.port,
+				hostname: address.address,
+			}
+		: { port, hostname };
 }
 
 export { serve };

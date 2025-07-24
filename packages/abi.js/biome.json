@@ -1,23 +1,32 @@
 {
-  "organizeImports": {
-    "ignore": ["tmp", "node_modules", "dist"]
-  },
-  "linter": {
-    "ignore": ["tmp", "node_modules", "dist"],
-    "rules": {
-      "style": {
-        "noNonNullAssertion": "off"
-      },
-      "complexity": {
-        "noBannedTypes": "off"
-      },
-      "suspicious": {
-        "noExplicitAny": "off",
-        "noConfusingVoidType": "off"
-      }
-    }
-  },
-  "formatter": {
-    "ignore": ["tmp", "node_modules", "dist"]
-  }
+	"root": false,
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"linter": {
+		"includes": ["**", "!**/tmp", "!**/node_modules", "!**/dist"],
+		"rules": {
+			"style": {
+				"noNonNullAssertion": "off",
+				"noParameterAssign": "error",
+				"useAsConstAssertion": "error",
+				"useDefaultParameterLast": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useSingleVarDeclarator": "error",
+				"noUnusedTemplateLiteral": "error",
+				"useNumberNamespace": "error",
+				"noInferrableTypes": "error",
+				"noUselessElse": "error"
+			},
+			"complexity": {
+				"noBannedTypes": "off"
+			},
+			"suspicious": {
+				"noExplicitAny": "off",
+				"noConfusingVoidType": "off"
+			}
+		}
+	},
+	"formatter": {
+		"includes": ["**", "!**/tmp", "!**/node_modules", "!**/dist"]
+	}
 }

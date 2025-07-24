@@ -1,62 +1,62 @@
 {
-  "name": "@abi-js/abi",
-  "version": "0.1.2",
-  "exports": {
-    ".": "./dist/deno/index.ts"
-  },
-  "include": ["deno.json", "dist/deno/*.ts"],
-  "exclude": [
-    ".*",
-    "dist/deno/*.test.ts",
-    "dist/deno/*.d.ts",
-    "dist/deno/**/*.js",
-    "dist/deno/deps/**",
-    "**/*.md",
-    "dist/node/*",
-    "scripts/*",
-    "src/*",
-    "tmp/**/*",
-    "tests/*",
-    "biome.json",
-    "tsconfig.json",
-    "deno.lock"
-  ],
-  "publish": {
-    "include": ["dist/deno/**", "deno.json", "README.md", "LICENSE.md"],
-    "exclude": ["!dist/deno/*.ts", "dist/deno/*.d.ts", "dist/deno/**/*.js"]
-  },
-  "fmt": {
-    "exclude": ["dist/deno/_dnt.*.ts"],
-    "useTabs": false,
-    "lineWidth": 80,
-    "indentWidth": 2,
-    "semiColons": true,
-    "singleQuote": true,
-    "proseWrap": "preserve"
-  },
-  "lint": {
-    "include": ["dist/deno/"],
-    "exclude": [
-      "!dist/deno/*.ts",
-      "dist/deno/_dnt.*.ts",
-      "dist/deno/*.d.ts",
-      "dist/deno/**/*.js"
-    ],
-    "rules": {
-      "tags": ["recommended"],
-      "exclude": ["no-explicit-any", "ban-types"]
-    }
-  },
-  "tasks": {
-    "build": "deno run -A scripts/nodify.ts",
-    "check": "deno task check:fmt && deno task check:lint && deno task check:types",
-    "check:fmt": "deno fmt --check",
-    "check:lint": "deno lint",
-    "check:types": "deno check dist/deno/*.ts dist/deno/*.js",
-    "fix": "deno lint --fix && deno fmt"
-  },
-  "imports": {
-    "@std/fs": "jsr:@std/fs@^1.0.1",
-    "@std/path": "jsr:@std/path@^1.0.2"
-  }
+	"name": "@abi-js/abi",
+	"version": "0.1.2",
+	"exports": {
+		".": "./dist/deno/index.ts"
+	},
+	"include": ["deno.json", "dist/deno/*.ts"],
+	"exclude": [
+		".*",
+		"dist/deno/*.test.ts",
+		"dist/deno/*.d.ts",
+		"dist/deno/**/*.js",
+		"dist/deno/deps/**",
+		"**/*.md",
+		"dist/node/*",
+		"scripts/*",
+		"src/*",
+		"tmp/**/*",
+		"tests/*",
+		"biome.json",
+		"tsconfig.json",
+		"deno.lock"
+	],
+	"publish": {
+		"include": ["dist/deno/**", "deno.json", "README.md", "LICENSE.md"],
+		"exclude": ["!dist/deno/*.ts", "dist/deno/*.d.ts", "dist/deno/**/*.js"]
+	},
+	"fmt": {
+		"exclude": ["dist/deno/_dnt.*.ts"],
+		"useTabs": false,
+		"lineWidth": 80,
+		"indentWidth": 2,
+		"semiColons": true,
+		"singleQuote": true,
+		"proseWrap": "preserve"
+	},
+	"lint": {
+		"include": ["dist/deno/"],
+		"exclude": [
+			"!dist/deno/*.ts",
+			"dist/deno/_dnt.*.ts",
+			"dist/deno/*.d.ts",
+			"dist/deno/**/*.js"
+		],
+		"rules": {
+			"tags": ["recommended"],
+			"exclude": ["no-explicit-any", "ban-types"]
+		}
+	},
+	"tasks": {
+		"build": "deno run -A scripts/nodify.ts",
+		"check": "deno task check:fmt && deno task check:lint && deno task check:types",
+		"check:fmt": "deno fmt --check",
+		"check:lint": "deno lint",
+		"check:types": "deno check dist/deno/*.ts dist/deno/*.js",
+		"fix": "deno lint --fix && deno fmt"
+	},
+	"imports": {
+		"@std/fs": "jsr:@std/fs@^1.0.1",
+		"@std/path": "jsr:@std/path@^1.0.2"
+	}
 }

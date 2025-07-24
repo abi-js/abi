@@ -1,7 +1,7 @@
-import { Abi } from 'abi.js';
+import { Abi } from "abi.js";
 
 const abi = new Abi()
-  .get('/', () => 'Welcome to Abi.js!')
-  .get('/hello(/:name)?', (name = 'World') => `Hello ${name}!`);
+	.get("/", () => "Welcome to Abi.js!")
+	.get("/hello(/:name)?", (name = "World") => `Hello ${name}!`);
 
 export default abi;

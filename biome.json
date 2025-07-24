@@ -1,33 +1,47 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": ["./packages/abi.js/biome.json", "./www/docs/biome.json"],
-  "organizeImports": {
-    "enabled": true,
-    "ignore": ["dist", "node_modules"]
+  "extends": [
+    "./packages/abi.js/biome.json",
+    "./packages/create-abi/biome.json",
+    "./www/docs/biome.json"
+  ],
+  "files": {
+    "includes": ["**", "!**/dist", "!**/node_modules"]
   },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
       "style": {
         "useBlockStatements": "error",
-        "useShorthandArrayType": "error",
         "noParameterAssign": "off",
-        "noShoutyConstants": "warn"
+        "noShoutyConstants": "warn",
+        "useAsConstAssertion": "error",
+        "useDefaultParameterLast": "error",
+        "useEnumInitializers": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "noUnusedTemplateLiteral": "error",
+        "useNumberNamespace": "error",
+        "noInferrableTypes": "error",
+        "noUselessElse": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": { "syntax": "shorthand" }
+        }
       },
       "suspicious": {
         "noImplicitAnyLet": "off",
         "noExplicitAny": "off"
       }
-    },
-    "ignore": ["dist", "node_modules"]
+    }
   },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
     "indentStyle": "space",
-    "lineWidth": 80,
-    "ignore": ["dist", "node_modules"]
+    "lineWidth": 80
   },
   "javascript": {
     "formatter": {

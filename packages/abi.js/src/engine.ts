@@ -1,6 +1,6 @@
-import type { Engine } from './types';
+import type { Engine } from "./types";
 
-export const engine: Engine = 'V8';
+export const engine: Engine = "V8";
 
-export { serialize, deserialize } from 'node:v8';
-export { inflateSync, deflateSync } from 'node:zlib';
+export { deserialize, serialize } from "node:v8";
+export { deflateSync, inflateSync } from "node:zlib";

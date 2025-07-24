@@ -1,28 +1,27 @@
 {
-  "root": false,
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
-  "linter": {
-    "includes": ["**/src/**", "!**/dist", "!**/stubs"],
-    "rules": {
-      "style": {
-        "noParameterAssign": "off",
-        "useAsConstAssertion": "error",
-        "useDefaultParameterLast": "error",
-        "useEnumInitializers": "error",
-        "useSelfClosingElements": "error",
-        "useSingleVarDeclarator": "error",
-        "noUnusedTemplateLiteral": "error",
-        "useNumberNamespace": "error",
-        "noInferrableTypes": "error",
-        "noUselessElse": "error"
-      },
-      "suspicious": {
-        "noExplicitAny": "off",
-        "noMisleadingCharacterClass": "off"
-      }
-    }
+	"root": false,
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "files": {
+		"includes": ["**/src/**", "!**/dist", "!**/starters"]
   },
-  "formatter": {
-    "includes": ["**", "!**/dist", "!**/stubs"]
-  }
+	"linter": {
+		"rules": {
+			"style": {
+				"noParameterAssign": "off",
+				"useAsConstAssertion": "error",
+				"useDefaultParameterLast": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useSingleVarDeclarator": "error",
+				"noUnusedTemplateLiteral": "error",
+				"useNumberNamespace": "error",
+				"noInferrableTypes": "error",
+				"noUselessElse": "error"
+			},
+			"suspicious": {
+				"noExplicitAny": "off",
+				"noMisleadingCharacterClass": "off"
+			}
+		}
+	}
 }

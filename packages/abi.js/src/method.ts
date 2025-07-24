@@ -1,82 +1,82 @@
-export const GET = 'GET';
-export const HEAD = 'HEAD';
-export const POST = 'POST';
-export const PUT = 'PUT';
-export const DELETE = 'DELETE';
-export const ACL = 'ACL';
-export const BASELINE_CONTROL = 'BASELINE-CONTROL';
-export const BIND = 'BIND';
-export const CHECKIN = 'CHECKIN';
-export const CHECKOUT = 'CHECKOUT';
-export const CONNECT = 'CONNECT';
-export const COPY = 'COPY';
-export const LABEL = 'LABEL';
-export const LINK = 'LINK';
-export const LOCK = 'LOCK';
-export const MERGE = 'MERGE';
-export const MKACTIVITY = 'MKACTIVITY';
-export const MKCALENDAR = 'MKCALENDAR';
-export const MKCOL = 'MKCOL';
-export const MKREDIRECTREF = 'MKREDIRECTREF';
-export const MKWORKSPACE = 'MKWORKSPACE';
-export const MOVE = 'MOVE';
-export const OPTIONS = 'OPTIONS';
-export const ORDERPATCH = 'ORDERPATCH';
-export const PATCH = 'PATCH';
-export const PRI = 'PRI';
-export const PROPFIND = 'PROPFIND';
-export const PROPPATCH = 'PROPPATCH';
-export const REBIND = 'REBIND';
-export const REPORT = 'REPORT';
-export const SEARCH = 'SEARCH';
-export const TRACE = 'TRACE';
-export const UNBIND = 'UNBIND';
-export const UNCHECKOUT = 'UNCHECKOUT';
-export const UNLINK = 'UNLINK';
-export const UNLOCK = 'UNLOCK';
-export const UPDATE = 'UPDATE';
-export const UPDATEREDIRECTREF = 'UPDATEREDIRECTREF';
-export const VERSION_CONTROL = 'VERSION-CONTROL';
+export const GET = "GET";
+export const HEAD = "HEAD";
+export const POST = "POST";
+export const PUT = "PUT";
+export const DELETE = "DELETE";
+export const ACL = "ACL";
+export const BASELINE_CONTROL = "BASELINE-CONTROL";
+export const BIND = "BIND";
+export const CHECKIN = "CHECKIN";
+export const CHECKOUT = "CHECKOUT";
+export const CONNECT = "CONNECT";
+export const COPY = "COPY";
+export const LABEL = "LABEL";
+export const LINK = "LINK";
+export const LOCK = "LOCK";
+export const MERGE = "MERGE";
+export const MKACTIVITY = "MKACTIVITY";
+export const MKCALENDAR = "MKCALENDAR";
+export const MKCOL = "MKCOL";
+export const MKREDIRECTREF = "MKREDIRECTREF";
+export const MKWORKSPACE = "MKWORKSPACE";
+export const MOVE = "MOVE";
+export const OPTIONS = "OPTIONS";
+export const ORDERPATCH = "ORDERPATCH";
+export const PATCH = "PATCH";
+export const PRI = "PRI";
+export const PROPFIND = "PROPFIND";
+export const PROPPATCH = "PROPPATCH";
+export const REBIND = "REBIND";
+export const REPORT = "REPORT";
+export const SEARCH = "SEARCH";
+export const TRACE = "TRACE";
+export const UNBIND = "UNBIND";
+export const UNCHECKOUT = "UNCHECKOUT";
+export const UNLINK = "UNLINK";
+export const UNLOCK = "UNLOCK";
+export const UPDATE = "UPDATE";
+export const UPDATEREDIRECTREF = "UPDATEREDIRECTREF";
+export const VERSION_CONTROL = "VERSION-CONTROL";
 export const METHODS = [
-  GET,
-  HEAD,
-  POST,
-  PUT,
-  DELETE,
-  ACL,
-  BASELINE_CONTROL,
-  BIND,
-  CHECKIN,
-  CHECKOUT,
-  CONNECT,
-  COPY,
-  LABEL,
-  LINK,
-  LOCK,
-  MERGE,
-  MKACTIVITY,
-  MKCALENDAR,
-  MKCOL,
-  MKREDIRECTREF,
-  MKWORKSPACE,
-  MOVE,
-  OPTIONS,
-  ORDERPATCH,
-  PATCH,
-  PRI,
-  PROPFIND,
-  PROPPATCH,
-  REBIND,
-  REPORT,
-  SEARCH,
-  TRACE,
-  UNBIND,
-  UNCHECKOUT,
-  UNLINK,
-  UNLOCK,
-  UPDATE,
-  UPDATEREDIRECTREF,
-  VERSION_CONTROL,
+	GET,
+	HEAD,
+	POST,
+	PUT,
+	DELETE,
+	ACL,
+	BASELINE_CONTROL,
+	BIND,
+	CHECKIN,
+	CHECKOUT,
+	CONNECT,
+	COPY,
+	LABEL,
+	LINK,
+	LOCK,
+	MERGE,
+	MKACTIVITY,
+	MKCALENDAR,
+	MKCOL,
+	MKREDIRECTREF,
+	MKWORKSPACE,
+	MOVE,
+	OPTIONS,
+	ORDERPATCH,
+	PATCH,
+	PRI,
+	PROPFIND,
+	PROPPATCH,
+	REBIND,
+	REPORT,
+	SEARCH,
+	TRACE,
+	UNBIND,
+	UNCHECKOUT,
+	UNLINK,
+	UNLOCK,
+	UPDATE,
+	UPDATEREDIRECTREF,
+	VERSION_CONTROL,
 ];
 export type Get = typeof GET;
 export type Head = typeof HEAD;
@@ -120,163 +120,163 @@ export type VersionControl = typeof VERSION_CONTROL;
 export type Method = (typeof METHODS)[number];
 
 export function isMethod(method: string): method is Method {
-  return method in METHODS;
+	return method in METHODS;
 }
 
 export function isGet(method: string): method is Get {
-  return method === GET;
+	return method === GET;
 }
 
 export function isHead(method: string): method is Head {
-  return method === HEAD;
+	return method === HEAD;
 }
 
 export function isPost(method: string): method is Post {
-  return method === POST;
+	return method === POST;
 }
 
 export function isPut(method: string): method is Put {
-  return method === PUT;
+	return method === PUT;
 }
 
 export function isDelete(method: string): method is Delete {
-  return method === DELETE;
+	return method === DELETE;
 }
 
 export function isAcl(method: string): method is Acl {
-  return method === ACL;
+	return method === ACL;
 }
 
 export function isBaselineControl(method: string): method is BaselineControl {
-  return method === BASELINE_CONTROL;
+	return method === BASELINE_CONTROL;
 }
 
 export function isBind(method: string): method is Bind {
-  return method === BIND;
+	return method === BIND;
 }
 
 export function isCheckin(method: string): method is Checkin {
-  return method === CHECKIN;
+	return method === CHECKIN;
 }
 
 export function isCheckout(method: string): method is Checkout {
-  return method === CHECKOUT;
+	return method === CHECKOUT;
 }
 
 export function isConnect(method: string): method is Connect {
-  return method === CONNECT;
+	return method === CONNECT;
 }
 
 export function isCopy(method: string): method is Copy {
-  return method === COPY;
+	return method === COPY;
 }
 
 export function isLabel(method: string): method is Label {
-  return method === LABEL;
+	return method === LABEL;
 }
 
 export function isLink(method: string): method is Link {
-  return method === LINK;
+	return method === LINK;
 }
 
 export function isLock(method: string): method is Lock {
-  return method === LOCK;
+	return method === LOCK;
 }
 
 export function isMerge(method: string): method is Merge {
-  return method === MERGE;
+	return method === MERGE;
 }
 
 export function isMkactivity(method: string): method is Mkactivity {
-  return method === MKACTIVITY;
+	return method === MKACTIVITY;
 }
 
 export function isMkcalendar(method: string): method is Mkcalendar {
-  return method === MKCALENDAR;
+	return method === MKCALENDAR;
 }
 
 export function isMkcol(method: string): method is Mkcol {
-  return method === MKCOL;
+	return method === MKCOL;
 }
 
 export function isMkredirectref(method: string): method is Mkredirectref {
-  return method === MKREDIRECTREF;
+	return method === MKREDIRECTREF;
 }
 
 export function isMkworkspace(method: string): method is Mkworkspace {
-  return method === MKWORKSPACE;
+	return method === MKWORKSPACE;
 }
 
 export function isMove(method: string): method is Move {
-  return method === MOVE;
+	return method === MOVE;
 }
 
 export function isOptions(method: string): method is Options {
-  return method === OPTIONS;
+	return method === OPTIONS;
 }
 
 export function isOrderpatch(method: string): method is Orderpatch {
-  return method === ORDERPATCH;
+	return method === ORDERPATCH;
 }
 
 export function isPatch(method: string): method is Patch {
-  return method === PATCH;
+	return method === PATCH;
 }
 
 export function isPri(method: string): method is Pri {
-  return method === PRI;
+	return method === PRI;
 }
 
 export function isPropfind(method: string): method is Propfind {
-  return method === PROPFIND;
+	return method === PROPFIND;
 }
 
 export function isProppatch(method: string): method is Proppatch {
-  return method === PROPPATCH;
+	return method === PROPPATCH;
 }
 
 export function isRebind(method: string): method is Rebind {
-  return method === REBIND;
+	return method === REBIND;
 }
 
 export function isReport(method: string): method is Report {
-  return method === REPORT;
+	return method === REPORT;
 }
 
 export function isSearch(method: string): method is Search {
-  return method === SEARCH;
+	return method === SEARCH;
 }
 
 export function isTrace(method: string): method is Trace {
-  return method === TRACE;
+	return method === TRACE;
 }
 
 export function isUnbind(method: string): method is Unbind {
-  return method === UNBIND;
+	return method === UNBIND;
 }
 
 export function isUncheckout(method: string): method is Uncheckout {
-  return method === UNCHECKOUT;
+	return method === UNCHECKOUT;
 }
 
 export function isUnlink(method: string): method is Unlink {
-  return method === UNLINK;
+	return method === UNLINK;
 }
 
 export function isUnlock(method: string): method is Unlock {
-  return method === UNLOCK;
+	return method === UNLOCK;
 }
 
 export function isUpdate(method: string): method is Update {
-  return method === UPDATE;
+	return method === UPDATE;
 }
 
 export function isUpdateredirectref(
-  method: string,
+	method: string,
 ): method is Updateredirectref {
-  return method === UPDATEREDIRECTREF;
+	return method === UPDATEREDIRECTREF;
 }
 
 export function isVersionControl(method: string): method is VersionControl {
-  return method === VERSION_CONTROL;
+	return method === VERSION_CONTROL;
 }
