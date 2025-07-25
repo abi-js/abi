@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fcc72b">
+    <title>Abi.js + Vite.js</title>
+    <style>
+    :root {
+      --abi-primary: #fcc72b;
+      --abi-secondary: #54c166;
+      --abi-accent-blue: #41D1FF;
+      --abi-accent-purple: #BD34FE;
+
+      --color-bg: #ffffff;
+      --color-text: #213547;
+      --color-muted: #6c757d;
+
+      --btn-bg: var(--color-text);
+      --btn-text: var(--abi-primary);
+      --btn-hover-bg: #1a1a1a;
+      --btn-hover-text: #eab308;
+
+      font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
+      color-scheme: light dark;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #1a1a1a;
+        --color-text: rgba(255, 255, 255, 0.87);
+        --color-muted: #9ca3af;
+
+        --btn-bg: var(--abi-primary);
+        --btn-text: #1e1e1e;
+        --btn-hover-bg: #eab308;
+        --btn-hover-text: #1e1e1e;
+      }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      place-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-width: 320px;
+      min-height: 100vh;
+      text-align: center;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .logos {
+      display: inline-flex;
+      padding: 1.5em;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5em;
+    }
+
+    .logo {
+      height: 6em;
+      max-width: 6em;
+      transition: filter 300ms ease;
+      will-change: filter;
+    }
+
+    .logo:hover {
+      filter: drop-shadow(0 0 1.5em var(--abi-accent-blue));
+    }
+
+    .logo.vanilla:hover {
+      filter: drop-shadow(0 0 1.5em #3178c6aa);
+    }
+
+    .logo-separator {
+      width: 2em;
+      height: 2em;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 3.2em;
+      line-height: 1.1;
+      color: var(--abi-primary);
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--color-text);
+    }
+
+    a:not(.btn) {
+      font-weight: 500;
+      color: var(--abi-accent-blue);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:not(.btn):hover {
+      color: var(--abi-accent-purple);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.6em 1.2em;
+      font-family: inherit;
+      font-size: 1em;
+      font-weight: bold;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--btn-hover-bg);
+      color: var(--btn-hover-text);
+    }
+
+    .btn:focus,
+    .btn:focus-visible {
+      outline: 4px auto -webkit-focus-ring-color;
+    }
+
+    .note {
+      font-size: 0.95rem;
+      color: var(--color-muted);
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logos">
+        <a href="https://github.com/abi-js/abi" target="_blank">
+          <svg class="logo" width="270.93335mm" height="24" viewBox="0 0 270.93336 270.93331" version="1.1" id="abi" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="siguici-defs-0"><linearGradient id="paint1_linear" x1="194.651" y1="8.8181801" x2="236.076" y2="292.98901" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.91688942,0.03125781,-0.03125781,0.91688942,-15.981365,84.175379)"><stop stop-color="#FFEA83" id="stop436"/><stop offset="0.0833333" stop-color="#FFDD35" id="stop438"/><stop offset="1" stop-color="#FFA800" id="stop440"/></linearGradient><linearGradient id="paint0_linear" x1="6.0001702" y1="32.999901" x2="235" y2="344" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-0.11398732,-0.06523,0.06523,-0.11398732,-30.820793,151.58236)"><stop stop-color="#41D1FF" id="stop431"/><stop offset="1" stop-color="#BD34FE" id="stop433"/></linearGradient><clipPath id="clip0_301_2"><rect width="165" height="165" fill="#ffffff" id="rect631" x="0" y="0"/></clipPath><filter id="filter0_d_301_2" x="1.3902" y="10.4431" width="167.16299" height="153.89999" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" id="feFlood614"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" id="feColorMatrix616"/><feOffset dx="2" dy="3" id="feOffset618"/><feGaussianBlur stdDeviation="4" id="feGaussianBlur620"/><feComposite in2="hardAlpha" operator="out" id="feComposite622"/><feColorMatrix type="matrix" values="0 0 0 0 0.108333 0 0 0 0 0.108333 0 0 0 0 0.108333 0 0 0 0.2 0" id="feColorMatrix624"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_301_2" id="feBlend626"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_301_2" result="shape" id="feBlend628"/></filter></defs><g id="layer1" transform="translate(75.003096,84.443626)"><g id="g1549" transform="matrix(1.0034568,0,0,1.0034568,0.25926891,0.29190497)"><g id="g6332" transform="matrix(0.321187,0.25913621,-0.25991386,0.32022601,24.438051,-35.593839)" style="fill:#b7b125;fill-opacity:1"><g id="g3150" transform="translate(-8.0415904,2.5175979)" style="fill:#b7b125;fill-opacity:1"><g id="g610" transform="matrix(5.2531321,-1.5600355,1.5600355,5.2531321,-405.98636,-162.46343)" style="fill:#b7b125;fill-opacity:1"><g id="g6337" style="fill:#b7b125;fill-opacity:1"><path d="M 252.58593,94.776375 126.90461,114.98355 c -2.06573,0.33209 -3.64428,2.01928 -3.83919,4.10199 l -12.10174,129.44465 c -0.28459,3.04891 2.44011,5.51565 5.44524,4.92962 l 35.03277,-6.83687 c 3.27777,-0.63914 6.11876,2.32541 5.33883,5.57314 l -12.05087,50.21717 c -0.81103,3.37979 2.28511,6.39899 5.64326,5.5028 l 21.69132,-5.79087 c 3.36277,-0.89697 6.46137,2.13047 5.64109,5.51276 l -19.11938,78.87337 c -1.1963,4.93365 5.32029,7.86834 8.22167,3.70248 l 1.93813,-2.7824 108.6539,-199.55679 c 1.81946,-3.34128 -0.98612,-7.31762 -4.74424,-6.72439 l -36.01427,5.68553 c -3.38433,0.53364 -6.13828,-2.69507 -5.07715,-5.95228 l 26.11205,-80.15732 c 1.06223,-3.26269 -1.7017,-6.494439 -5.0901,-5.949765 z" fill="url(#paint1_linear)" id="path429" style="fill:#b7b125;fill-opacity:1;stroke-width:0.917421" transform="matrix(0.17493467,0.05195078,-0.05195078,0.17493467,64.118533,49.489146)"/><path d="M 121.08463,55.726826 84.946629,107.97753 c -0.3831,0.554 -0.9372,0.969 -1.5782,1.182 -0.641,0.213 -1.3339,0.211 -1.9736,-0.003 -0.6397,-0.215 -1.1912,-0.632 -1.571,-1.187 -0.3797,-0.556 -0.567,-1.22 -0.5332,-1.891 l 1.4463,-28.847804 -23.349,-4.9518 c -0.499,-0.1057 -0.9639,-0.3324 -1.3536,-0.6599 -0.3897,-0.3274 -0.6922,-0.7456 -0.8806,-1.2175 -0.1884,-0.4719 -0.2569,-0.9829 -0.1995,-1.4878 0.0574,-0.5048 0.2389,-0.988 0.5285,-1.4067 l 36.1384,-52.2508 c 0.3832,-0.5543 0.9373,-0.9692 1.5783,-1.1819 0.6411,-0.2127 1.334,-0.2116 1.9738,0.0033 0.6397,0.2148 1.1913,0.6316 1.571,1.1872 0.3797,0.5555 0.5669,1.2194 0.533,1.891 l -1.4463,28.8481 23.348701,4.9513 c 0.499,0.1058 0.964,0.3325 1.354,0.6599 0.39,0.3275 0.692,0.7457 0.88,1.2176 0.189,0.4719 0.257,0.9829 0.2,1.4877 -0.057,0.5049 -0.239,0.9881 -0.529,1.4068 z" fill="#fcc72b" id="path604-5" style="fill:#b7b125;fill-opacity:1"/></g></g></g></g><g clip-path="url(#clip0_301_2)" id="g612" transform="matrix(0.46102735,0,0,0.45964797,108.2659,62.435641)"><path d="m -145.17074,61.766063 -36.138,52.250697 c -0.3831,0.554 -0.9372,0.969 -1.5782,1.182 -0.641,0.213 -1.3339,0.211 -1.9736,-0.003 -0.6397,-0.215 -1.1912,-0.632 -1.571,-1.187 -0.3797,-0.556 -0.567,-1.22 -0.5332,-1.891 l 1.4463,-28.847797 -23.349,-4.9518 c -0.499,-0.1057 -0.9639,-0.3324 -1.3536,-0.6599 -0.3897,-0.3274 -0.6922,-0.7456 -0.8806,-1.2175 -0.1884,-0.4719 -0.2569,-0.9829 -0.1995,-1.4878 0.0574,-0.5048 0.2389,-0.988 0.5285,-1.4067 l 36.1384,-52.2508 c 0.3832,-0.5543 0.9373,-0.9692 1.5783,-1.1819 0.6411,-0.2127 1.334,-0.2116 1.9738,0.0033 0.6397,0.2148 1.1913,0.6316 1.571,1.1872 0.3797,0.5555 0.5669,1.2194 0.533,1.891 l -1.4463,28.8481 23.3487,4.9513 c 0.499,0.1058 0.964,0.3325 1.354,0.6599 0.39,0.3275 0.692,0.7457 0.88,1.2176 0.189,0.4719 0.257,0.9829 0.2,1.4877 -0.057,0.5049 -0.239,0.9881 -0.529,1.4068 z" fill="#fcc72b" id="path604"/></g><path fill="currentColor" fill-rule="evenodd" d="M 194.99691,91.625616 -2.4581489,175.13307 c -16.4395821,6.95377 -30.2692201,10.4233 -41.4139491,10.4233 -12.539691,0 -21.674449,-4.41165 -27.284325,-13.22 -7.274804,-11.36543 -4.094894,-29.6403 8.384806,-48.93189 7.409804,-11.27588 16.829572,-21.6246 26.009331,-31.524513 -2.159946,3.499386 -21.224451,35.128563 -0.37508,50.023673 4.124892,2.99091 9.989747,4.45638 17.204575,4.45638 5.789834,0 12.4346671,-0.94277 19.73950411,-2.84145 z" clip-rule="evenodd" id="path1129" style="fill:#54c166;fill-opacity:1;stroke-width:14.9772"/></g></g></svg>
+        </a>
+        <svg xmlns="http://www.w3.org/2000/svg" class="logo-separator" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+        <a href="https://vitejs.dev" target="_blank">
+          <svg class="logo logo-vanilla" width="410" height="404" viewBox="0 0 410 404" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M399.641 59.5246L215.643 388.545C211.844 395.338 202.084 395.378 198.228 388.618L10.5817 59.5563C6.38087 52.1896 12.6802 43.2665 21.0281 44.7586L205.223 77.6824C206.398 77.8924 207.601 77.8904 208.776 77.6763L389.119 44.8058C397.439 43.2894 403.768 52.1434 399.641 59.5246Z" fill="url(#paint0_linear)"/><path d="M292.965 1.5744L156.801 28.2552C154.563 28.6937 152.906 30.5903 152.771 32.8664L144.395 174.33C144.198 177.662 147.258 180.248 150.51 179.498L188.42 170.749C191.967 169.931 195.172 173.055 194.443 176.622L183.18 231.775C182.422 235.487 185.907 238.661 189.532 237.56L212.947 230.446C216.577 229.344 220.065 232.527 219.297 236.242L201.398 322.875C200.278 328.294 207.486 331.249 210.492 326.603L212.5 323.5L323.454 102.072C325.312 98.3645 322.108 94.137 318.036 94.9228L279.014 102.454C275.347 103.161 272.227 99.746 273.262 96.1583L298.731 7.86689C299.767 4.27314 296.636 0.855181 292.965 1.5744Z" fill="url(#paint1_linear)"/><defs><linearGradient id="paint0_linear" x1="6.00017" y1="32.9999" x2="235" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#41D1FF"/><stop offset="1" stop-color="#BD34FE"/></linearGradient><linearGradient id="paint1_linear" x1="194.651" y1="8.81818" x2="236.076" y2="292.989" gradientUnits="userSpaceOnUse"><stop stop-color="#FFEA83"/><stop offset="0.0833333" stop-color="#FFDD35"/><stop offset="1" stop-color="#FFA800"/></linearGradient></defs></svg>
+        </a>
+      </div>
+      <div>
+        <h1>Welcome to Abi's Vite Plugin ⚡</h1>
+
+        <p>
+          This Vite development server enables blazing-fast Hot Module Replacement (HMR)
+          for your <strong>Abi.js</strong> application.
+        </p>
+
+        <p>
+          To access your Abi app, make sure your backend server is running.<br/>
+          Abi supports multiple runtimes including <strong>Bun</strong>, <strong>Deno</strong>, and <strong>Node.js</strong>.
+        </p>
+
+        <p class="note">
+          Your configured <code>APP_URL</code> is:<br/>
+          <strong>{ APP_URL }}</strong>
+        </p>
+
+        <p>
+          Want more about the integration between <a href="https://abi.js.org">Abi.js</a> and <a href="https://vite.dev">Vite.js</a>?<br />
+          You're in the right place.
+        </p>
+
+        <a href="https://github.com/abi-js/abi/tree/HEAD/packages/@abijs-vite" class="btn">Explore Abi Vite</a>
+      </div>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+{
+	"name": "@abijs/vite",
+	"type": "module",
+	"license": "MIT",
+	"version": "0.0.0",
+	"description": "A Vite.js plugin for integrating the Abi.js framework with modern frontend tooling.",
+	"scripts": {
+		"check": "tsc --noEmit",
+		"build": "tsup-node --env.NODE_ENV production && cp src/index.html dist/",
+		"start": "tsup-node --env.NODE_ENV development --watch",
+		"test": "vitest --run --passWithNoTests"
+	},
+	"author": "Sigui Kessé Emmanuel <siguici@proton.me>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/abi-js/abi",
+		"directory": "packages/@abijs-vite"
+	},
+	"homepage": "https://abi.js.org",
+	"publishConfig": {
+		"access": "public"
+	},
+	"bugs": "https://github.com/abi-js/abi/issues",
+	"types": "./dist/index.d.ts",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs",
+			"default": "./dist/index.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"keywords": [
+		"abi",
+		"abijs",
+		"abi.js",
+		"abi-vite",
+		"vite",
+		"vitejs",
+		"vite-plugin"
+	],
+	"engines": {
+		"node": "^18.0.0 || ^20.0.0 || >=22.0.0"
+	},
+	"peerDependencies": {
+		"vite": "^5.0.0 || ^6.0.0"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.2.19",
+		"@types/node": "^24.1.0",
+		"rollup": "^4.45.1",
+		"tsup": "^8.5.0",
+		"typescript": "^5.8.3",
+		"vite": "^7.0.6",
+		"vitest": "^3.2.4"
+	},
+	"dependencies": {
+		"picocolors": "^1.1.1",
+		"vite-plugin-full-reload": "^1.2.0"
+	}
+}

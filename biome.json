@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "extends": [
+    "./packages/@abijs-vite/biome.json",
     "./packages/abi.js/biome.json",
     "./packages/create-abi/biome.json",
     "./www/docs/biome.json"

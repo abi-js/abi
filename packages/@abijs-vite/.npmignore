@@ -1,0 +1,8 @@
+.*/
+bin/
+src/
+tests/
+biome.json
+tsconfig.json
+tsup.config.ts
+
