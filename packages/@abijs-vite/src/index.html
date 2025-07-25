@@ -7,64 +7,56 @@
     <title>Abi.js + Vite.js</title>
     <style>
     :root {
-      --abi-primary: #fcc72b;
-      --abi-secondary: #54c166;
-      --abi-accent-blue: #41D1FF;
-      --abi-accent-purple: #BD34FE;
+      --color-primary: #fcc72b;
+      --color-secondary: #54c166;
+      --color-accent-1: #41d1ff;
+      --color-accent-2: #bd34fe;
 
-      --color-bg: #ffffff;
-      --color-text: #213547;
-      --color-muted: #6c757d;
-
-      --btn-bg: var(--color-text);
-      --btn-text: var(--abi-primary);
-      --btn-hover-bg: #1a1a1a;
-      --btn-hover-text: #eab308;
-
-      font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-      line-height: 1.5;
-      font-weight: 400;
-
-      font-synthesis: none;
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-
-      color-scheme: light dark;
-      background-color: var(--color-bg);
-      color: var(--color-text);
+      --text-color: rgba(255, 255, 255, 0.87);
+      --background-color: #1a1a1a;
+      --link-color: #41d1ff;
+      --link-hover: #bd34fe;
+      --btn-bg: var(--color-primary);
+      --btn-text: #1e1e1e;
+      --btn-hover-bg: #e6b424;
+      --note-color: #9ca3af;
     }
 
-    @media (prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: light) {
       :root {
-        --color-bg: #1a1a1a;
-        --color-text: rgba(255, 255, 255, 0.87);
-        --color-muted: #9ca3af;
-
-        --btn-bg: var(--abi-primary);
-        --btn-text: #1e1e1e;
-        --btn-hover-bg: #eab308;
-        --btn-hover-text: #1e1e1e;
+        --text-color: #213547;
+        --background-color: #ffffff;
+        --link-color: #3182ce;
+        --link-hover: #1e40af;
+        --btn-bg: #1e1e1e;
+        --btn-text: var(--color-primary);
+        --btn-hover-bg: #333333;
+        --note-color: #6c757d;
       }
     }
 
     body {
+      font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      text-align: center;
       margin: 0;
-      padding: 0;
       display: flex;
       place-items: center;
-      justify-content: center;
       flex-direction: column;
+      justify-content: center;
       min-width: 320px;
       min-height: 100vh;
-      text-align: center;
-      background-color: var(--color-bg);
-      color: var(--color-text);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
       max-width: 1280px;
-      margin: auto;
+      margin: 0 auto;
       padding: 2rem;
       text-align: center;
     }
@@ -74,22 +66,21 @@
       padding: 1.5em;
       align-items: center;
       justify-content: center;
-      gap: 1.5em;
     }
 
     .logo {
       height: 6em;
       max-width: 6em;
-      transition: filter 300ms ease;
       will-change: filter;
+      transition: filter 300ms ease;
     }
 
     .logo:hover {
-      filter: drop-shadow(0 0 1.5em var(--abi-accent-blue));
+      filter: drop-shadow(0 0 2em var(--color-accent-1));
     }
 
     .logo.vanilla:hover {
-      filter: drop-shadow(0 0 1.5em #3178c6aa);
+      filter: drop-shadow(0 0 2em var(--color-accent-2));
     }
 
     .logo-separator {
@@ -101,55 +92,51 @@
     h1 {
       font-size: 3.2em;
       line-height: 1.1;
-      color: var(--abi-primary);
-      margin-bottom: 0.5em;
+      color: var(--color-primary);
     }
 
     p {
       font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: var(--color-text);
+      margin-bottom: 16px;
     }
 
     a:not(.btn) {
       font-weight: 500;
-      color: var(--abi-accent-blue);
+      color: var(--link-color);
       text-decoration: none;
-      transition: color 0.3s ease;
     }
 
     a:not(.btn):hover {
-      color: var(--abi-accent-purple);
+      color: var(--link-hover);
     }
 
     .btn {
       display: inline-block;
       padding: 0.6em 1.2em;
-      font-family: inherit;
       font-size: 1em;
-      font-weight: bold;
       border: 1px solid transparent;
-      border-radius: 5px;
-      background: var(--btn-bg);
+      background-color: var(--btn-bg);
       color: var(--btn-text);
+      font-weight: bold;
       text-decoration: none;
-      transition: background 0.3s, color 0.3s;
+      border-radius: 8px;
+      transition: background 0.3s, border-color 0.25s, transform 0.2s;
       cursor: pointer;
     }
 
     .btn:hover {
-      background: var(--btn-hover-bg);
-      color: var(--btn-hover-text);
+      background-color: var(--btn-hover-bg);
+      transform: scale(1.02);
     }
 
     .btn:focus,
     .btn:focus-visible {
-      outline: 4px auto -webkit-focus-ring-color;
+      outline: 3px solid var(--color-secondary);
     }
 
     .note {
       font-size: 0.95rem;
-      color: var(--color-muted);
+      color: var(--note-color);
     }
     </style>
   </head>
@@ -161,7 +148,7 @@
         </a>
         <svg xmlns="http://www.w3.org/2000/svg" class="logo-separator" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
         <a href="https://vitejs.dev" target="_blank">
-          <svg class="logo logo-vanilla" width="410" height="404" viewBox="0 0 410 404" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M399.641 59.5246L215.643 388.545C211.844 395.338 202.084 395.378 198.228 388.618L10.5817 59.5563C6.38087 52.1896 12.6802 43.2665 21.0281 44.7586L205.223 77.6824C206.398 77.8924 207.601 77.8904 208.776 77.6763L389.119 44.8058C397.439 43.2894 403.768 52.1434 399.641 59.5246Z" fill="url(#paint0_linear)"/><path d="M292.965 1.5744L156.801 28.2552C154.563 28.6937 152.906 30.5903 152.771 32.8664L144.395 174.33C144.198 177.662 147.258 180.248 150.51 179.498L188.42 170.749C191.967 169.931 195.172 173.055 194.443 176.622L183.18 231.775C182.422 235.487 185.907 238.661 189.532 237.56L212.947 230.446C216.577 229.344 220.065 232.527 219.297 236.242L201.398 322.875C200.278 328.294 207.486 331.249 210.492 326.603L212.5 323.5L323.454 102.072C325.312 98.3645 322.108 94.137 318.036 94.9228L279.014 102.454C275.347 103.161 272.227 99.746 273.262 96.1583L298.731 7.86689C299.767 4.27314 296.636 0.855181 292.965 1.5744Z" fill="url(#paint1_linear)"/><defs><linearGradient id="paint0_linear" x1="6.00017" y1="32.9999" x2="235" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#41D1FF"/><stop offset="1" stop-color="#BD34FE"/></linearGradient><linearGradient id="paint1_linear" x1="194.651" y1="8.81818" x2="236.076" y2="292.989" gradientUnits="userSpaceOnUse"><stop stop-color="#FFEA83"/><stop offset="0.0833333" stop-color="#FFDD35"/><stop offset="1" stop-color="#FFA800"/></linearGradient></defs></svg>
+          <svg class="logo vanilla" width="410" height="404" viewBox="0 0 410 404" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M399.641 59.5246L215.643 388.545C211.844 395.338 202.084 395.378 198.228 388.618L10.5817 59.5563C6.38087 52.1896 12.6802 43.2665 21.0281 44.7586L205.223 77.6824C206.398 77.8924 207.601 77.8904 208.776 77.6763L389.119 44.8058C397.439 43.2894 403.768 52.1434 399.641 59.5246Z" fill="url(#paint0_linear)"/><path d="M292.965 1.5744L156.801 28.2552C154.563 28.6937 152.906 30.5903 152.771 32.8664L144.395 174.33C144.198 177.662 147.258 180.248 150.51 179.498L188.42 170.749C191.967 169.931 195.172 173.055 194.443 176.622L183.18 231.775C182.422 235.487 185.907 238.661 189.532 237.56L212.947 230.446C216.577 229.344 220.065 232.527 219.297 236.242L201.398 322.875C200.278 328.294 207.486 331.249 210.492 326.603L212.5 323.5L323.454 102.072C325.312 98.3645 322.108 94.137 318.036 94.9228L279.014 102.454C275.347 103.161 272.227 99.746 273.262 96.1583L298.731 7.86689C299.767 4.27314 296.636 0.855181 292.965 1.5744Z" fill="url(#paint1_linear)"/><defs><linearGradient id="paint0_linear" x1="6.00017" y1="32.9999" x2="235" y2="344" gradientUnits="userSpaceOnUse"><stop stop-color="#41D1FF"/><stop offset="1" stop-color="#BD34FE"/></linearGradient><linearGradient id="paint1_linear" x1="194.651" y1="8.81818" x2="236.076" y2="292.989" gradientUnits="userSpaceOnUse"><stop stop-color="#FFEA83"/><stop offset="0.0833333" stop-color="#FFDD35"/><stop offset="1" stop-color="#FFA800"/></linearGradient></defs></svg>
         </a>
       </div>
       <div>
@@ -179,7 +166,7 @@
 
         <p class="note">
           Your configured <code>APP_URL</code> is:<br/>
-          <strong>{ APP_URL }}</strong>
+          <strong>{{ APP_URL }}</strong>
         </p>
 
         <p>
