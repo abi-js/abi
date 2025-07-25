@@ -1,8 +1,10 @@
 {
 	"root": false,
 	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"files": {
+		"includes": ["**", "!**/tmp", "!**/node_modules", "!**/dist"]
+	},
 	"linter": {
-		"includes": ["**", "!**/tmp", "!**/node_modules", "!**/dist"],
 		"rules": {
 			"style": {
 				"noNonNullAssertion": "off",
@@ -25,8 +27,5 @@
 				"noConfusingVoidType": "off"
 			}
 		}
-	},
-	"formatter": {
-		"includes": ["**", "!**/tmp", "!**/node_modules", "!**/dist"]
 	}
 }
