@@ -6,7 +6,7 @@
 		"rules": {
 			"style": {
 				"noNonNullAssertion": "off",
-				"noParameterAssign": "error",
+				"noParameterAssign": "off",
 				"useAsConstAssertion": "error",
 				"useDefaultParameterLast": "error",
 				"useEnumInitializers": "error",

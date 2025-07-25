@@ -384,7 +384,7 @@ export class Application extends Program<Definition, Input> {
 					}
 
 					s.stop("Git initialized 🎲");
-				} catch (e) {
+				} catch (_e) {
 					s.stop("Git failed to initialize");
 					if (!initialized) {
 						this.error(
