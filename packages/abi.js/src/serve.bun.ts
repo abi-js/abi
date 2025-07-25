@@ -22,7 +22,7 @@ function serve(arg1: any, arg2?: any, arg3?: any): Address {
 		fetch: handler,
 	});
 
-	return { port: server.port, hostname: server.hostname };
+	return { port: server.port || 3000, hostname: server.hostname || 'localhost' };
 }
 
 export { serve };
