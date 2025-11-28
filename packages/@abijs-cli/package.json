@@ -1,61 +1,58 @@
 {
   "name": "@abijs/cli",
-  "module": "src/index.ts",
-  "version": "0.0.0",
-  "private": false,
-  "sideEffects": false,
-  "type": "module",
-  "engines": {
-    "node": ">=22.14.0",
-    "deno": ">=2.2.2",
-    "bun": ">=1.2.3",
-    "pnpm": ">=9.12.3",
-    "npm": "use pnpm instead"
-  },
-  "packageManager": "pnpm@9.12.3",
-  "publishConfig": {
-    "access": "public"
-  },
-  "homepage": "https://abi.js.org",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/abi-js/abi",
-    "directory": "packages/@abijs-cli"
-  },
-  "bugs": "https://github.com/abi-js/abi/issues",
-  "author": {
-    "name": "Sigui Kessé Emmanuel",
-    "email": "siguici@proton.me",
-    "url": "https://siguici.deno.dev/"
-  },
-  "module": "./dist/node/index.mjs",
-  "main": "./dist/node/index.cjs",
-  "types": "./dist/node/index.d.ts",
-  "exports": {
-    ".": {
-      "bun": "./dist/node/index.ts",
-      "deno": "./dist/deno/index.js",
-      "types": "./dist/node/index.d.ts",
-      "import": "./dist/node/index.mjs",
-      "require": "./dist/node/index.cjs"
-    }
-  },
-  "keywords": [
-    "Abi",
-    "Abi.js",
-    "abidotjs",
-    "abi-js",
+	"version": "0.0.0",
+	"private": false,
+	"sideEffects": false,
+	"type": "module",
+	"engines": {
+		"node": ">=22.14.0",
+		"deno": ">=2.2.2",
+		"bun": ">=1.2.3",
+		"pnpm": ">=9.12.3",
+		"npm": "use pnpm instead"
+	},
+	"packageManager": "pnpm@9.12.3",
+	"publishConfig": {
+		"access": "public"
+	},
+	"homepage": "https://abi.js.org",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/abi-js/abi",
+		"directory": "packages/@abijs-cli"
+	},
+	"bugs": "https://github.com/abi-js/abi/issues",
+	"author": {
+		"name": "Sigui Kessé Emmanuel",
+		"email": "siguici@proton.me",
+		"url": "https://siguici.deno.dev/"
+	},
+	"module": "./dist/node/index.mjs",
+	"main": "./dist/node/index.cjs",
+	"types": "./dist/node/index.d.ts",
+	"exports": {
+		".": {
+			"bun": "./dist/node/index.ts",
+			"deno": "./dist/deno/index.js",
+			"types": "./dist/node/index.d.ts",
+			"import": "./dist/node/index.mjs",
+			"require": "./dist/node/index.cjs"
+		}
+	},
+	"keywords": [
+		"Abi",
+		"Abi.js",
+		"abidotjs",
+		"abi-js",
     "cli-application",
-    "command-line",
-    "JavaScript",
-    "TypeScript",
-    "Node.js",
-    "Bun",
-    "Deno",
-    "CLI"
-  ],
-  "type": "module",
-  "private": true,
+		"command-line",
+		"JavaScript",
+		"TypeScript",
+		"Node.js",
+		"Bun",
+		"Deno",
+		"CLI"
+	],
   "devDependencies": {
     "@types/bun": "^1.3.3",
     "@types/deno": "^2.5.0",
