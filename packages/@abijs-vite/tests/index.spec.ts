@@ -28,11 +28,11 @@ describe("v-vite", () => {
 
 	it("handles missing configuration", () => {
 		/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-		/* @ts-ignore */
+		/* @ts-expect-error */
 		expect(() => v()).toThrowError("v-vite: missing configuration.");
 
 		/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-		/* @ts-ignore */
+		/* @ts-expect-error */
 		expect(() => v({})).toThrowError(
 			'v-vite: missing configuration for "input".',
 		);
@@ -332,31 +332,31 @@ describe("v-vite", () => {
 			{ build: { ssr: true } },
 			{ command: "build", mode: "production" },
 		);
-		/* @ts-ignore */
+		/* @ts-expect-error */
 		expect(noSsrConfig.ssr.noExternal).toEqual(["v-vite"]);
 
-		/* @ts-ignore */
+		/* @ts-expect-error */
 		const nothingExternalConfig = plugin.config(
 			{ ssr: { noExternal: true }, build: { ssr: true } },
 			{ command: "build", mode: "production" },
 		);
-		/* @ts-ignore */
+		/* @ts-expect-error */
 		expect(nothingExternalConfig.ssr.noExternal).toBe(true);
 
-		/* @ts-ignore */
+		/* @ts-expect-error */
 		const arrayNoExternalConfig = plugin.config(
 			{ ssr: { noExternal: ["foo"] }, build: { ssr: true } },
 			{ command: "build", mode: "production" },
 		);
-		/* @ts-ignore */
+		/* @ts-expect-error */
 		expect(arrayNoExternalConfig.ssr.noExternal).toEqual(["foo", "v-vite"]);
 
-		/* @ts-ignore */
+		/* @ts-expect-error */
 		const stringNoExternalConfig = plugin.config(
 			{ ssr: { noExternal: "foo" }, build: { ssr: true } },
 			{ command: "build", mode: "production" },
 		);
-		/* @ts-ignore */
+		/* @ts-expect-error */
 		expect(stringNoExternalConfig.ssr.noExternal).toEqual(["foo", "v-vite"]);
 	});
 
@@ -398,7 +398,7 @@ describe("v-vite", () => {
 		});
 
 		expect(plugins.length).toBe(2);
-		/** @ts-ignore */
+		/** @ts-expect-error */
 		expect(plugins[1].__v_plugin_config).toEqual({
 			paths: ["src/resources/**", "src/templates/**"],
 		});
@@ -411,7 +411,7 @@ describe("v-vite", () => {
 		});
 
 		expect(plugins.length).toBe(2);
-		/** @ts-ignore */
+		/** @ts-expect-error */
 		expect(plugins[1].__v_plugin_config).toEqual({
 			paths: ["path/to/watch/**"],
 		});
@@ -424,7 +424,7 @@ describe("v-vite", () => {
 		});
 
 		expect(plugins.length).toBe(2);
-		/** @ts-ignore */
+		/** @ts-expect-error */
 		expect(plugins[1].__v_plugin_config).toEqual({
 			paths: ["path/to/watch/**", "another/to/watch/**"],
 		});
@@ -440,7 +440,7 @@ describe("v-vite", () => {
 		});
 
 		expect(plugins.length).toBe(2);
-		/** @ts-ignore */
+		/** @ts-expect-error */
 		expect(plugins[1].__v_plugin_config).toEqual({
 			paths: ["path/to/watch/**", "another/to/watch/**"],
 			config: { delay: 987 },
@@ -463,12 +463,12 @@ describe("v-vite", () => {
 		});
 
 		expect(plugins.length).toBe(3);
-		/** @ts-ignore */
+		/** @ts-expect-error */
 		expect(plugins[1].__v_plugin_config).toEqual({
 			paths: ["path/to/watch/**"],
 			config: { delay: 987 },
 		});
-		/** @ts-ignore */
+		/** @ts-expect-error */
 		expect(plugins[2].__v_plugin_config).toEqual({
 			paths: ["another/to/watch/**"],
 			config: { delay: 123 },

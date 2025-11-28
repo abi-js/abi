@@ -56,7 +56,7 @@ for (const file of files) {
 
 function match(path: string, type: "Node" | "Bun"): RegExpMatchArray | null {
 	return path.match(
-		`^(.*)\.${type.toLowerCase()}((?:\.d)?\.[mc]?${
+		`^(.*).${type.toLowerCase()}((?:.d)?.[mc]?${
 			type === "Bun" ? "t" : "[tj]"
 		}s)$`,
 	);

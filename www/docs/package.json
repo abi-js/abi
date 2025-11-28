@@ -37,20 +37,20 @@
 		"sync": "astro sync"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.4",
-		"@astrojs/starlight": "^0.35.1",
-		"astro": "^5.12.3",
-		"sharp": "^0.34.3",
-		"typescript": "^5.8.3"
+		"@astrojs/check": "^0.9.6",
+		"@astrojs/starlight": "^0.36.3",
+		"astro": "^5.16.2",
+		"sharp": "^0.34.5",
+		"typescript": "^5.9.3"
 	},
 	"trustedDependencies": [
 		"sharp"
 	],
 	"devDependencies": {
-		"@astrojs/starlight-tailwind": "^4.0.1",
-		"@tailwindcss/vite": "^4.1.11",
-		"@types/node": "^24.1.0",
-		"tailwindcss": "^4.1.11",
+		"@astrojs/starlight-tailwind": "^4.0.2",
+		"@tailwindcss/vite": "^4.1.17",
+		"@types/node": "^24.10.1",
+		"tailwindcss": "^4.1.17",
 		"ts-node": "^10.9.2"
 	}
 }

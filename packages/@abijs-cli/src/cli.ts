@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
-import runtime from "panam/runtime";
-import { realpath } from "./utils";
+import runtime from 'panam/runtime';
 
 switch (runtime.name) {
   case 'bun':
-    await import("./cli.bun.ts");
+    await import('./cli.bun.ts');
     break;
 
   case 'deno':
-    await import("./cli.deno.ts");
+    await import('./cli.deno.ts');
     break;
 
   default:

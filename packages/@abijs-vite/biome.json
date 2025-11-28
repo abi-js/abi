@@ -14,5 +14,10 @@
 				"noMisleadingCharacterClass": "off"
 			}
 		}
-	}
+	},
+  "html": {
+    "parser": {
+      "interpolation": true
+    }
+  }
 }
